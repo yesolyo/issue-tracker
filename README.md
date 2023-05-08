@@ -7,5 +7,5 @@
 |2|제이든, 포로, 루크, 우드, 에피, 릴리|https://github.com/Gwonwoo-Nam/issue-tracker|
 |3| | |
 |4| | |
-|5| | |
+|5| Aiden Aken GOMUNGNAM Hoonding NINO Sol | https://github.com/hoongding/issue-tracker |
 |6|로이 이린 sarang_daddy snoop|https://github.com/codesquad-members-2023-team6/issue-tracker|
