@@ -1,4 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
+
+import { defaultColor } from './color';
+import { fontSize, fontType } from './font';
+
 export const GlobalStyle = createGlobalStyle`
 html,
 body,
@@ -96,7 +100,9 @@ video {
 
 body {
   width: 100%;
+  background-color: ${defaultColor.body};
   font: inherit;
+  color: ${defaultColor.textDefault};
   font-family: 'Pretendard', sans-serif;
   ${fontSize.M};
   ${fontType.REGULAR};
