@@ -94,6 +94,14 @@ video {
   }
 }
 
+body {
+  width: 100%;
+  font: inherit;
+  font-family: 'Pretendard', sans-serif;
+  ${fontSize.M};
+  ${fontType.REGULAR};
+}
+
 article,
 aside,
 details,
