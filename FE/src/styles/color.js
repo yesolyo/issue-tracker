@@ -11,10 +11,10 @@ export const colors = {
   gray900: '#14142B',
   blue: '#007AFF',
   navy: '#4E4B66',
-  red: '#4E4B66'
+  red: '#4E4B66',
 };
 
 export const defaultColor = {
   body: colors.gray50,
-  textDefault: colors.gray900
+  textDefault: colors.gray900,
 };
