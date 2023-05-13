@@ -6,10 +6,11 @@
 
 ## 👨‍👩‍👧‍👧 팀원 소개
 
-| ![워터](https://user-images.githubusercontent.com/63908856/237317554-9f8e4acd-00c3-4b68-ba2a-174191fd0452.jpeg) | ![NANII](https://user-images.githubusercontent.com/63908856/237317522-a9e1a7e7-3edc-4ab0-8ba9-299d4dcfe9fe.jpeg) | ![감자](https://github.com/codesquad-2023-group04/issue-tracker/assets/115435784/5cda64c8-400e-44a8-935a-d08aab1fb0ad) | ![Birdie](https://github.com/codesquad-2023-group04/issue-tracker/assets/115435784/da56f67e-2541-4c52-b194-79527ff87c6d) | ![Noah](https://user-images.githubusercontent.com/63908856/237317530-536bef4a-f9f1-4305-9455-b1f1abdd39a8.jpg) | ![데미안](https://user-images.githubusercontent.com/63908856/237317539-b5cddc41-4345-40a9-ae90-1982a05ac4ae.jpg) |
-| --- | --- | --- | --- | --- | --- |
-| [워터[FE]](https://github.com/yesolyo) | [NANII[FE]](https://github.com/bread1022) | [감자[BE]](https://github.com/leegyeongwhan) | [Birdie[BE]](https://github.com/birdieHyun) | [Noah[iOS]](https://github.com/noah0316) | [데미안[iOS]](https://github.com/demiiann) |
-
+|워터[FE]|NANII[FE]|감자[BE]|Birdie[BE]|Noah[iOS]|데미안[iOS]|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|<img src="https://user-images.githubusercontent.com/63908856/237317554-9f8e4acd-00c3-4b68-ba2a-174191fd0452.jpeg" alt="워터" width="125" height="150">|<img src="https://user-images.githubusercontent.com/63908856/237317522-a9e1a7e7-3edc-4ab0-8ba9-299d4dcfe9fe.jpeg" alt="나니" width="125" height="150">|<img src="https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg" alt="감자" width="125" height="150">|<img src="https://user-images.githubusercontent.com/63908856/237317551-16ca8971-fc7a-48b9-a2aa-0aadcadafcee.jpg" alt="Birdie" width="125" height="150">|<img src="https://user-images.githubusercontent.com/63908856/237317530-536bef4a-f9f1-4305-9455-b1f1abdd39a8.jpg" alt="Noah" width="125" height="150">|<img src="https://user-images.githubusercontent.com/63908856/237317539-b5cddc41-4345-40a9-ae90-1982a05ac4ae.jpg" alt="데미안" width="125" height="150">|
+| [yesolyo](https://github.com/yesolyo) | [bread1022](https://github.com/bread1022) | [leegyeongwhan](https://github.com/leegyeongwhan) | [birdieHyun](https://github.com/birdieHyun) | [noah0316](https://github.com/noah0316) | [demiiann](https://github.com/demiiann) |
+<br>
 
 ## 🤝 그라운드 룰
 
