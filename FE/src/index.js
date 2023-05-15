@@ -2,10 +2,10 @@ import React from 'react';
 
 import ReactDOM from 'react-dom/client';
 
-import App from './App.jsx';
+import App from './App.js';
 
 if (process.env.NODE_ENV === 'development') {
-  const { worker } = require('./mocks/browser.js');
+  const { worker } = require('./mocks/browser');
   worker.start();
 }
 
