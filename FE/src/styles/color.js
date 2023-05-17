@@ -10,8 +10,8 @@ export const colors = {
   gray800: '#2A2A44',
   gray900: '#14142B',
   blue: '#007AFF',
-  navy: '#4E4B66',
-  red: '#4E4B66',
+  navy: '#0025E6',
+  red: '#FF3B30',
 };
 
 export const defaultColor = {
