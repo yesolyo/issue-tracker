@@ -69,3 +69,22 @@ const MydefaultTag = styled.div`
   border-radius: 50px;
   ${fontSize.S}
 `;
+
+const MyAuthorTag = styled.div`
+  color: ${colors.gray600};
+  border: 1px solid ${colors.gray600};
+`;
+
+const issueTag = styled(MydefaultTag)`
+  width: max-content;
+  gap: 4px;
+  color: ${colors.gray50};
+`;
+
+const MyOpenTag = styled(issueTag)`
+  background-color: ${colors.blue};
+`;
+
+const MyCloseTag = styled(issueTag)`
+  background-color: ${colors.navy};
+`;
