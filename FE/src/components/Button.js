@@ -6,11 +6,11 @@ import { fontType } from '../styles/font';
 
 const MyButton = styled.button`
   flex-direction: row;
-  justify-content: space-evenly;
   align-items: center;
+  justify-content: space-evenly;
   padding: 0px 16px;
-  width: 120px;
-  height: 40px;
+  width: ${(props) => props.buttonWidth || '120px'};
+  height: ${(props) => props.buttonHeight || '40px'};
   display: flex;
   border-radius: 11px;
   ${fontType.BOLD};
@@ -40,6 +40,8 @@ export const Button = ({
   hoverColor,
   backgroundColor,
   buttonText,
+  buttonWidth,
+  buttonHeight,
   iconType,
   isLeftPosition,
   isIcon
@@ -57,6 +59,8 @@ export const Button = ({
       buttonColor={buttonColor}
       hoverColor={hoverColor}
       backgroundColor={backgroundColor}
+      buttonWidth={buttonWidth}
+      buttonHeight={buttonHeight}
     >
       {isIcon
         ? (

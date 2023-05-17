@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '../components/Button';
 import { FilterBar } from '../components/filterBar/FilterBar';
 import { IssueListHeader } from '../components/issueList/IssueListHeader';
+import { Sidebar } from '../components/newIssue/Sidebar';
 import { TabButton } from '../components/TabButton';
 import { colors } from '../styles/color';
 
@@ -51,6 +52,8 @@ export const IssueList = () => {
     backgroundColor: colors.blue,
     hoverColor: colors.gray50,
     btnText: '완료',
+    btnWidth: '240px',
+    btnHeight: '56px',
     isIcon: false,
     iconType: 'plus',
     isLeftPosition: true
@@ -107,10 +110,13 @@ export const IssueList = () => {
         hoverColor={saveBtnConstant.hoverColor}
         backgroundColor={saveBtnConstant.backgroundColor}
         buttonText={saveBtnConstant.btnText}
+        buttonWidth={saveBtnConstant.btnWidth}
+        buttonHeight={saveBtnConstant.btnHeight}
         isIcon={saveBtnConstant.isIcon}
         iconType={saveBtnConstant.iconType}
         isLeftPosition={saveBtnConstant.isLeftPosition}
       />
+      <Sidebar />
     </>
   );
 };

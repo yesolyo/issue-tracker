@@ -7,6 +7,9 @@ import { Button } from '../Button';
 
 const MyfilterBar = styled.div`
   display: flex;
+  & button {
+    justify-content: space-between;
+  }
 `;
 
 const LeftFilterBar = styled.div`
@@ -19,6 +22,7 @@ const LeftFilterBar = styled.div`
   border: 1px solid ${colors.gray300};
   border-right: none;
   background: ${colors.gray100};
+  
   &:hover {
     background: ${colors.gray200};
   }
