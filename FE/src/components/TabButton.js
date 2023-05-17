@@ -38,6 +38,7 @@ export const TabButton = ({
   backgroundColor,
   leftext,
   rightText,
+  isIcon,
   leftIconType,
   rightIconType,
   isLeftPosition
@@ -51,6 +52,7 @@ export const TabButton = ({
           hoverColor={hoverColor}
           backgroundColor={backgroundColor}
           buttonText={leftext}
+          isIcon={isIcon}
           iconType={leftIconType}
           isLeftPosition={isLeftPosition}
         />
@@ -62,6 +64,7 @@ export const TabButton = ({
           hoverColor={hoverColor}
           backgroundColor={backgroundColor}
           buttonText={rightText}
+          isIcon={isIcon}
           iconType={rightIconType}
           isLeftPosition={isLeftPosition}
         />

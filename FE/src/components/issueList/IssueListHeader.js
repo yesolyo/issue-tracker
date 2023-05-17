@@ -16,6 +16,7 @@ export const IssueListHeader = ({ value }) => {
     backgroundColor: 'transparent',
     openBtnText: `열린 이슈(${value?.openCount})`,
     closeBtnText: `닫힌 이슈(${value?.closeCount})`,
+    isIcon: true,
     openIconType: 'alertCircle',
     closeIconType: 'archive',
     isLeftPosition: true,
@@ -31,6 +32,7 @@ export const IssueListHeader = ({ value }) => {
     label: '레이블',
     milestone: '마일스톤',
     author: '작성자',
+    isIcon: true,
     iconType: 'chevronDown',
     isLeftPosition: true,
     isRightPosition: false
@@ -44,6 +46,7 @@ export const IssueListHeader = ({ value }) => {
         backgroundColor={issuesConstant.backgroundColor}
         hoverColor={issuesConstant.hoverColor}
         buttonText={issuesConstant.openBtnText}
+        isIcon={issuesConstant.isIcon}
         iconType={issuesConstant.openIconType}
         isLeftPosition={issuesConstant.isLeftPosition}
       />
@@ -53,6 +56,7 @@ export const IssueListHeader = ({ value }) => {
         backgroundColor={issuesConstant.backgroundColor}
         hoverColor={issuesConstant.hoverColor}
         buttonText={issuesConstant.closeBtnText}
+        isIcon={issuesConstant.isIcon}
         iconType={issuesConstant.closeIconType}
         isLeftPosition={issuesConstant.isLeftPosition}
       />
@@ -62,6 +66,7 @@ export const IssueListHeader = ({ value }) => {
         backgroundColor={issuePropertiesConstant.backgroundColor}
         hoverColor={issuePropertiesConstant.hoverColor}
         buttonText={issuePropertiesConstant.assignee}
+        isIcon={issuePropertiesConstant.isIcon}
         iconType={issuePropertiesConstant.iconType}
         isLeftPosition={issuePropertiesConstant.isRightPosition}
       />
@@ -71,6 +76,7 @@ export const IssueListHeader = ({ value }) => {
         backgroundColor={issuePropertiesConstant.backgroundColor}
         hoverColor={issuePropertiesConstant.hoverColor}
         buttonText={issuePropertiesConstant.label}
+        isIcon={issuePropertiesConstant.isIcon}
         iconType={issuePropertiesConstant.iconType}
         isLeftPosition={issuePropertiesConstant.isRightPosition}
       />
@@ -80,6 +86,7 @@ export const IssueListHeader = ({ value }) => {
         backgroundColor={issuePropertiesConstant.backgroundColor}
         hoverColor={issuePropertiesConstant.hoverColor}
         buttonText={issuePropertiesConstant.milestone}
+        isIcon={issuePropertiesConstant.isIcon}
         iconType={issuePropertiesConstant.iconType}
         isLeftPosition={issuePropertiesConstant.isRightPosition}
       />
@@ -89,6 +96,7 @@ export const IssueListHeader = ({ value }) => {
         backgroundColor={issuePropertiesConstant.backgroundColor}
         hoverColor={issuePropertiesConstant.hoverColor}
         buttonText={issuePropertiesConstant.author}
+        isIcon={issuePropertiesConstant.isIcon}
         iconType={issuePropertiesConstant.iconType}
         isLeftPosition={issuePropertiesConstant.isRightPosition}
       />

@@ -41,7 +41,8 @@ export const Button = ({
   backgroundColor,
   buttonText,
   iconType,
-  isLeftPosition
+  isLeftPosition,
+  isIcon
 }) => {
   const buttonType = {
     containerButton,
@@ -57,18 +58,24 @@ export const Button = ({
       hoverColor={hoverColor}
       backgroundColor={backgroundColor}
     >
-      {isLeftPosition
+      {isIcon
         ? (
-          <>
-            <Icon iconType={iconType} fill={buttonColor} width={10} />
-            {buttonText}
-          </>
+          isLeftPosition
+            ? (
+              <>
+                <Icon iconType={iconType} fill={buttonColor} width={10} />
+                {buttonText}
+              </>
+            )
+            : (
+              <>
+                {buttonText}
+                <Icon iconType={iconType} fill={buttonColor} width={10} />
+              </>
+            )
         )
         : (
-          <>
-            {buttonText}
-            <Icon iconType={iconType} fill={buttonColor} width={10} />
-          </>
+          <>{buttonText}</>
         )}
     </MyButton>
   );

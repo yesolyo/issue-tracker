@@ -9,12 +9,13 @@ import { colors } from '../styles/color';
 export const IssueList = () => {
   const [data, setData] = useState([]);
 
-  const addIssueConstant = {
+  const addBtnConstant = {
     type: 'containerButton',
     btnColor: colors.gray50,
     backgroundColor: colors.blue,
     hoverColor: colors.gray50,
     btnText: '이슈 작성',
+    isIcon: true,
     iconType: 'plus',
     isLeftPosition: true
   };
@@ -26,10 +27,33 @@ export const IssueList = () => {
     hoverColor: colors.gray700,
     lefBtnText: `레이블(${data.countInfo?.labelCount})`,
     rightBtnText: `마일스톤(${data.countInfo?.milestoneCount})`,
+    isIcon: true,
     leftIconType: 'label',
     rightIconType: 'milestone',
     isLeftPosition: true,
     isRightPositin: false
+  };
+
+  const cancelBtnConstant = {
+    type: 'ghostButton',
+    btnColor: colors.gray700,
+    backgroundColor: 'transparent',
+    hoverColor: colors.gray700,
+    btnText: '작성 취소',
+    isIcon: true,
+    iconType: 'xSquare',
+    isLeftPosition: true
+  };
+
+  const saveBtnConstant = {
+    type: 'containerButton',
+    btnColor: colors.gray50,
+    backgroundColor: colors.blue,
+    hoverColor: colors.gray50,
+    btnText: '완료',
+    isIcon: false,
+    iconType: 'plus',
+    isLeftPosition: true
   };
 
   useEffect(() => {
@@ -44,13 +68,14 @@ export const IssueList = () => {
   return (
     <>
       <Button
-        type={addIssueConstant.type}
-        buttonColor={addIssueConstant.btnColor}
-        hoverColor={addIssueConstant.hoverColor}
-        backgroundColor={addIssueConstant.backgroundColor}
-        buttonText={addIssueConstant.btnText}
-        iconType={addIssueConstant.iconType}
-        isLeftPosition={addIssueConstant.isLeftPosition}
+        type={addBtnConstant.type}
+        buttonColor={addBtnConstant.btnColor}
+        hoverColor={addBtnConstant.hoverColor}
+        backgroundColor={addBtnConstant.backgroundColor}
+        buttonText={addBtnConstant.btnText}
+        isIcon={addBtnConstant.isIcon}
+        iconType={addBtnConstant.iconType}
+        isLeftPosition={addBtnConstant.isLeftPosition}
       />
       <TabButton
         type={issueTabConstant.type}
@@ -59,12 +84,33 @@ export const IssueList = () => {
         backgroundColor={issueTabConstant.backgroundColor}
         leftext={issueTabConstant.lefBtnText}
         rightText={issueTabConstant.rightBtnText}
+        isIcon={issueTabConstant.isIcon}
         leftIconType={issueTabConstant.leftIconType}
         rightIconType={issueTabConstant.rightIconType}
         isLeftPosition={issueTabConstant.isLeftPosition}
       />
       <FilterBar />
       <IssueListHeader value={data.countInfo} />
+      <Button
+        type={cancelBtnConstant.type}
+        buttonColor={cancelBtnConstant.btnColor}
+        hoverColor={cancelBtnConstant.hoverColor}
+        backgroundColor={cancelBtnConstant.backgroundColor}
+        buttonText={cancelBtnConstant.btnText}
+        isIcon={cancelBtnConstant.isIcon}
+        iconType={cancelBtnConstant.iconType}
+        isLeftPosition={cancelBtnConstant.isLeftPosition}
+      />
+      <Button
+        type={saveBtnConstant.type}
+        buttonColor={saveBtnConstant.btnColor}
+        hoverColor={saveBtnConstant.hoverColor}
+        backgroundColor={saveBtnConstant.backgroundColor}
+        buttonText={saveBtnConstant.btnText}
+        isIcon={saveBtnConstant.isIcon}
+        iconType={saveBtnConstant.iconType}
+        isLeftPosition={saveBtnConstant.isLeftPosition}
+      />
     </>
   );
 };

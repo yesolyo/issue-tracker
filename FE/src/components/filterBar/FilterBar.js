@@ -52,6 +52,7 @@ export const FilterBar = () => {
     backgroundColor: 'transparent',
     hoverColor: colors.gray600,
     btnText: '필터',
+    isIcon: true,
     iconType: 'chevronDown',
     isLeftPosition: false
   };
@@ -65,6 +66,7 @@ export const FilterBar = () => {
           backgroundColor={filterConstant.backgroundColor}
           hoverColor={filterConstant.hoverColor}
           buttonText={filterConstant.btnText}
+          isIcon={filterConstant.isIcon}
           iconType={filterConstant.iconType}
           isLeftPosition={filterConstant.isLeftPosition}
         />
