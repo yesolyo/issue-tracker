@@ -8,29 +8,30 @@ const MyIssueListHeader = styled.div`
 `;
 
 export const IssueListHeader = ({ value }) => {
-  const combinedIssues = {
+  const issuesConstant = {
     type: 'ghostButton',
-    opencolor: colors.gray900,
-    closecolor: colors.gray700,
-    openIssue: `열린 이슈(${value?.openCount})`,
-    closeIssue: `닫힌 이슈(${value?.closeCount})`,
-    backgroundColor: 'transparent',
+    openBtnColor: colors.gray900,
+    closeBtnColor: colors.gray700,
     hoverColor: colors.gray900,
-    openIcon: 'alertCircle',
-    closeIcon: 'archive',
+    backgroundColor: 'transparent',
+    openBtnText: `열린 이슈(${value?.openCount})`,
+    closeBtnText: `닫힌 이슈(${value?.closeCount})`,
+    openIconType: 'alertCircle',
+    closeIconType: 'archive',
     isLeftPosition: true,
     isRightPosition: false
   };
-  const combinedIssueProperties = {
+
+  const issuePropertiesConstant = {
     type: 'ghostButton',
-    color: colors.gray600,
+    btnColor: colors.gray600,
+    hoverColor: colors.gray900,
+    backgroundColor: 'transparent',
     assignee: '담당자',
     label: '레이블',
     milestone: '마일스톤',
     author: '작성자',
-    img: 'chevronDown',
-    backgroundColor: 'transparent',
-    hoverColor: colors.gray900,
+    iconType: 'chevronDown',
     isLeftPosition: true,
     isRightPosition: false
   };
@@ -38,58 +39,58 @@ export const IssueListHeader = ({ value }) => {
   return (
     <MyIssueListHeader>
       <Button
-        type={combinedIssues.type}
-        buttonColor={combinedIssues.opencolor}
-        backgroundColor={combinedIssues.backgroundColor}
-        hoverColor={combinedIssues.hoverColor}
-        buttonText={combinedIssues.openIssue}
-        iconType={combinedIssues.openIcon}
-        isLeftPosition={combinedIssues.isLeftPosition}
+        type={issuesConstant.type}
+        buttonColor={issuesConstant.openBtnColor}
+        backgroundColor={issuesConstant.backgroundColor}
+        hoverColor={issuesConstant.hoverColor}
+        buttonText={issuesConstant.openBtnText}
+        iconType={issuesConstant.openIconType}
+        isLeftPosition={issuesConstant.isLeftPosition}
       />
       <Button
-        type={combinedIssues.type}
-        buttonColor={combinedIssues.closecolor}
-        backgroundColor={combinedIssues.backgroundColor}
-        hoverColor={combinedIssues.hoverColor}
-        buttonText={combinedIssues.closeIssue}
-        iconType={combinedIssues.closeIcon}
-        isLeftPosition={combinedIssues.isLeftPosition}
+        type={issuesConstant.type}
+        buttonColor={issuesConstant.closeBtnColor}
+        backgroundColor={issuesConstant.backgroundColor}
+        hoverColor={issuesConstant.hoverColor}
+        buttonText={issuesConstant.closeBtnText}
+        iconType={issuesConstant.closeIconType}
+        isLeftPosition={issuesConstant.isLeftPosition}
       />
       <Button
-        type={combinedIssueProperties.type}
-        buttonColor={combinedIssueProperties.color}
-        backgroundColor={combinedIssueProperties.backgroundColor}
-        hoverColor={combinedIssueProperties.hoverColor}
-        buttonText={combinedIssueProperties.assignee}
-        iconType={combinedIssueProperties.img}
-        isLeftPosition={combinedIssueProperties.isRightPosition}
+        type={issuePropertiesConstant.type}
+        buttonColor={issuePropertiesConstant.btnColor}
+        backgroundColor={issuePropertiesConstant.backgroundColor}
+        hoverColor={issuePropertiesConstant.hoverColor}
+        buttonText={issuePropertiesConstant.assignee}
+        iconType={issuePropertiesConstant.iconType}
+        isLeftPosition={issuePropertiesConstant.isRightPosition}
       />
       <Button
-        type={combinedIssueProperties.type}
-        buttonColor={combinedIssueProperties.color}
-        backgroundColor={combinedIssueProperties.backgroundColor}
-        hoverColor={combinedIssueProperties.hoverColor}
-        buttonText={combinedIssueProperties.label}
-        iconType={combinedIssueProperties.img}
-        isLeftPosition={combinedIssueProperties.isRightPosition}
+        type={issuePropertiesConstant.type}
+        buttonColor={issuePropertiesConstant.btnColor}
+        backgroundColor={issuePropertiesConstant.backgroundColor}
+        hoverColor={issuePropertiesConstant.hoverColor}
+        buttonText={issuePropertiesConstant.label}
+        iconType={issuePropertiesConstant.iconType}
+        isLeftPosition={issuePropertiesConstant.isRightPosition}
       />
       <Button
-        type={combinedIssueProperties.type}
-        buttonColor={combinedIssueProperties.color}
-        backgroundColor={combinedIssueProperties.backgroundColor}
-        hoverColor={combinedIssueProperties.hoverColor}
-        buttonText={combinedIssueProperties.milestone}
-        iconType={combinedIssueProperties.img}
-        isLeftPosition={combinedIssueProperties.isRightPosition}
+        type={issuePropertiesConstant.type}
+        buttonColor={issuePropertiesConstant.btnColor}
+        backgroundColor={issuePropertiesConstant.backgroundColor}
+        hoverColor={issuePropertiesConstant.hoverColor}
+        buttonText={issuePropertiesConstant.milestone}
+        iconType={issuePropertiesConstant.iconType}
+        isLeftPosition={issuePropertiesConstant.isRightPosition}
       />
       <Button
-        type={combinedIssueProperties.type}
-        buttonColor={combinedIssueProperties.color}
-        backgroundColor={combinedIssueProperties.backgroundColor}
-        hoverColor={combinedIssueProperties.hoverColor}
-        buttonText={combinedIssueProperties.author}
-        iconType={combinedIssueProperties.img}
-        isLeftPosition={combinedIssueProperties.isRightPosition}
+        type={issuePropertiesConstant.type}
+        buttonColor={issuePropertiesConstant.btnColor}
+        backgroundColor={issuePropertiesConstant.backgroundColor}
+        hoverColor={issuePropertiesConstant.hoverColor}
+        buttonText={issuePropertiesConstant.author}
+        iconType={issuePropertiesConstant.iconType}
+        isLeftPosition={issuePropertiesConstant.isRightPosition}
       />
     </MyIssueListHeader>
   );

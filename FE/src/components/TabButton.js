@@ -3,45 +3,6 @@ import styled from 'styled-components';
 import { Button } from './Button';
 import { colors } from '../styles/color';
 
-export const TabButton = ({
-  type,
-  buttonColor,
-  backgroundColor,
-  hoverColor,
-  leftext,
-  rightText,
-  leftIconType,
-  rightIconType,
-  isLeftPosition
-}) => {
-  return (
-    <MyTabButton>
-      <LeftTabButton>
-        <Button
-          type={type}
-          buttonColor={buttonColor}
-          backgroundColor={backgroundColor}
-          hoverColor={hoverColor}
-          buttonText={leftext}
-          iconType={leftIconType}
-          isLeftPosition={isLeftPosition}
-        />
-      </LeftTabButton>
-      <RightTabButton>
-        <Button
-          type={type}
-          buttonColor={buttonColor}
-          backgroundColor={backgroundColor}
-          hoverColor={hoverColor}
-          buttonText={rightText}
-          iconType={rightIconType}
-          isLeftPosition={isLeftPosition}
-        />
-      </RightTabButton>
-    </MyTabButton>
-  );
-};
-
 const MyTabButton = styled.div`
   display: flex;
   flex-direction: row;
@@ -69,3 +30,42 @@ const RightTabButton = styled.div`
   background: ${colors.gray100};
   border-radius: 0px 11px 11px 0px;
 `;
+
+export const TabButton = ({
+  type,
+  buttonColor,
+  hoverColor,
+  backgroundColor,
+  leftext,
+  rightText,
+  leftIconType,
+  rightIconType,
+  isLeftPosition
+}) => {
+  return (
+    <MyTabButton>
+      <LeftTabButton>
+        <Button
+          type={type}
+          buttonColor={buttonColor}
+          hoverColor={hoverColor}
+          backgroundColor={backgroundColor}
+          buttonText={leftext}
+          iconType={leftIconType}
+          isLeftPosition={isLeftPosition}
+        />
+      </LeftTabButton>
+      <RightTabButton>
+        <Button
+          type={type}
+          buttonColor={buttonColor}
+          hoverColor={hoverColor}
+          backgroundColor={backgroundColor}
+          buttonText={rightText}
+          iconType={rightIconType}
+          isLeftPosition={isLeftPosition}
+        />
+      </RightTabButton>
+    </MyTabButton>
+  );
+};

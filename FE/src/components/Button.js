@@ -37,11 +37,11 @@ const ghostButton = styled(MyButton)`
 export const Button = ({
   type,
   buttonColor,
+  hoverColor,
+  backgroundColor,
   buttonText,
   iconType,
-  isLeftPosition,
-  backgroundColor,
-  hoverColor
+  isLeftPosition
 }) => {
   const buttonType = {
     containerButton,
@@ -54,8 +54,8 @@ export const Button = ({
   return (
     <MyButton
       buttonColor={buttonColor}
-      backgroundColor={backgroundColor}
       hoverColor={hoverColor}
+      backgroundColor={backgroundColor}
     >
       {isLeftPosition
         ? (

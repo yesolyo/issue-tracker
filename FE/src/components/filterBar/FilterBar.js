@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { Icon } from '../../assets/Icon';
-import { search } from '../../assets/svgs';
 import { colors } from '../../styles/color';
 import { fontType } from '../../styles/font';
 import { Button } from '../Button';
@@ -10,7 +9,7 @@ const MyfilterBar = styled.div`
   display: flex;
 `;
 
-const MyLeftFilterBar = styled.div`
+const LeftFilterBar = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -25,7 +24,7 @@ const MyLeftFilterBar = styled.div`
   }
 `;
 
-const MyRightFilterBar = styled.div`
+const RightFilterBar = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -37,7 +36,7 @@ const MyRightFilterBar = styled.div`
   border-radius: 0px 11px 11px 0px;
 `;
 
-const MyInputFilterBar = styled.input`
+const InputFilterBar = styled.input`
   background: transparent;
   width: 430px;
   height: 20px;
@@ -49,31 +48,31 @@ const MyInputFilterBar = styled.input`
 export const FilterBar = () => {
   const filterConstant = {
     type: 'ghostButton',
-    color: colors.gray600,
+    btnColor: colors.gray600,
     backgroundColor: 'transparent',
     hoverColor: colors.gray600,
-    text: '필터',
-    img: 'chevronDown',
+    btnText: '필터',
+    iconType: 'chevronDown',
     isLeftPosition: false
   };
 
   return (
     <MyfilterBar>
-      <MyLeftFilterBar>
+      <LeftFilterBar>
         <Button
           type={filterConstant.type}
-          buttonColor={filterConstant.color}
+          buttonColor={filterConstant.btnColor}
           backgroundColor={filterConstant.backgroundColor}
           hoverColor={filterConstant.hoverColor}
-          buttonText={filterConstant.text}
-          iconType={filterConstant.img}
+          buttonText={filterConstant.btnText}
+          iconType={filterConstant.iconType}
           isLeftPosition={filterConstant.isLeftPosition}
         />
-      </MyLeftFilterBar>
-      <MyRightFilterBar>
+      </LeftFilterBar>
+      <RightFilterBar>
         <Icon iconType={'search'} fill={colors.gray600} width={10} />
-        <MyInputFilterBar placeholder="is:issue is:open" />
-      </MyRightFilterBar>
+        <InputFilterBar placeholder="is:issue is:open" />
+      </RightFilterBar>
     </MyfilterBar>
   );
 };

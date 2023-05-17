@@ -9,25 +9,25 @@ import { colors } from '../styles/color';
 export const IssueList = () => {
   const [data, setData] = useState([]);
 
-  const ListConstant = {
+  const addIssueConstant = {
     type: 'containerButton',
-    color: colors.gray50,
+    btnColor: colors.gray50,
     backgroundColor: colors.blue,
     hoverColor: colors.gray50,
-    text: '이슈 작성',
-    iconText: 'plus',
+    btnText: '이슈 작성',
+    iconType: 'plus',
     isLeftPosition: true
   };
 
-  const tabConstant = {
+  const issueTabConstant = {
     type: 'ghostButton',
-    color: colors.gray700,
+    btnColor: colors.gray700,
     backgroundColor: colors.gray100,
     hoverColor: colors.gray700,
-    leftext: `레이블(${data.countInfo?.labelCount})`,
-    rightText: `마일스톤(${data.countInfo?.milestoneCount})`,
-    labelimg: 'label',
-    milestoneImg: 'milestone',
+    lefBtnText: `레이블(${data.countInfo?.labelCount})`,
+    rightBtnText: `마일스톤(${data.countInfo?.milestoneCount})`,
+    leftIconType: 'label',
+    rightIconType: 'milestone',
     isLeftPosition: true,
     isRightPositin: false
   };
@@ -44,24 +44,24 @@ export const IssueList = () => {
   return (
     <>
       <Button
-        type={ListConstant.type}
-        buttonColor={ListConstant.color}
-        backgroundColor={ListConstant.backgroundColor}
-        hoverColor={ListConstant.hoverColor}
-        buttonText={ListConstant.text}
-        iconType={ListConstant.iconText}
-        isLeftPosition={ListConstant.isLeftPosition}
+        type={addIssueConstant.type}
+        buttonColor={addIssueConstant.btnColor}
+        hoverColor={addIssueConstant.hoverColor}
+        backgroundColor={addIssueConstant.backgroundColor}
+        buttonText={addIssueConstant.btnText}
+        iconType={addIssueConstant.iconType}
+        isLeftPosition={addIssueConstant.isLeftPosition}
       />
       <TabButton
-        type={tabConstant.type}
-        buttonColor={tabConstant.color}
-        backgroundColor={tabConstant.backgroundColor}
-        leftext={tabConstant.leftext}
-        rightText={tabConstant.rightText}
-        leftIconType={tabConstant.labelimg}
-        rightIconType={tabConstant.milestoneImg}
-        isLeftPosition={tabConstant.isLeftPosition}
-        hoverColor={tabConstant.hoverColor}
+        type={issueTabConstant.type}
+        buttonColor={issueTabConstant.btnColor}
+        hoverColor={issueTabConstant.hoverColor}
+        backgroundColor={issueTabConstant.backgroundColor}
+        leftext={issueTabConstant.lefBtnText}
+        rightText={issueTabConstant.rightBtnText}
+        leftIconType={issueTabConstant.leftIconType}
+        rightIconType={issueTabConstant.rightIconType}
+        isLeftPosition={issueTabConstant.isLeftPosition}
       />
       <FilterBar />
       <IssueListHeader value={data.countInfo} />
