@@ -11,7 +11,7 @@
         "name": "John Doe",
         "profileUrl": "https://user-images.githubusercontent.com/107349637/237753255-465b8b44-ed4a-4712-8814-5b462d335397.png"
       },
-      "label": [
+      "labels": [
         {
           "id": "Bug",
           "backgroundColor": "#FF0000"
@@ -43,7 +43,7 @@
         "name": "Jane Smith",
         "profileUrl": "https://user-images.githubusercontent.com/63908856/237317530-536bef4a-f9f1-4305-9455-b1f1abdd39a8.jpg"
       },
-      "label": [
+      "labels": [
         {
           "id": "Feature Request",
           "backgroundColor": "#00FF00"
@@ -69,11 +69,7 @@
         "name": "Mike Johnson",
         "profileUrl": "https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg"
       },
-      "label": [
-        {
-          "id": "Enhancement",
-          "backgroundColor": "#0000FF"
-        }
+      "labels": [
       ],
       "milestone": null,
       "assignees": [
@@ -93,7 +89,7 @@
         "name": "Emily Davis",
         "profileUrl": "https://user-images.githubusercontent.com/63908856/237317539-b5cddc41-4345-40a9-ae90-1982a05ac4ae.jpg"
       },
-      "label": [
+      "labels": [
         {
           "id": "Documentation",
           "backgroundColor": "#FFFF00"
