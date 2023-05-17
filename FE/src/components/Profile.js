@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Profile = ({ isSmall, userInfo }) => {
-  const ProfileBox = isSmall ? SmallProfile : LargeProfile;
-
-  return <ProfileBox src={userInfo?.profileUrl} alt={userInfo?.userName} />;
-};
-
 const MyProfile = styled.img`
   border-radius: 50%;
 `;
@@ -19,3 +13,9 @@ const LargeProfile = styled(MyProfile)`
   width: 32px;
   height: 32px;
 `;
+
+export const Profile = ({ isSmall, userInfo }) => {
+  const ProfileBox = isSmall ? SmallProfile : LargeProfile;
+
+  return <ProfileBox src={userInfo?.profileUrl} alt={userInfo?.userName} />;
+};

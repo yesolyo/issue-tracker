@@ -11,7 +11,7 @@ export const colors = {
   gray900: '#14142B',
   blue: '#007AFF',
   navy: '#0025E6',
-  red: '#FF3B30',
+  red: '#FF3B30'
 };
 
 export const defaultColor = {

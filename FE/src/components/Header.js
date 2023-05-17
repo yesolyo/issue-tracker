@@ -6,26 +6,34 @@ import { Profile } from './Profile';
 import { Icon } from '../assets/Icon';
 import { IssueListContext } from '../pages/IssueList';
 
-export const Header = () => {
-  const issueData = useContext(IssueListContext);
-  const userInfo = issueData.userInfo;
-  const largeLogoIcon = {
-    iconType: 'logotypeLarge',
-    width: 200,
-    height: 40
-  };
-  const isSmall = false;
-
-  return (
-    <MyHeader>
-      <Icon {...largeLogoIcon} />
-      <Profile isSmall={isSmall} userInfo={userInfo} />
-    </MyHeader>
-  );
-};
-
 const MyHeader = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 25px 25px;
 `;
+
+export const Header = ({ text }) => {
+  const issueData = useContext(IssueListContext);
+  const logoInfo = {
+    iconType: 'logotypeLarge',
+    width: 200,
+    height: 40,
+    isSmall: false,
+    userInfo: issueData.userInfo
+  };
+
+  return (
+    <MyHeader>
+      {text
+        ? (
+          { text }
+        )
+        : (
+          <>
+            <Icon {...logoInfo} />
+            <Profile isSmall={logoInfo.isSmall} userInfo={logoInfo.userInfo} />
+          </>
+        )}
+    </MyHeader>
+  );
+};
