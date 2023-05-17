@@ -52,13 +52,13 @@ export const Button = ({
   iconType,
   isLeftPosition
 }) => {
-  const buttonType = {
+  const buttonTypes = {
     containerButton,
     outlineButton,
     ghostButton
   };
 
-  const MyButton = buttonType[type];
+  const MyButton = buttonTypes[type];
 
   return (
     <MyButton

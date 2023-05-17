@@ -1,97 +1,55 @@
+import { useContext } from 'react';
+
 import styled from 'styled-components';
 
+import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
-import { Button } from '../Button';
+import { Button } from '../button/Button';
+import { openButtonOption, closeButtonOption } from '../button/buttonConstant';
+import { CheckBox } from '../CheckBox';
+import { DropdownTab } from '../dropdown/DropdownTab';
 
 const MyIssueListHeader = styled.div`
   display: flex;
+  gap: 18px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  height: 64px;
+  background-color: ${colors.gray100};
+  border-bottom: 1px solid ${colors.gray300};
+  border-radius: 16px 16px 0px 0px;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    > svg,
+    > button {
+      cursor: pointer;
+    }
+  }
 `;
 
-export const IssueListHeader = ({ value }) => {
-  const issuesConstant = {
-    type: 'ghostButton',
-    openBtnColor: colors.gray900,
-    closeBtnColor: colors.gray700,
-    hoverColor: colors.gray900,
-    backgroundColor: 'transparent',
-    openBtnText: `열린 이슈(${value?.openCount})`,
-    closeBtnText: `닫힌 이슈(${value?.closeCount})`,
-    openIconType: 'alertCircle',
-    closeIconType: 'archive',
-    isLeftPosition: true,
-    isRightPosition: false
-  };
-
-  const issuePropertiesConstant = {
-    type: 'ghostButton',
-    btnColor: colors.gray600,
-    hoverColor: colors.gray900,
-    backgroundColor: 'transparent',
-    assignee: '담당자',
-    label: '레이블',
-    milestone: '마일스톤',
-    author: '작성자',
-    iconType: 'chevronDown',
-    isLeftPosition: true,
-    isRightPosition: false
-  };
-
+export const IssueListHeader = () => {
+  const issueData = useContext(IssueListContext);
+  const countInfo = issueData.countInfo;
+  const onClick = null;
   return (
     <MyIssueListHeader>
-      <Button
-        type={issuesConstant.type}
-        buttonColor={issuesConstant.openBtnColor}
-        backgroundColor={issuesConstant.backgroundColor}
-        hoverColor={issuesConstant.hoverColor}
-        buttonText={issuesConstant.openBtnText}
-        iconType={issuesConstant.openIconType}
-        isLeftPosition={issuesConstant.isLeftPosition}
-      />
-      <Button
-        type={issuesConstant.type}
-        buttonColor={issuesConstant.closeBtnColor}
-        backgroundColor={issuesConstant.backgroundColor}
-        hoverColor={issuesConstant.hoverColor}
-        buttonText={issuesConstant.closeBtnText}
-        iconType={issuesConstant.closeIconType}
-        isLeftPosition={issuesConstant.isLeftPosition}
-      />
-      <Button
-        type={issuePropertiesConstant.type}
-        buttonColor={issuePropertiesConstant.btnColor}
-        backgroundColor={issuePropertiesConstant.backgroundColor}
-        hoverColor={issuePropertiesConstant.hoverColor}
-        buttonText={issuePropertiesConstant.assignee}
-        iconType={issuePropertiesConstant.iconType}
-        isLeftPosition={issuePropertiesConstant.isRightPosition}
-      />
-      <Button
-        type={issuePropertiesConstant.type}
-        buttonColor={issuePropertiesConstant.btnColor}
-        backgroundColor={issuePropertiesConstant.backgroundColor}
-        hoverColor={issuePropertiesConstant.hoverColor}
-        buttonText={issuePropertiesConstant.label}
-        iconType={issuePropertiesConstant.iconType}
-        isLeftPosition={issuePropertiesConstant.isRightPosition}
-      />
-      <Button
-        type={issuePropertiesConstant.type}
-        buttonColor={issuePropertiesConstant.btnColor}
-        backgroundColor={issuePropertiesConstant.backgroundColor}
-        hoverColor={issuePropertiesConstant.hoverColor}
-        buttonText={issuePropertiesConstant.milestone}
-        iconType={issuePropertiesConstant.iconType}
-        isLeftPosition={issuePropertiesConstant.isRightPosition}
-      />
-      <Button
-        type={issuePropertiesConstant.type}
-        buttonColor={issuePropertiesConstant.btnColor}
-        backgroundColor={issuePropertiesConstant.backgroundColor}
-        hoverColor={issuePropertiesConstant.hoverColor}
-        buttonText={issuePropertiesConstant.author}
-        iconType={issuePropertiesConstant.iconType}
-        isLeftPosition={issuePropertiesConstant.isRightPosition}
-      />
+      <div>
+        <CheckBox type={'initial'} onClick={onClick} />
+        <Button
+          {...openButtonOption}
+          buttonText={`열린 이슈(${countInfo?.openCount || 0})`}
+        />
+        <Button
+          {...closeButtonOption}
+          buttonText={`닫힌 이슈(${countInfo?.closeCount || 0})`}
+        />
+      </div>
+      <DropdownTab />
     </MyIssueListHeader>
   );
 };

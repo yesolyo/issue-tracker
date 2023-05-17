@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-import { CheckBox } from './CheckBox';
-import { InfoTag } from './InfoTag';
-import { Profile } from './Profile';
-import { Icon } from '../assets/Icon';
-import { colors } from '../styles/color';
-import { fontSize, fontType } from '../styles/font';
+import { Icon } from '../../assets/Icon';
+import { colors } from '../../styles/color';
+import { fontSize, fontType } from '../../styles/font';
+import { getTimeElapsed } from '../../utils/timeElapsed';
+import { CheckBox } from '../CheckBox';
+import { LabelTag } from '../LabelTag';
+import { Profile } from '../Profile';
 
 const MyIssueItem = styled.div`
   display: flex;
@@ -13,7 +14,6 @@ const MyIssueItem = styled.div`
   align-items: center;
   height: 100px;
   padding: 0 25px;
-
   &: hover {
     background-color: ${colors.gray100};
   }
@@ -57,14 +57,11 @@ const IssueDiscription = styled.div`
   }
 `;
 
-// 위에 필터탭이랑 너비 같게 한다음 이미지 프로필 겹치게 만들기
 const IssueAssignee = styled.div`
-  padding-right: 10px;
-
+  padding-right: 20px;
   & > img:last-of-type {
     margin-left: -10px;
   }
-
   img:hover {
     transition: margin 0.1s ease-in-out;
   }
@@ -87,54 +84,17 @@ export const IssueItem = ({
     hasIcon: false
   };
 
-  const getTimeElapsed = (date) => {
-    const currentTime = new Date();
-    const secValue = 1000;
-    const timeDiff = (currentTime - new Date(date)) / secValue;
-    const timeOption = {
-      sec: 1,
-      min: 60,
-      hour: 60 * 60,
-      day: 60 * 60 * 24,
-      week: 60 * 60 * 24 * 7
-    };
-    const timeTextOption = {
-      sec: '초',
-      min: '분',
-      hour: '시간',
-      day: '일',
-      week: '주'
-    };
-
-    let timeUnit = '';
-    if (timeDiff < 60) {
-      timeUnit = 'sec';
-    } else if (timeDiff >= 60 && timeDiff < 3600) {
-      timeUnit = 'min';
-    } else if (timeDiff >= 3600 && timeDiff < 86400) {
-      timeUnit = 'hour';
-    } else if (timeDiff >= 86400 && timeDiff < 604800) {
-      timeUnit = 'day';
-    } else {
-      timeUnit = 'week';
-    }
-
-    const elapsedTime = Math.floor(timeDiff / timeOption[timeUnit]);
-    // const
-    return `${elapsedTime}${timeTextOption[timeUnit]}`;
-  };
-
   return (
     <MyIssueItem>
-      <IssueBox className="left">
+      <IssueBox>
         <CheckBox type={'initial'} onClick={onClick} />
-        <Issue IssueclassName="이슈">
+        <Issue>
           <IssueTitle>
             <Icon iconType={'alertCircle'} fill={colors.blue} />
             <span>{title}</span>
             {!!labels.length &&
               labels.map((label, index) => (
-                <InfoTag
+                <LabelTag
                   key={index}
                   {...labelsOption}
                   text={label.id}
