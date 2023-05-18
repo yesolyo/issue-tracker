@@ -52,6 +52,7 @@ export const FilterSection = () => {
     hoverColor: colors.gray50,
     btnText: '이슈 작성',
     iconType: 'plus',
+    isIcon: true,
     isLeftPosition: true
   };
 
@@ -68,6 +69,7 @@ export const FilterSection = () => {
           rightText={issueTabConstant.rightBtnText}
           leftIconType={issueTabConstant.leftIconType}
           rightIconType={issueTabConstant.rightIconType}
+          isIcon={addIssueConstant.isIcon}
           isLeftPosition={issueTabConstant.isLeftPosition}
         />
         <Button
@@ -77,6 +79,7 @@ export const FilterSection = () => {
           backgroundColor={addIssueConstant.backgroundColor}
           buttonText={addIssueConstant.btnText}
           iconType={addIssueConstant.iconType}
+          isIcon={addIssueConstant.isIcon}
           isLeftPosition={addIssueConstant.isLeftPosition}
           onClick={() => navigate('/newIssue')}
         />

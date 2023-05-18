@@ -9,6 +9,7 @@ const issuesConstant = {
   backgroundColor: 'transparent',
   openIconType: 'alertCircle',
   closeIconType: 'archive',
+  isIcon: true,
   isLeftPosition: true,
   isRightPosition: false
 };
@@ -30,6 +31,7 @@ export const openButtonOption = {
   backgroundColor: issuesConstant.backgroundColor,
   hoverColor: issuesConstant.hoverColor,
   iconType: issuesConstant.openIconType,
+  isIcon: issuesConstant.isIcon,
   isLeftPosition: issuesConstant.isLeftPosition
 };
 
@@ -39,6 +41,7 @@ export const closeButtonOption = {
   backgroundColor: issuesConstant.backgroundColor,
   hoverColor: issuesConstant.hoverColor,
   iconType: issuesConstant.closeIconType,
+  isIcon: issuesConstant.isIcon,
   isLeftPosition: issuesConstant.isLeftPosition
 };
 
@@ -48,5 +51,6 @@ export const tabButtonOption = {
   backgroundColor: issuesConstant.backgroundColor,
   hoverColor: issuePropertiesConstant.hoverColor,
   iconType: issuePropertiesConstant.iconType,
+  isIcon: issuesConstant.isIcon,
   isLeftPosition: issuesConstant.isRightPosition
 };
