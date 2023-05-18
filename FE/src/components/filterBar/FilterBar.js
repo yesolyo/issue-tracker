@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
-import { fontType } from '../../styles/font';
 import { Button } from '../Button';
+import { TextInput } from '../newIssue/TextInput';
 
 const MyfilterBar = styled.div`
   display: flex;
+  align-items: center;
   & button {
     justify-content: space-between;
   }
@@ -22,31 +22,10 @@ const LeftFilterBar = styled.div`
   border: 1px solid ${colors.gray300};
   border-right: none;
   background: ${colors.gray100};
-  
+
   &:hover {
     background: ${colors.gray200};
   }
-`;
-
-const RightFilterBar = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 472px;
-  height: 40px;
-  background: ${colors.gray200};
-  border: 1px solid ${colors.gray300};
-  border-radius: 0px 11px 11px 0px;
-`;
-
-const InputFilterBar = styled.input`
-  background: transparent;
-  width: 430px;
-  height: 20px;
-  border: none;
-  background-color: none;
-  ${fontType.REGULAR}
 `;
 
 export const FilterBar = () => {
@@ -59,6 +38,12 @@ export const FilterBar = () => {
     isIcon: true,
     iconType: 'chevronDown',
     isLeftPosition: false
+  };
+
+  const filterTextInputConstant = {
+    type: 'sideLabeledTextInput',
+    iconType: 'search',
+    initialText: 'is:issue is:open'
   };
 
   return (
@@ -75,10 +60,11 @@ export const FilterBar = () => {
           isLeftPosition={filterConstant.isLeftPosition}
         />
       </LeftFilterBar>
-      <RightFilterBar>
-        <Icon iconType={'search'} fill={colors.gray600} width={10} />
-        <InputFilterBar placeholder="is:issue is:open" />
-      </RightFilterBar>
+      <TextInput
+        type={filterTextInputConstant.type}
+        iconType={filterTextInputConstant.iconType}
+        initialText={filterTextInputConstant.initialText}
+      />
     </MyfilterBar>
   );
 };
