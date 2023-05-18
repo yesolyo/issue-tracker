@@ -28,7 +28,7 @@ export const fontType = {
   REGULAR: {
     fontWeight: 500
   },
-  EXTRALIGHT: {
+  LIGHT: {
     fontWeight: 400
   }
 };

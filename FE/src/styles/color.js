@@ -15,6 +15,6 @@ export const colors = {
 };
 
 export const defaultColor = {
-  body: colors.gray50,
+  body: colors.gray100,
   textDefault: colors.gray900
 };

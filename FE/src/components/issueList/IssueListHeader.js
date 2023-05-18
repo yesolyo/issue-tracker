@@ -7,7 +7,7 @@ import { colors } from '../../styles/color';
 import { Button } from '../button/Button';
 import { openButtonOption, closeButtonOption } from '../button/buttonConstant';
 import { CheckBox } from '../CheckBox';
-import { DropdownTab } from '../dropdown/DropdownTab';
+import { DropdownTabs } from '../dropdown/DropdownTabs';
 
 const MyIssueListHeader = styled.div`
   display: flex;
@@ -19,16 +19,16 @@ const MyIssueListHeader = styled.div`
   background-color: ${colors.gray100};
   border-bottom: 1px solid ${colors.gray300};
   border-radius: 16px 16px 0px 0px;
+`;
 
-  > div {
-    display: flex;
-    align-items: center;
-    gap: 18px;
+const IssueTabs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 18px;
 
-    > svg,
-    > button {
-      cursor: pointer;
-    }
+  > svg,
+  > button {
+    cursor: pointer;
   }
 `;
 
@@ -38,7 +38,7 @@ export const IssueListHeader = () => {
   const onClick = null;
   return (
     <MyIssueListHeader>
-      <div>
+      <IssueTabs>
         <CheckBox type={'initial'} onClick={onClick} />
         <Button
           {...openButtonOption}
@@ -48,8 +48,8 @@ export const IssueListHeader = () => {
           {...closeButtonOption}
           buttonText={`닫힌 이슈(${countInfo?.closeCount || 0})`}
         />
-      </div>
-      <DropdownTab />
+      </IssueTabs>
+      <DropdownTabs />
     </MyIssueListHeader>
   );
 };

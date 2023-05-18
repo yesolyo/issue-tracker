@@ -14,6 +14,8 @@ const MyIssueItem = styled.div`
   align-items: center;
   height: 100px;
   padding: 0 25px;
+  background-color: ${colors.gray50};
+
   &: hover {
     background-color: ${colors.gray100};
   }
@@ -23,6 +25,7 @@ const IssueBox = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
+
   > svg {
     cursor: pointer;
   }
@@ -38,6 +41,7 @@ const IssueTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+
   > span {
     ${fontSize.L};
   }
@@ -48,20 +52,23 @@ const IssueDiscription = styled.div`
   align-items: center;
   gap: 20px;
   height: 30px;
+
   > p {
     height: 30px;
     vertical-align: center;
     color: ${colors.gray600};
     ${fontSize.M};
-    ${fontType.EXTRALIGHT};
+    ${fontType.LIGHT};
   }
 `;
 
 const IssueAssignee = styled.div`
   padding-right: 20px;
+
   & > img:last-of-type {
     margin-left: -10px;
   }
+
   img:hover {
     transition: margin 0.1s ease-in-out;
   }
@@ -97,7 +104,7 @@ export const IssueItem = ({
                 <LabelTag
                   key={index}
                   {...labelsOption}
-                  text={label.id}
+                  text={label.name}
                   backgroundColor={label.backgroundColor}
                 />
               ))}
@@ -111,7 +118,7 @@ export const IssueItem = ({
             {milestone && (
               <p>
                 <Icon iconType={'milestone'} fill={colors.gray600} />
-                {milestone?.id}
+                {milestone?.name}
               </p>
             )}
           </IssueDiscription>

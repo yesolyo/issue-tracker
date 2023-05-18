@@ -1,5 +1,6 @@
 import { colors } from '../../styles/color';
 
+// 열린,닫힌 이슈버튼 상수
 const issuesConstant = {
   type: 'ghostButton',
   openBtnColor: colors.gray900,
@@ -12,6 +13,7 @@ const issuesConstant = {
   isRightPosition: false
 };
 
+// 필터탭 상수
 export const issuePropertiesConstant = {
   btnColor: colors.gray600,
   hoverColor: colors.gray900,

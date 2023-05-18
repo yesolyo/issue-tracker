@@ -50,7 +50,8 @@ export const Button = ({
   backgroundColor,
   buttonText,
   iconType,
-  isLeftPosition
+  isLeftPosition,
+  onClick
 }) => {
   const buttonTypes = {
     containerButton,
@@ -65,6 +66,7 @@ export const Button = ({
       buttonColor={buttonColor}
       hoverColor={hoverColor}
       backgroundColor={backgroundColor}
+      onClick={onClick}
     >
       {isLeftPosition
         ? (

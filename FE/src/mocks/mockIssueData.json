@@ -13,12 +13,12 @@
       },
       "labels": [
         {
-          "id": "Bug",
-          "backgroundColor": "#FF0000"
+          "name": "Bug",
+          "backgroundColor": "#E08EB1"
         },
         {
-          "id": "High Priority",
-          "backgroundColor": "#FFA500"
+          "name": "High Priority",
+          "backgroundColor": "#8c8c8c"
         }
       ],
       "milestone": null,
@@ -45,12 +45,12 @@
       },
       "labels": [
         {
-          "id": "Feature Request",
-          "backgroundColor": "#00FF00"
+          "name": "Feature Request",
+          "backgroundColor": "#6AC793"
         }
       ],
       "milestone": {
-        "id": "Milestone 1"
+        "name": "Milestone 1"
       },
       "assignees": [
         {
@@ -69,8 +69,7 @@
         "name": "Mike Johnson",
         "profileUrl": "https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg"
       },
-      "labels": [
-      ],
+      "labels": [],
       "milestone": null,
       "assignees": [
         {
@@ -91,8 +90,8 @@
       },
       "labels": [
         {
-          "id": "Documentation",
-          "backgroundColor": "#FFFF00"
+          "name": "Documentation",
+          "backgroundColor": "#975a97"
         }
       ],
       "milestone": null,

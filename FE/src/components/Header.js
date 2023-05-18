@@ -7,9 +7,12 @@ import { Icon } from '../assets/Icon';
 import { IssueListContext } from '../pages/IssueList';
 
 const MyHeader = styled.header`
+  width: 1280px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   padding: 25px 25px;
+  box-sizing: border-box;
 `;
 
 export const Header = ({ text }) => {
@@ -19,21 +22,17 @@ export const Header = ({ text }) => {
     width: 200,
     height: 40,
     isSmall: false,
-    userInfo: issueData.userInfo
+    userInfo: issueData?.userInfo
   };
 
   return (
     <MyHeader>
-      {text
-        ? (
-          { text }
-        )
-        : (
-          <>
-            <Icon {...logoInfo} />
-            <Profile isSmall={logoInfo.isSmall} userInfo={logoInfo.userInfo} />
-          </>
-        )}
+      {text || (
+        <>
+          <Icon {...logoInfo} />
+          <Profile isSmall={logoInfo.isSmall} userInfo={logoInfo.userInfo} />
+        </>
+      )}
     </MyHeader>
   );
 };
