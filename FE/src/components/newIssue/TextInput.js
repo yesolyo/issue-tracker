@@ -8,6 +8,8 @@ const MyTextInput = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  width: ${(props) => props.inputWidth || '472px'};
+  height: ${(props) => props.inputHeight || '35px'};
   & svg {
     position: absolute;
   }
@@ -22,8 +24,6 @@ const MyTextInput = styled.div`
   }
 `;
 const defaultTextInput = styled(MyTextInput)`
-  width: 912px;
-  height: 56px;
   & input {
     background: ${colors.gray200};
     padding: 0px 24px;
@@ -32,8 +32,6 @@ const defaultTextInput = styled(MyTextInput)`
 `;
 
 const sideLabeledTextInput = styled(MyTextInput)`
-  width: 472px;
-  height: 35px;
   & svg {
     top: 13px;
     left: 5px;
@@ -45,8 +43,6 @@ const sideLabeledTextInput = styled(MyTextInput)`
   }
 `;
 const topLabeledTextInput = styled(MyTextInput)`
-  width: 472px;
-  height: 35px;
   & svg {
     top: 0px;
     left: 5px;
@@ -57,7 +53,14 @@ const topLabeledTextInput = styled(MyTextInput)`
     border-radius: 11px;
   }
 `;
-export const TextInput = ({ type, isIcon, iconType, initialText }) => {
+export const TextInput = ({
+  type,
+  isIcon,
+  iconType,
+  initialText,
+  inputWidth,
+  inputHeight
+}) => {
   const textInputType = {
     sideLabeledTextInput,
     topLabeledTextInput,
@@ -65,7 +68,7 @@ export const TextInput = ({ type, isIcon, iconType, initialText }) => {
   };
   const MyTextInput = textInputType[type];
   return (
-    <MyTextInput>
+    <MyTextInput inputWidth={inputWidth} inputHeight={inputHeight}>
       {isIcon
         ? (
           <>

@@ -32,7 +32,17 @@ export const NewIssue = () => {
   const titleInputConstant = {
     type: 'defaultTextInput',
     isIcon: false,
-    initialText: '제목'
+    initialText: '제목',
+    inputWidth: '912px',
+    inputHeight: '56px'
+  };
+
+  const comentInputConstant = {
+    type: 'defaultTextInput',
+    isIcon: false,
+    initialText: '코멘트를 입력하세요',
+    inputWidth: '912px',
+    inputHeight: '436px'
   };
 
   return (
@@ -64,6 +74,8 @@ export const NewIssue = () => {
         type={titleInputConstant.type}
         isIcon={titleInputConstant.isIcon}
         initialText={titleInputConstant.initialText}
+        inputWidth={titleInputConstant.inputWidth}
+        inputHeight={titleInputConstant.inputHeight}
       />
       <FilterBar />
     </>
