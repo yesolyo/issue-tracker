@@ -18,13 +18,12 @@ const MyTextInput = styled.div`
     background: transparent;
     width: 100%;
     height: 100%;
-    border-radius: 0px 11px 11px 0px;
+    border-radius: 11px;
     border: 1px solid ${colors.gray300};
     background-color: none;
     ${fontType.REGULAR}
   }
 `;
-
 const sideLabeledTextInput = styled(MyTextInput)`
   & svg {
     top: 13px;
@@ -45,7 +44,7 @@ const topLabeledTextInput = styled(MyTextInput)`
     padding: 13px 5px 0px;
   }
 `;
-export const TextInput = ({ type, iconType, initialText }) => {
+export const TextInput = ({ type, isIcon, iconType, initialText }) => {
   const textInputType = {
     sideLabeledTextInput,
     topLabeledTextInput
@@ -53,8 +52,16 @@ export const TextInput = ({ type, iconType, initialText }) => {
   const MyTextInput = textInputType[type];
   return (
     <MyTextInput>
-      <Icon iconType={iconType} fill={colors.gray600} width={11} />
-      <input type="text" placeholder={initialText} />
+      {isIcon
+        ? (
+          <>
+            <Icon iconType={iconType} fill={colors.gray600} width={11} />
+            <input type="text" placeholder={initialText} />
+          </>
+        )
+        : (
+          <input type="text" placeholder={initialText} />
+        )}
     </MyTextInput>
   );
 };

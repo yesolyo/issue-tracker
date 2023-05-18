@@ -28,6 +28,12 @@ const LeftFilterBar = styled.div`
   }
 `;
 
+const RightFilterBar = styled.div`
+  & input {
+    border-radius: 0px 11px 11px 0px;
+  }
+`;
+
 export const FilterBar = () => {
   const filterConstant = {
     type: 'ghostButton',
@@ -42,6 +48,7 @@ export const FilterBar = () => {
 
   const filterTextInputConstant = {
     type: 'sideLabeledTextInput',
+    isIcon: true,
     iconType: 'search',
     initialText: 'is:issue is:open'
   };
@@ -60,11 +67,14 @@ export const FilterBar = () => {
           isLeftPosition={filterConstant.isLeftPosition}
         />
       </LeftFilterBar>
-      <TextInput
-        type={filterTextInputConstant.type}
-        iconType={filterTextInputConstant.iconType}
-        initialText={filterTextInputConstant.initialText}
-      />
+      <RightFilterBar>
+        <TextInput
+          type={filterTextInputConstant.type}
+          isIcon={filterTextInputConstant.isIcon}
+          iconType={filterTextInputConstant.iconType}
+          initialText={filterTextInputConstant.initialText}
+        />
+      </RightFilterBar>
     </MyfilterBar>
   );
 };
