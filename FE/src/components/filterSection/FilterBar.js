@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontType } from '../../styles/font';
-import { Button } from '../Button';
+import { Button } from '../button/Button';
 
 const MyfilterBar = styled.div`
   display: flex;

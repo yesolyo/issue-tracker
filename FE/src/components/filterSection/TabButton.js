@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
-import { Button } from './Button';
-import { colors } from '../styles/color';
+import { colors } from '../../styles/color';
+import { Button } from '../button/Button';
 
 const MyTabButton = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 240px;
   height: 40px;
+
+  button {
+    margin: 0 auto;
+  }
 `;
 
 const LeftTabButton = styled.div`
@@ -17,18 +20,20 @@ const LeftTabButton = styled.div`
   border-right: none;
   background: ${colors.gray100};
   border-radius: 11px 0px 0px 11px;
+
   &: hover {
     background: ${colors.gray200};
   }
 `;
 
 const RightTabButton = styled.div`
-  &:hover {
-    background: ${colors.gray200};
-  }
   border: 1px solid ${colors.gray300};
   background: ${colors.gray100};
   border-radius: 0px 11px 11px 0px;
+
+  &:hover {
+    background: ${colors.gray200};
+  }
 `;
 
 export const TabButton = ({
