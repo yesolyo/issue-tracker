@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:~/testdemo
-    username: sa
+    url: jdbc:mysql://localhost:3306/issue
+    username: root
     password: 1234
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   logging:
     level:
       org.springframework.jdbc.core: debug
