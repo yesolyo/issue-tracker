@@ -20,7 +20,8 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-ui:1.6.4'
     implementation 'org.springdoc:springdoc-openapi-data-rest:1.6.4'
     implementation 'mysql:mysql-connector-java:8.0.26'
-
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.projectlombok:lombok:1.18.20' // lombok의 버전을 프로젝트에 맞게 조정해주세요.
 //    implementation 'com.h2database:h2:2.1.214'
 }
 
