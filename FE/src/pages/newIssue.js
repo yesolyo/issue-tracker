@@ -1,6 +1,7 @@
 import { Button } from '../components/Button';
 import { FilterBar } from '../components/filterBar/FilterBar';
 import { Sidebar } from '../components/newIssue/Sidebar';
+import { TextInput } from '../components/newIssue/TextInput';
 import { colors } from '../styles/color';
 
 export const NewIssue = () => {
@@ -28,6 +29,12 @@ export const NewIssue = () => {
     isLeftPosition: true
   };
 
+  const titleInputConstant = {
+    type: 'defaultTextInput',
+    isIcon: false,
+    initialText: '제목'
+  };
+
   return (
     <>
       <Button
@@ -53,6 +60,11 @@ export const NewIssue = () => {
         isLeftPosition={saveBtnConstant.isLeftPosition}
       />
       <Sidebar />
+      <TextInput
+        type={titleInputConstant.type}
+        isIcon={titleInputConstant.isIcon}
+        initialText={titleInputConstant.initialText}
+      />
       <FilterBar />
     </>
   );

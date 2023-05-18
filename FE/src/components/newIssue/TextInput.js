@@ -7,8 +7,6 @@ import { fontType } from '../../styles/font';
 const MyTextInput = styled.div`
   position: relative;
   display: flex;
-  width: 472px;
-  height: 35px;
   align-items: center;
   & svg {
     position: absolute;
@@ -18,13 +16,24 @@ const MyTextInput = styled.div`
     background: transparent;
     width: 100%;
     height: 100%;
-    border-radius: 11px;
     border: 1px solid ${colors.gray300};
     background-color: none;
     ${fontType.REGULAR}
   }
 `;
+const defaultTextInput = styled(MyTextInput)`
+  width: 912px;
+  height: 56px;
+  & input {
+    background: ${colors.gray200};
+    padding: 0px 24px;
+    border-radius: 14px;
+  }
+`;
+
 const sideLabeledTextInput = styled(MyTextInput)`
+  width: 472px;
+  height: 35px;
   & svg {
     top: 13px;
     left: 5px;
@@ -32,9 +41,12 @@ const sideLabeledTextInput = styled(MyTextInput)`
 
   & input {
     padding: 5px 18px 0px;
+    border-radius: 11px;
   }
 `;
 const topLabeledTextInput = styled(MyTextInput)`
+  width: 472px;
+  height: 35px;
   & svg {
     top: 0px;
     left: 5px;
@@ -42,12 +54,14 @@ const topLabeledTextInput = styled(MyTextInput)`
 
   & input {
     padding: 13px 5px 0px;
+    border-radius: 11px;
   }
 `;
 export const TextInput = ({ type, isIcon, iconType, initialText }) => {
   const textInputType = {
     sideLabeledTextInput,
-    topLabeledTextInput
+    topLabeledTextInput,
+    defaultTextInput
   };
   const MyTextInput = textInputType[type];
   return (
@@ -60,7 +74,9 @@ export const TextInput = ({ type, isIcon, iconType, initialText }) => {
           </>
         )
         : (
-          <input type="text" placeholder={initialText} />
+          <>
+            <input type="text" placeholder={initialText} />
+          </>
         )}
     </MyTextInput>
   );
