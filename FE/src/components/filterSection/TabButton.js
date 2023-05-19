@@ -9,31 +9,31 @@ const MyTabButton = styled.div`
   justify-content: center;
   align-items: center;
   height: 40px;
+  width: 320px;
+  background: ${colors.gray100};
+  border: 1px solid ${colors.gray300};
+  border-radius: 11px;
 
   button {
     margin: 0 auto;
   }
+
+  div {
+    width: 100%;
+
+    &: hover {
+      background: ${colors.gray200};
+    }
+  }
 `;
 
 const LeftTabButton = styled.div`
-  border: 1px solid ${colors.gray300};
-  border-right: none;
-  background: ${colors.gray100};
   border-radius: 11px 0px 0px 11px;
-
-  &: hover {
-    background: ${colors.gray200};
-  }
 `;
 
 const RightTabButton = styled.div`
-  border: 1px solid ${colors.gray300};
-  background: ${colors.gray100};
+  border-left: 1px solid ${colors.gray300};
   border-radius: 0px 11px 11px 0px;
-
-  &:hover {
-    background: ${colors.gray200};
-  }
 `;
 
 export const TabButton = ({

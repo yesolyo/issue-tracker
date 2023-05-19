@@ -11,7 +11,7 @@ const MyButton = styled.button`
   height: 40px;
   display: flex;
   padding: 0;
-  width: ${(props) => props.buttonWidth || '120px'};
+  width: ${(props) => props.buttonWidth || 'max-content'};
   height: ${(props) => props.buttonHeight || '40px'};
   border-radius: 11px;
   ${fontType.BOLD};

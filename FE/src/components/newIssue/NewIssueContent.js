@@ -10,15 +10,12 @@ const MyNewIssueContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 912px;
-  & input {
-    height: 56px;
-    ${fontSize.M}
-  }
+
   & textarea {
     background: ${colors.gray200};
-    height: 436px;
-    padding: 24px 24px;
-    border-radius: 16px;
+    height: 435px;
+    padding: 24px;
+    border-radius: 11px;
     border: 1px solid ${colors.gray300};
     ${fontSize.M}
     ${fontType.REGULAR}

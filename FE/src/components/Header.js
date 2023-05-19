@@ -5,14 +5,17 @@ import styled from 'styled-components';
 import { Profile } from './Profile';
 import { Icon } from '../assets/Icon';
 import { IssueListContext } from '../pages/IssueList';
+import { fontSize, fontType } from '../styles/font';
 
 const MyHeader = styled.header`
   width: 1280px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 25px 25px;
+  padding: 25px;
   box-sizing: border-box;
+  ${fontSize.XXL}
+  ${fontType.LIGHT}
 `;
 
 export const Header = ({ text }) => {
