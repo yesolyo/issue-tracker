@@ -4,9 +4,6 @@ import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.issue.repositroy.IssueRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-
 @Service
 public class IssueService {
 
