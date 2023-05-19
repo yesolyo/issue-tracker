@@ -8,7 +8,7 @@ const MySidebar = styled.div`
   & button {
     justify-content: space-between;
     ${fontSize.M}
-    width:280px
+    width:250px
   }
 `;
 const TopSidebar = styled.div`
@@ -19,6 +19,7 @@ const TopSidebar = styled.div`
   border-radius: 16px 16px 0px 0px;
   background: ${colors.gray50};
   align-items: center;
+  justify-content: center;
   border-bottom: none;
 `;
 const MiddleSidebar = styled.div`
@@ -26,6 +27,8 @@ const MiddleSidebar = styled.div`
   display: flex;
   width: 288px;
   height: 96px;
+  background: ${colors.gray50};
+  justify-content: center;
   align-items: center;
   border-bottom: none;
 `;
@@ -34,6 +37,8 @@ const DownSidebar = styled.div`
   width: 288px;
   height: 96px;
   border: 1px solid ${colors.gray300};
+  background: ${colors.gray50};
+  justify-content: center;
   align-items: center;
   border-radius: 0px 0px 16px 16px;
 `;

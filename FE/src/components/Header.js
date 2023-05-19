@@ -17,6 +17,7 @@ const MyHeader = styled.header`
 
 export const Header = ({ text }) => {
   const issueData = useContext(IssueListContext);
+
   const logoInfo = {
     iconType: 'logotypeLarge',
     width: 200,
