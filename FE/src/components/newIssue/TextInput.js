@@ -9,49 +9,38 @@ const MyTextInput = styled.div`
   display: flex;
   align-items: center;
 
-  & svg {
-    position: absolute;
-  }
-
   & input {
-    background: transparent;
     width: 100%;
     height: 100%;
-    border: 1px solid ${colors.gray300};
-    background-color: none;
+    background: transparent;
+    border: none;
+    outline: none;
     ${fontType.REGULAR}
   }
 `;
+
 const defaultTextInput = styled(MyTextInput)`
-  & input {
-    background: ${colors.gray200};
-    padding: 0px 24px;
-    border-radius: 14px;
-  }
+  background: ${colors.gray200};
+  border: 1px solid ${colors.gray300};
+  box-sizing: border-box;
+  height: 55px;
+  padding: 0 24px;
+  border-radius: 11px;
+  ${fontSize.M}
 `;
 
 const sideLabeledTextInput = styled(MyTextInput)`
-  & svg {
-    top: 13px;
-    left: 5px;
-  }
+  background: ${colors.gray200};
+  border-radius: 0px 11px 11px 0px;
 
-  & input {
-    padding: 5px 18px 0px;
-    border-radius: 11px;
+  &: hover {
+    background: ${colors.gray50};
+    border: 1px solid ${colors.gray400};
   }
 `;
-const topLabeledTextInput = styled(MyTextInput)`
-  & svg {
-    top: 0px;
-    left: 5px;
-  }
 
-  & input {
-    padding: 13px 5px 0px;
-    border-radius: 11px;
-  }
-`;
+const topLabeledTextInput = styled(MyTextInput)``;
+
 export const TextInput = ({
   type,
   isIcon,
@@ -71,7 +60,12 @@ export const TextInput = ({
       {isIcon
         ? (
           <>
-            <Icon iconType={iconType} fill={colors.gray600} width={11} />
+            <Icon
+              iconType={iconType}
+              fill={colors.gray600}
+              width={11}
+              height={11}
+            />
             <input type="text" placeholder={initialText} />
           </>
         )

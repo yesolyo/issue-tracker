@@ -11,6 +11,7 @@ const MySidebar = styled.div`
     width:250px
   }
 `;
+
 const TopSidebar = styled.div`
   width: 288px;
   height: 96px;
@@ -22,6 +23,7 @@ const TopSidebar = styled.div`
   justify-content: center;
   border-bottom: none;
 `;
+
 const MiddleSidebar = styled.div`
   border: 1px solid ${colors.gray300};
   display: flex;
@@ -32,6 +34,7 @@ const MiddleSidebar = styled.div`
   align-items: center;
   border-bottom: none;
 `;
+
 const DownSidebar = styled.div`
   display: flex;
   width: 288px;

@@ -18,13 +18,6 @@ const MyFilterSection = styled.div`
 const TabButtons = styled.div`
   display: flex;
   gap: 15px;
-  > div {
-    width: 320px;
-
-    > div {
-      width: 100%;
-    }
-  }
 `;
 
 export const FilterSection = () => {

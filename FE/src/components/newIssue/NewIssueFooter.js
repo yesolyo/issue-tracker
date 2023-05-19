@@ -1,14 +1,19 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { Button } from '../button/Button';
+
 const MyNewIssueFooter = styled.div`
   width: 1280px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 20px;
 `;
+
 export const NewIssueFooter = () => {
+  const navigate = useNavigate();
   const cancelBtnConstant = {
     type: 'ghostButton',
     btnColor: colors.gray700,
@@ -34,6 +39,7 @@ export const NewIssueFooter = () => {
   return (
     <MyNewIssueFooter>
       <Button
+        onClick={() => navigate(-1)}
         type={cancelBtnConstant.type}
         buttonColor={cancelBtnConstant.btnColor}
         hoverColor={cancelBtnConstant.hoverColor}
