@@ -2,6 +2,7 @@ package issuetracker.issuetracker.domain.issue.mapper;
 
 import issuetracker.issuetracker.domain.issue.dto.req.IssueDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
+import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorDTO;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -22,13 +23,13 @@ public class IssueRowMapper implements RowMapper<IssueDTO> {
         issue.setMilestone(rs.getString("milestone"));
 
         // authorList 매핑
-        Set<AuthorDTO> authors = new HashSet<>();
-        AuthorDTO author = new AuthorDTO();
-        author.setId(rs.getLong("member_id"));
-        author.setName(rs.getString("member_name"));
-        author.setProfileUrl(rs.getString("profile_url"));
-        authors.add(author);
-        issue.setAuthorList(authors);
+        Set<AssigneeDTO> assignees = new HashSet<>();
+        AssigneeDTO assignee = new AssigneeDTO();
+        assignee.setAssigneeId(rs.getLong("assignee_id"));
+        assignee.setAssigneeName(rs.getString("assignee_name"));
+        assignee.setAssigneeProfileUrl(rs.getString("assignee_profile_url"));
+        assignees.add(assignee);
+        issue.setAssignees(assignees);
 
         // labelList 매핑
         Set<LabelDTO> labels = new HashSet<>();
@@ -37,7 +38,15 @@ public class IssueRowMapper implements RowMapper<IssueDTO> {
         label.setLabelName(rs.getString("label_name"));
         label.setBackgroundColor(rs.getString("background_color"));
         labels.add(label);
-        issue.setLabelList(labels);
+        issue.setLabel(labels);
+
+        // author 매핑
+        AuthorDTO author = new AuthorDTO();
+        author.setAuthorId(rs.getLong("author_id"));
+        author.setAuthorName(rs.getString("author_name"));
+        author.setAuthorProfileUrl(rs.getString("author_profile_url"));
+        issue.setAuthor(author);
+
         return issue;
     }
 

@@ -1,6 +1,7 @@
 package issuetracker.issuetracker.domain.issue.dto.req;
 
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
+import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorDTO;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,10 +22,12 @@ public class IssueDTO {
     private Boolean isOPen;
     private String milestone;
 
-    @MappedCollection(idColumn = "issue_id")
-    private Set<AuthorDTO> authorList;
+    private AuthorDTO author;
 
     @MappedCollection(idColumn = "issue_id")
-    private Set<LabelDTO> labelList;
+    private Set<AssigneeDTO> assignees;
+
+    @MappedCollection(idColumn = "issue_id")
+    private Set<LabelDTO> label;
 
 }
