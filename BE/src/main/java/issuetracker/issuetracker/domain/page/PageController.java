@@ -13,7 +13,7 @@ public class PageController {
 
     private final PageService service;
 
-    @GetMapping("/test")
+    @GetMapping
     public MainPage showMainPage() {
         return service.getMainPage();
     }
