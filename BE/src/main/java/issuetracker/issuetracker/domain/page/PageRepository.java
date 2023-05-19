@@ -11,6 +11,6 @@ public interface PageRepository extends CrudRepository<Issue, Long> {
     @Query("select count(label_id) from label")
     Long countLabel();
 
-    @Query("select count(milestone_id) from label")
+    @Query("select count(milestone_id) from milestone")
     Long countMilestone();
 }
