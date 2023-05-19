@@ -1,21 +1,49 @@
+import styled from 'styled-components';
+
+import { TextArea } from './TextArea';
 import { TextInput } from './TextInput';
+import { colors } from '../../styles/color';
+import { fontSize, fontType } from '../../styles/font';
+
+const MyNewIssueContent = styled.div`
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 912px;
+  & input {
+    height: 56px;
+    ${fontSize.M}
+  }
+  & textarea {
+    background: ${colors.gray200};
+    height: 436px;
+    padding: 24px 24px;
+    border-radius: 16px;
+    border: 1px solid ${colors.gray300};
+    ${fontSize.M}
+    ${fontType.REGULAR}
+  }
+`;
+
 export const NewIssueContent = () => {
   const titleInputConstant = {
     type: 'defaultTextInput',
     isIcon: false,
-    initialText: '제목',
-    inputWidth: '912px',
-    inputHeight: '56px'
+    initialText: '제목'
   };
+
+  const comentInputConstant = {
+    initialText: '코멘트를 입력하세요'
+  };
+
   return (
-    <>
+    <MyNewIssueContent>
       <TextInput
         type={titleInputConstant.type}
         isIcon={titleInputConstant.isIcon}
         initialText={titleInputConstant.initialText}
-        inputWidth={titleInputConstant.inputWidth}
-        inputHeight={titleInputConstant.inputHeight}
       />
-    </>
+      <TextArea initialText={comentInputConstant.initialText}></TextArea>
+    </MyNewIssueContent>
   );
 };
