@@ -48,8 +48,8 @@ public class IssueRowMapper implements RowMapper<IssueDTO> {
         } else if (value instanceof Integer) {
             return ((Integer) value) != 0;
         }
-        // 기본이 true이기 때문에 true return
-        return true;
+
+        return null;
     }
 
 }
