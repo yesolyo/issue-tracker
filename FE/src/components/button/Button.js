@@ -11,6 +11,8 @@ const MyButton = styled.button`
   height: 40px;
   display: flex;
   padding: 0;
+  width: ${(props) => props.buttonWidth || '120px'};
+  height: ${(props) => props.buttonHeight || '40px'};
   border-radius: 11px;
   ${fontType.BOLD};
   color: ${(props) => props.buttonColor || colors.gray50};
@@ -49,7 +51,10 @@ export const Button = ({
   hoverColor,
   backgroundColor,
   buttonText,
+  buttonWidth,
+  buttonHeight,
   iconType,
+  isIcon,
   isLeftPosition,
   onClick
 }) => {
@@ -66,20 +71,28 @@ export const Button = ({
       buttonColor={buttonColor}
       hoverColor={hoverColor}
       backgroundColor={backgroundColor}
+      buttonWidth={buttonWidth}
+      buttonHeight={buttonHeight}
       onClick={onClick}
     >
-      {isLeftPosition
+      {isIcon
         ? (
-          <>
-            <Icon iconType={iconType} fill={buttonColor} width={10} />
-            {buttonText}
-          </>
+          isLeftPosition
+            ? (
+              <>
+                <Icon iconType={iconType} fill={buttonColor} width={10} />
+                {buttonText}
+              </>
+            )
+            : (
+              <>
+                {buttonText}
+                <Icon iconType={iconType} fill={buttonColor} width={10} />
+              </>
+            )
         )
         : (
-          <>
-            {buttonText}
-            <Icon iconType={iconType} fill={buttonColor} width={10} />
-          </>
+          <>{buttonText}</>
         )}
     </MyButton>
   );

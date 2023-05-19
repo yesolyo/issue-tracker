@@ -12,18 +12,18 @@ import { lightTheme } from './styles/theme';
 const App = () => {
   return (
     <>
-      <ThemeProvider theme={lightTheme}>
-        <GlobalStyle />
-        <BrowserRouter>
-          <div className="App">
-            {/* TODO : user 로그인 하면 헤더 고정 시키기 <Header /> */}
-            <Routes>
-              <Route path="/" element={<IssueList />} />
-              <Route path="/newIssue" element={<NewIssue />} />
-            </Routes>
-          </div>
-        </BrowserRouter>
-      </ThemeProvider>
+      {/* <ThemeProvider theme={lightTheme}> */}
+      <GlobalStyle />
+      <BrowserRouter>
+        <div className="App">
+          {/* TODO : user 로그인 하면 헤더 고정 시키기 <Header /> */}
+          <Routes>
+            <Route path="/" element={<IssueList />} />
+            <Route path="/newIssue" element={<NewIssue />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+      {/* </ThemeProvider> */}
     </>
   );
 };

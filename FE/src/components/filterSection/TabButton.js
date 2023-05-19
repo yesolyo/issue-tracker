@@ -45,6 +45,7 @@ export const TabButton = ({
   rightText,
   leftIconType,
   rightIconType,
+  isIcon,
   isLeftPosition
 }) => {
   return (
@@ -57,6 +58,7 @@ export const TabButton = ({
           backgroundColor={backgroundColor}
           buttonText={leftext}
           iconType={leftIconType}
+          isIcon={isIcon}
           isLeftPosition={isLeftPosition}
         />
       </LeftTabButton>
@@ -68,6 +70,7 @@ export const TabButton = ({
           backgroundColor={backgroundColor}
           buttonText={rightText}
           iconType={rightIconType}
+          isIcon={isIcon}
           isLeftPosition={isLeftPosition}
         />
       </RightTabButton>
