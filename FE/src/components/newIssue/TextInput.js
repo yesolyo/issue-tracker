@@ -2,14 +2,13 @@ import styled from 'styled-components';
 
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
-import { fontType } from '../../styles/font';
+import { fontSize, fontType } from '../../styles/font';
 
 const MyTextInput = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  width: ${(props) => props.inputWidth || '472px'};
-  height: ${(props) => props.inputHeight || '35px'};
+
   & svg {
     position: absolute;
   }
@@ -68,7 +67,7 @@ export const TextInput = ({
   };
   const MyTextInput = textInputType[type];
   return (
-    <MyTextInput inputWidth={inputWidth} inputHeight={inputHeight}>
+    <MyTextInput>
       {isIcon
         ? (
           <>
