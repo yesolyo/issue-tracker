@@ -1,6 +1,6 @@
 package issuetracker.issuetracker.domain.issue.repositroy;
 
-import issuetracker.issuetracker.domain.issue.dto.req.IssueDTO;
+import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.issue.mapper.IssueRowMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
