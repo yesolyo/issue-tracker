@@ -1,6 +1,6 @@
 package issuetracker.issuetracker.domain.page;
 
-import issuetracker.issuetracker.domain.issue.dto.req.IssueDTO;
+import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.issue.repositroy.IssueRepositoryJDBCtem;
 import issuetracker.issuetracker.domain.page.dto.CountInfo;
 import lombok.RequiredArgsConstructor;

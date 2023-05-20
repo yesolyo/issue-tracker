@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AssigneeDTO {
-    private long assigneeId;
-    private String assigneeName;
-    private String assigneeProfileUrl;
+    private long id;
+    private String name;
+    private String profile_url;
 }
