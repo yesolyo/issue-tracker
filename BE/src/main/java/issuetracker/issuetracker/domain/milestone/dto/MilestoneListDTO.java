@@ -2,6 +2,7 @@ package issuetracker.issuetracker.domain.milestone.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
@@ -10,6 +11,8 @@ import java.time.LocalDateTime;
 @Setter
 public class MilestoneListDTO {
 
+
+    @Id
     @NotNull
     private Long id;
     @NotNull

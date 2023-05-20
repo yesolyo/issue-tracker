@@ -1,7 +1,7 @@
 package issuetracker.issuetracker.domain.issue;
 
 import lombok.*;
-import nonapi.io.github.classgraph.json.Id;
+import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Issue {
     @Id
-    private Long issueId;
+    private Long id;
     private String title;
     private String contents;
     private LocalDateTime createTime;
