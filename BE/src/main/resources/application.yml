@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://3.36.220.15:3306/issue
+    username: user
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  logging:
+    level:
+      org.springframework.jdbc.core: debug
+      org.hibernate.SQL: debug
