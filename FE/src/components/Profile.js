@@ -2,20 +2,17 @@ import styled from 'styled-components';
 
 const MyProfile = styled.img`
   border-radius: 50%;
+  width: ${(props) => props.width || '20px'};
+  height: ${(props) => props.height || '20px'};
 `;
 
-const SmallProfile = styled(MyProfile)`
-  width: 20px;
-  height: 20px;
-`;
-
-const LargeProfile = styled(MyProfile)`
-  width: 32px;
-  height: 32px;
-`;
-
-export const Profile = ({ isSmall, userInfo }) => {
-  const ProfileBox = isSmall ? SmallProfile : LargeProfile;
-
-  return <ProfileBox src={userInfo?.profileUrl} alt={userInfo?.userName} />;
+export const Profile = ({ isLarge, width, height, userInfo }) => {
+  return (
+    <MyProfile
+      width={isLarge ? 32 : width}
+      height={isLarge ? 32 : height}
+      src={userInfo?.profileUrl}
+      alt={userInfo?.name}
+    />
+  );
 };

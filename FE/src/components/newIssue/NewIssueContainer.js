@@ -17,17 +17,9 @@ const MyNewIssueContainer = styled.div`
 export const NewIssueContainer = () => {
   const issueData = useContext(NewIssueContext);
 
-  const logoInfo = {
-    iconType: 'logotypeLarge',
-    width: 200,
-    height: 40,
-    isSmall: false,
-    userInfo: issueData?.userInfo
-  };
-
   return (
     <MyNewIssueContainer>
-      <Profile isSmall={logoInfo.isSmall} userInfo={logoInfo.userInfo} />
+      <Profile isLarge userInfo={issueData?.userInfo} />
       <NewIssueContent />
       <Sidebar />
     </MyNewIssueContainer>
