@@ -2,11 +2,17 @@ package issuetracker.issuetracker.domain.user.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 public class AssigneeDTO {
-    private long assigneeId;
-    private String assigneeName;
-    private String assigneeProfileUrl;
+    @Id
+    @NotNull
+    private long id;
+    @NotNull
+    private String name;
+    private String profile_url;
 }

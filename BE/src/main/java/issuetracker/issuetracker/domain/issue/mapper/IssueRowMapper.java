@@ -1,6 +1,6 @@
 package issuetracker.issuetracker.domain.issue.mapper;
 
-import issuetracker.issuetracker.domain.issue.dto.req.IssueDTO;
+import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorDTO;
@@ -25,9 +25,9 @@ public class IssueRowMapper implements RowMapper<IssueDTO> {
         // authorList 매핑
         Set<AssigneeDTO> assignees = new HashSet<>();
         AssigneeDTO assignee = new AssigneeDTO();
-        assignee.setAssigneeId(rs.getLong("assignee_id"));
-        assignee.setAssigneeName(rs.getString("assignee_name"));
-        assignee.setAssigneeProfileUrl(rs.getString("assignee_profile_url"));
+        assignee.setId(rs.getLong("assignee_id"));
+        assignee.setName(rs.getString("assignee_name"));
+        assignee.setProfile_url(rs.getString("assignee_profile_url"));
         assignees.add(assignee);
         issue.setAssignees(assignees);
 
@@ -35,7 +35,7 @@ public class IssueRowMapper implements RowMapper<IssueDTO> {
         Set<LabelDTO> labels = new HashSet<>();
         LabelDTO label = new LabelDTO();
         label.setId(rs.getLong("label_id"));
-        label.setLabelName(rs.getString("label_name"));
+        label.setTitle(rs.getString("label_name"));
         label.setBackgroundColor(rs.getString("background_color"));
         labels.add(label);
         issue.setLabel(labels);
