@@ -1,0 +1,110 @@
+{
+  "userInfo": {
+    "name": "Jane Smith",
+    "profileUrl": "https://user-images.githubusercontent.com/107349637/237753262-ab666480-2d8f-4b8e-8868-f1c8a099e393.png"
+  },
+  "issueList": [
+    {
+      "id": 1,
+      "title": "Issue 1",
+      "author": {
+        "name": "John Doe",
+        "profileUrl": "https://user-images.githubusercontent.com/107349637/237753255-465b8b44-ed4a-4712-8814-5b462d335397.png"
+      },
+      "labels": [
+        {
+          "name": "Bug",
+          "backgroundColor": "#E08EB1"
+        },
+        {
+          "name": "High Priority",
+          "backgroundColor": "#8c8c8c"
+        }
+      ],
+      "milestone": null,
+      "assignees": [
+        {
+          "name": "Jane Smith",
+          "profileUrl": "https://user-images.githubusercontent.com/107349637/237753262-ab666480-2d8f-4b8e-8868-f1c8a099e393.png"
+        },
+        {
+          "name": "Mike Johnson",
+          "profileUrl": "https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg"
+        }
+      ],
+      "date": "2023-05-11 12:33:00",
+      "isOpen": true,
+      "replyAuthors": ["Emily", "Mark"]
+    },
+    {
+      "id": 2,
+      "title": "Issue 2",
+      "author": {
+        "name": "Jane Smith",
+        "profileUrl": "https://user-images.githubusercontent.com/63908856/237317530-536bef4a-f9f1-4305-9455-b1f1abdd39a8.jpg"
+      },
+      "labels": [
+        {
+          "name": "Feature Request",
+          "backgroundColor": "#6AC793"
+        }
+      ],
+      "milestone": {
+        "name": "Milestone 1"
+      },
+      "assignees": [
+        {
+          "name": "John Doe",
+          "profileUrl": "https://user-images.githubusercontent.com/63908856/237317551-16ca8971-fc7a-48b9-a2aa-0aadcadafcee.jpg"
+        }
+      ],
+      "date": "2023-05-12 09:45:00",
+      "isOpen": true,
+      "replyAuthors": ["Mike"]
+    },
+    {
+      "id": 3,
+      "title": "Issue 3",
+      "author": {
+        "name": "Mike Johnson",
+        "profileUrl": "https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg"
+      },
+      "labels": [],
+      "milestone": null,
+      "assignees": [
+        {
+          "name": "Emily Davis",
+          "profileUrl": "https://user-images.githubusercontent.com/63908856/237317539-b5cddc41-4345-40a9-ae90-1982a05ac4ae.jpg"
+        }
+      ],
+      "date": "2023-05-13 15:20:00",
+      "isOpen": false,
+      "replyAuthors": ["John", "Jane", "Emily"]
+    },
+    {
+      "id": 4,
+      "title": "Issue 4",
+      "author": {
+        "name": "Emily Davis",
+        "profileUrl": "https://user-images.githubusercontent.com/63908856/237317539-b5cddc41-4345-40a9-ae90-1982a05ac4ae.jpg"
+      },
+      "labels": [
+        {
+          "name": "Documentation",
+          "backgroundColor": "#975a97"
+        }
+      ],
+      "milestone": null,
+      "assignees": null,
+      "date": "2023-05-14 11:10:00",
+      "isOpen": true,
+      "replyAuthors": ["John", "Mike"]
+    }
+  ],
+  "countInfo": {
+    "labelCount": 4,
+    "milestoneCount": 1,
+    "openCount": 3,
+    "closeCount": 1
+  }
+}

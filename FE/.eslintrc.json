@@ -21,7 +21,7 @@
     "no-console": "warn",
     "no-unused-vars": 1,
     "react/react-in-jsx-scope": "off",
-    "react/jsx-props-no-spreading": "error",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-curly-spacing": ["error", { "when": "never", "children": true }],
     "react/jsx-wrap-multilines": [
       "error",
