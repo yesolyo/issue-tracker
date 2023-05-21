@@ -1,13 +1,17 @@
+import { useRef, useEffect } from 'react';
+
 import styled from 'styled-components';
 
+import { DropdownPanelItem } from './DropdownPanelItem';
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
-import { Profile } from '../Profile';
 
 const MyDropdownPanel = styled.div`
   position: absolute;
-  right: 0;
+  top: 45px;
+  right: ${({ isLeft }) => isLeft || 0};
+  left: ${({ isLeft }) => isLeft && '-1px'};
   width: 240px;
   border: 1px solid ${colors.gray300};
   box-shadow: 0px 0px 8px rgba(20, 20, 43, 0.04);
@@ -57,45 +61,26 @@ const MyDropdownPanel = styled.div`
   }
 `;
 
-export const DropdownPanel = ({
-  panelRef,
-  title,
-  options,
-  target,
-  selectedTarget
-}) => {
+export const DropdownPanel = ({ title, options, isLeft, panelRef }) => {
   const isSelected = false;
   return (
     // TODO : 로직 정리, select 적용
-    <MyDropdownPanel ref={panelRef}>
+    <MyDropdownPanel isLeft={isLeft} ref={panelRef}>
       <h3>{title} 필터</h3>
       <ul>
-        <li>
-          <div>
+        {title === '이슈' || (
+          <li>
             {title}
             {title === '담당자' || title === '작성자' ? `가` : `이`} 없는 이슈
-          </div>
-          <Icon
-            iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
-            fill={colors.gray700}
-          />
-        </li>
-        {!!options.length &&
-          options.map((option, index) => (
-            <li key={index}>
-              {option.profileUrl && (
-                <Profile isSmall={true} userInfo={option} />
-              )}
-              {option.backgroundColor && (
-                <Icon iconType={'roundImage'} fill={option?.backgroundColor} />
-              )}
-              <div>{option?.name}</div>
-              <Icon
-                iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
-                fill={colors.gray700}
-              />
-            </li>
-          ))}
+            <Icon
+              iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
+              fill={colors.gray700}
+            />
+          </li>
+        )}
+        {options.map((option, index) => (
+          <DropdownPanelItem key={index} {...option} />
+        ))}
       </ul>
     </MyDropdownPanel>
   );
