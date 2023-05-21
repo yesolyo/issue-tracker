@@ -134,7 +134,7 @@ CREATE TABLE `file`
 CREATE TABLE `emoji`
 (
     `emoji_id`     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `emoji_shpape` VARCHAR(45) NULL,
+    `emoji_shape` VARCHAR(45) NULL,
     `emoji_count`  INT NULL
 );
 
