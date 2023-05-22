@@ -19,7 +19,7 @@ public class IssueDetailInfoDTO {
 
     @Id
     @NotNull
-    private Long issueId;
+    private Long id;
     @NotNull
     private String title;
     @NotNull
