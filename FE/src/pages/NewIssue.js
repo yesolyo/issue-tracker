@@ -8,11 +8,6 @@ import { PageHeader } from '../components/PageHeader';
 
 export const NewIssueContext = React.createContext();
 
-const NewIssuePage = styled.div`
-  width: 1280px;
-  margin: 0px auto;
-`;
-
 export const NewIssue = () => {
   const [data, dispatch] = useState([]);
   // TODO : Fetch -> user 정보 필요
@@ -28,11 +23,16 @@ export const NewIssue = () => {
 
   return (
     <NewIssueContext.Provider value={data}>
-      <NewIssuePage>
+      <MyNewIssuePage>
         <PageHeader leftChild={'새로운 이슈 작성'} />
         <NewIssueContainer />
         <NewIssueFooter />
-      </NewIssuePage>
+      </MyNewIssuePage>
     </NewIssueContext.Provider>
   );
 };
+
+const MyNewIssuePage = styled.div`
+  width: 1280px;
+  margin: 0px auto;
+`;

@@ -9,18 +9,6 @@ import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 import { Button } from '../button/Button';
 
-const MyFilterSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 0;
-`;
-
-const TabButtons = styled.div`
-  display: flex;
-  gap: 15px;
-  align-items: center;
-`;
-
 export const FilterSection = () => {
   const navigate = useNavigate();
   const issueData = useContext(IssueListContext);
@@ -53,7 +41,7 @@ export const FilterSection = () => {
   return (
     <MyFilterSection>
       <FilterBar />
-      <TabButtons>
+      <MyTabButtons>
         <TabButton
           type={issueTabConstant.type}
           buttonColor={issueTabConstant.btnColor}
@@ -77,7 +65,19 @@ export const FilterSection = () => {
           isLeftPosition={addIssueConstant.isLeftPosition}
           onClick={() => navigate('/newIssue')}
         />
-      </TabButtons>
+      </MyTabButtons>
     </MyFilterSection>
   );
 };
+
+const MyFilterSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+`;
+
+const MyTabButtons = styled.div`
+  display: flex;
+  gap: 15px;
+  align-items: center;
+`;

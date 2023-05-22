@@ -6,21 +6,17 @@ import { DropdownPanel } from './DropdownPanel';
 import { Button } from '../button/Button';
 import { tabButtonOption } from '../button/buttonConstant';
 
-const MyDropdown = styled.div`
-  position: relative;
-`;
-
 export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [target, setTarget] = useState('');
-  const panelRef = useRef(null);
-  const selectTarget = (target) => {
-    setTarget(target);
-  };
+  // const [target, setTarget] = useState('');
+  // const selectTarget = (target) => {
+  //   setTarget(target);
+  // };
 
+  const panelRef = useRef(null);
   useEffect(() => {
-    const handleClick = ({ target }) => {
-      if (panelRef.current && !panelRef.current.contains(target)) {
+    const handleClick = (e) => {
+      if (panelRef.current && !panelRef.current.contains(e.target)) {
         setIsOpen(false);
       }
     };
@@ -29,22 +25,25 @@ export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
   }, [panelRef]);
 
   return (
-    <MyDropdown>
-      <Button
-        {...tabButtonOption}
-        buttonText={title}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      />
+    <MyDropdown
+      ref={panelRef}
+      onClick={() => {
+        setIsOpen(!isOpen);
+      }}
+    >
+      <Button {...tabButtonOption} buttonText={title} />
       {isOpen && (
         <DropdownPanel
           title={tabName}
           options={tabOptions}
           isLeft={isLeft}
-          panelRef={panelRef}
+          setIsOpen={setIsOpen}
         />
       )}
     </MyDropdown>
   );
 };
+
+const MyDropdown = styled.div`
+  position: relative;
+`;

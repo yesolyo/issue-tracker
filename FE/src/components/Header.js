@@ -7,17 +7,6 @@ import { Icon } from '../assets/Icon';
 import { fontSize, fontType } from '../styles/font';
 import { fetchData } from '../utils/fetch';
 
-export const MyHeader = styled.header`
-  width: 1280px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 25px;
-  box-sizing: border-box;
-  ${fontSize.XXL}
-  ${fontType.LIGHT}
-`;
-
 export const Header = () => {
   const [user, setUser] = useState('');
   const initData = async () => {
@@ -28,7 +17,7 @@ export const Header = () => {
 
   useEffect(() => {
     initData();
-  }, []);
+  }, [user]);
 
   const logoInfo = {
     iconType: 'logotypeLarge',
@@ -42,3 +31,14 @@ export const Header = () => {
     </MyHeader>
   );
 };
+
+export const MyHeader = styled.header`
+  width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px;
+  box-sizing: border-box;
+  ${fontSize.XXL}
+  ${fontType.LIGHT}
+`;

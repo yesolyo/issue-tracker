@@ -4,48 +4,6 @@ import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
 
-const MySidebar = styled.div`
-  & button {
-    justify-content: space-between;
-    ${fontSize.M}
-    width:250px
-  }
-`;
-
-const TopSidebar = styled.div`
-  width: 288px;
-  height: 96px;
-  display: flex;
-  border: 1px solid ${colors.gray300};
-  border-radius: 16px 16px 0px 0px;
-  background: ${colors.gray50};
-  align-items: center;
-  justify-content: center;
-  border-bottom: none;
-`;
-
-const MiddleSidebar = styled.div`
-  border: 1px solid ${colors.gray300};
-  display: flex;
-  width: 288px;
-  height: 96px;
-  background: ${colors.gray50};
-  justify-content: center;
-  align-items: center;
-  border-bottom: none;
-`;
-
-const DownSidebar = styled.div`
-  display: flex;
-  width: 288px;
-  height: 96px;
-  border: 1px solid ${colors.gray300};
-  background: ${colors.gray50};
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px 0px 16px 16px;
-`;
-
 export const Sidebar = () => {
   const sidebarConstant = {
     type: 'ghostButton',
@@ -62,7 +20,7 @@ export const Sidebar = () => {
 
   return (
     <MySidebar>
-      <TopSidebar>
+      <MyTopSidebar>
         <Button
           type={sidebarConstant.type}
           buttonColor={sidebarConstant.btnColor}
@@ -73,8 +31,8 @@ export const Sidebar = () => {
           iconType={sidebarConstant.iconType}
           isLeftPosition={sidebarConstant.isLeftPosition}
         />
-      </TopSidebar>
-      <MiddleSidebar>
+      </MyTopSidebar>
+      <MyMiddleSidebar>
         <Button
           type={sidebarConstant.type}
           buttonColor={sidebarConstant.btnColor}
@@ -85,8 +43,8 @@ export const Sidebar = () => {
           iconType={sidebarConstant.iconType}
           isLeftPosition={sidebarConstant.isLeftPosition}
         />
-      </MiddleSidebar>
-      <DownSidebar>
+      </MyMiddleSidebar>
+      <MyDownSidebar>
         <Button
           type={sidebarConstant.type}
           buttonColor={sidebarConstant.btnColor}
@@ -97,7 +55,49 @@ export const Sidebar = () => {
           iconType={sidebarConstant.iconType}
           isLeftPosition={sidebarConstant.isLeftPosition}
         />
-      </DownSidebar>
+      </MyDownSidebar>
     </MySidebar>
   );
 };
+
+const MySidebar = styled.div`
+  & button {
+    justify-content: space-between;
+    ${fontSize.M}
+    width:250px
+  }
+`;
+
+const MyTopSidebar = styled.div`
+  width: 288px;
+  height: 96px;
+  display: flex;
+  border: 1px solid ${colors.gray300};
+  border-radius: 16px 16px 0px 0px;
+  background: ${colors.gray50};
+  align-items: center;
+  justify-content: center;
+  border-bottom: none;
+`;
+
+const MyMiddleSidebar = styled.div`
+  border: 1px solid ${colors.gray300};
+  display: flex;
+  width: 288px;
+  height: 96px;
+  background: ${colors.gray50};
+  justify-content: center;
+  align-items: center;
+  border-bottom: none;
+`;
+
+const MyDownSidebar = styled.div`
+  display: flex;
+  width: 288px;
+  height: 96px;
+  border: 1px solid ${colors.gray300};
+  background: ${colors.gray50};
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 0px 16px 16px;
+`;

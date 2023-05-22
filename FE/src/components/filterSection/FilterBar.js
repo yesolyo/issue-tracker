@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
-import { TextInput } from '../newIssue/TextInput';
+import { TextInput } from '../textForm/TextInput';
 
 const filterTabOptions = [
   { isSelected: true, option: '열린 이슈' },
@@ -12,6 +12,27 @@ const filterTabOptions = [
   { isSelected: false, option: '내가 댓글을 남긴 이슈' },
   { isSelected: false, option: '닫힌 이슈' }
 ];
+
+export const FilterBar = () => {
+  const filterTextInputOptions = {
+    type: 'sideLabeledTextInput',
+    isIcon: true,
+    iconType: 'search',
+    initialText: 'is:issue is:open'
+  };
+
+  return (
+    <MyfilterBar>
+      <Dropdown
+        isLeft
+        title={'필터'}
+        tabName={'이슈'}
+        tabOptions={filterTabOptions}
+      />
+      <TextInput {...filterTextInputOptions} />
+    </MyfilterBar>
+  );
+};
 
 const MyfilterBar = styled.div`
   height: 40px;
@@ -45,24 +66,3 @@ const MyfilterBar = styled.div`
     ${fontType.LIGHT}
   }
 `;
-
-export const FilterBar = () => {
-  const filterTextInputOptions = {
-    type: 'sideLabeledTextInput',
-    isIcon: true,
-    iconType: 'search',
-    initialText: 'is:issue is:open'
-  };
-
-  return (
-    <MyfilterBar>
-      <Dropdown
-        isLeft
-        title={'필터'}
-        tabName={'이슈'}
-        tabOptions={filterTabOptions}
-      />
-      <TextInput {...filterTextInputOptions} />
-    </MyfilterBar>
-  );
-};

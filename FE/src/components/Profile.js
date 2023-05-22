@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-const MyProfile = styled.img`
-  border-radius: 50%;
-  width: ${(props) => props.width || '20px'};
-  height: ${(props) => props.height || '20px'};
-`;
-
 export const Profile = ({ isLarge, width, height, userInfo }) => {
   return (
     <MyProfile
@@ -16,3 +10,9 @@ export const Profile = ({ isLarge, width, height, userInfo }) => {
     />
   );
 };
+
+const MyProfile = styled.img`
+  border-radius: 50%;
+  width: ${(props) => props.width || '20px'};
+  height: ${(props) => props.height || '20px'};
+`;

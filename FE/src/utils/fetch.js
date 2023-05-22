@@ -5,8 +5,8 @@ export const fetchData = async (path) => {
 };
 
 export const fetchAll = async (...url) => {
-  const requests = [...url].map((url) => fetch(url));
-  const requestObject = await Promise.all(requests);
-  const jsonObject = await Promise.all(requestObject.map((obj) => obj.json()));
+  const response = [...url].map((url) => fetch(url));
+  const resData = await Promise.all(response);
+  const jsonObject = await Promise.all(resData.map((obj) => obj.json()));
   return jsonObject;
 };

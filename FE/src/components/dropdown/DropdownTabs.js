@@ -51,17 +51,6 @@ const tabTypes = [
   }
 ];
 
-const MyDropdownTabs = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  > svg,
-  > button {
-    cursor: pointer;
-  }
-`;
-
 export const DropdownTabs = () => {
   // TODO: queryString으로 filter
   const getFilteredData = (filterTabKey, filterOption) => {
@@ -91,3 +80,14 @@ export const DropdownTabs = () => {
     </MyDropdownTabs>
   );
 };
+
+const MyDropdownTabs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  > svg,
+  > button {
+    cursor: pointer;
+  }
+`;

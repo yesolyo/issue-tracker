@@ -8,6 +8,69 @@ import { CheckBox } from '../CheckBox';
 import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
 
+export const IssueItem = ({
+  id,
+  title,
+  author,
+  labels,
+  milestone,
+  assignees,
+  date,
+  isOpen,
+  replyAuthors
+}) => {
+  const labelsOption = {
+    tagType: 'labels',
+    hasIcon: false
+  };
+
+  return (
+    <MyIssueItem>
+      <MyIssueBox>
+        <CheckBox type={'initial'} onClick={null} />
+        <MyIssue>
+          <MyIssueTitle>
+            <Icon
+              iconType={isOpen ? 'alertCircle' : 'archive'}
+              fill={colors.blue}
+            />
+            <span>{title}</span>
+            {!!labels.length &&
+              labels.map((label, index) => (
+                <LabelTag
+                  key={index}
+                  {...labelsOption}
+                  text={label.name}
+                  backgroundColor={label.backgroundColor}
+                />
+              ))}
+          </MyIssueTitle>
+          <MyIssueDiscription>
+            <p>#{id}</p>
+            <p>
+              이 이슈가 {getTimeElapsed(date)}전, {author?.name}님에 의해
+              작성되었습니다
+            </p>
+            {milestone && (
+              <p>
+                <Icon iconType={'milestone'} fill={colors.gray600} />
+                {milestone?.name}
+              </p>
+            )}
+          </MyIssueDiscription>
+        </MyIssue>
+      </MyIssueBox>
+      {assignees && (
+        <MyIssueAssignee>
+          {assignees.map((assignee, index) => (
+            <Profile key={index} userInfo={assignee} />
+          ))}
+        </MyIssueAssignee>
+      )}
+    </MyIssueItem>
+  );
+};
+
 const MyIssueItem = styled.div`
   display: flex;
   justify-content: space-between;
@@ -76,66 +139,3 @@ const MyIssueAssignee = styled.div`
     }
   }
 `;
-
-export const IssueItem = ({
-  id,
-  title,
-  author,
-  labels,
-  milestone,
-  assignees,
-  date,
-  isOpen,
-  replyAuthors
-}) => {
-  const labelsOption = {
-    tagType: 'labels',
-    hasIcon: false
-  };
-
-  return (
-    <MyIssueItem>
-      <MyIssueBox>
-        <CheckBox type={'initial'} onClick={null} />
-        <MyIssue>
-          <MyIssueTitle>
-            <Icon
-              iconType={isOpen ? 'alertCircle' : 'archive'}
-              fill={colors.blue}
-            />
-            <span>{title}</span>
-            {!!labels.length &&
-              labels.map((label, index) => (
-                <LabelTag
-                  key={index}
-                  {...labelsOption}
-                  text={label.name}
-                  backgroundColor={label.backgroundColor}
-                />
-              ))}
-          </MyIssueTitle>
-          <MyIssueDiscription>
-            <p>#{id}</p>
-            <p>
-              이 이슈가 {getTimeElapsed(date)}전, {author?.name}님에 의해
-              작성되었습니다
-            </p>
-            {milestone && (
-              <p>
-                <Icon iconType={'milestone'} fill={colors.gray600} />
-                {milestone?.name}
-              </p>
-            )}
-          </MyIssueDiscription>
-        </MyIssue>
-      </MyIssueBox>
-      {assignees && (
-        <MyIssueAssignee>
-          {assignees.map((assignee, index) => (
-            <Profile key={index} userInfo={assignee} />
-          ))}
-        </MyIssueAssignee>
-      )}
-    </MyIssueItem>
-  );
-};

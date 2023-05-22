@@ -7,11 +7,6 @@ import { IssueListContainer } from '../components/issueList/IssueListContainer';
 
 export const IssueListContext = React.createContext();
 
-const MyIssueListPage = styled.div`
-  width: 1280px;
-  margin: 0 auto;
-`;
-
 export const IssueList = () => {
   // TODO : dispatch, useReducer 사용예정
   const [data, dispatch] = useState([]);
@@ -34,3 +29,8 @@ export const IssueList = () => {
     </IssueListContext.Provider>
   );
 };
+
+const MyIssueListPage = styled.div`
+  width: 1280px;
+  margin: 0 auto;
+`;
