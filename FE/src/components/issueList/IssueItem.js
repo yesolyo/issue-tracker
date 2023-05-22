@@ -21,7 +21,7 @@ const MyIssueItem = styled.div`
   }
 `;
 
-const IssueBox = styled.div`
+const MyIssueBox = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
@@ -31,13 +31,13 @@ const IssueBox = styled.div`
   }
 `;
 
-const Issue = styled.div`
+const MyIssue = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
 `;
 
-const IssueTitle = styled.div`
+const MyIssueTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -47,7 +47,7 @@ const IssueTitle = styled.div`
   }
 `;
 
-const IssueDiscription = styled.div`
+const MyIssueDiscription = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -62,15 +62,18 @@ const IssueDiscription = styled.div`
   }
 `;
 
-const IssueAssignee = styled.div`
-  padding-right: 20px;
+const MyIssueAssignee = styled.div`
+  padding-right: 15px;
 
-  & > img:last-of-type {
-    margin-left: -10px;
+  & > img:first-of-type:not(:last-child) {
+    margin-right: -10px;
   }
 
-  img:hover {
-    transition: margin 0.1s ease-in-out;
+  &:hover {
+    > img:first-of-type:not(:last-child) {
+      transform: translateX(-10px);
+      transition: all 0.2s ease-in-out;
+    }
   }
 `;
 
@@ -78,14 +81,13 @@ export const IssueItem = ({
   id,
   title,
   author,
-  labels = null,
-  milestone = null,
-  assignees = null,
+  labels,
+  milestone,
+  assignees,
   date,
-  isOpen = null,
-  replyAuthors = null
+  isOpen,
+  replyAuthors
 }) => {
-  const onClick = null;
   const labelsOption = {
     tagType: 'labels',
     hasIcon: false
@@ -93,11 +95,14 @@ export const IssueItem = ({
 
   return (
     <MyIssueItem>
-      <IssueBox>
-        <CheckBox type={'initial'} onClick={onClick} />
-        <Issue>
-          <IssueTitle>
-            <Icon iconType={'alertCircle'} fill={colors.blue} />
+      <MyIssueBox>
+        <CheckBox type={'initial'} onClick={null} />
+        <MyIssue>
+          <MyIssueTitle>
+            <Icon
+              iconType={isOpen ? 'alertCircle' : 'archive'}
+              fill={colors.blue}
+            />
             <span>{title}</span>
             {!!labels.length &&
               labels.map((label, index) => (
@@ -108,8 +113,8 @@ export const IssueItem = ({
                   backgroundColor={label.backgroundColor}
                 />
               ))}
-          </IssueTitle>
-          <IssueDiscription>
+          </MyIssueTitle>
+          <MyIssueDiscription>
             <p>#{id}</p>
             <p>
               이 이슈가 {getTimeElapsed(date)}전, {author?.name}님에 의해
@@ -121,15 +126,15 @@ export const IssueItem = ({
                 {milestone?.name}
               </p>
             )}
-          </IssueDiscription>
-        </Issue>
-      </IssueBox>
+          </MyIssueDiscription>
+        </MyIssue>
+      </MyIssueBox>
       {assignees && (
-        <IssueAssignee>
+        <MyIssueAssignee>
           {assignees.map((assignee, index) => (
-            <Profile key={index} isSmall={true} userInfo={assignee} />
+            <Profile key={index} userInfo={assignee} />
           ))}
-        </IssueAssignee>
+        </MyIssueAssignee>
       )}
     </MyIssueItem>
   );

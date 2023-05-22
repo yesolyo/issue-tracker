@@ -29,18 +29,10 @@ export const NewIssueContent = () => {
     initialText: '제목'
   };
 
-  const comentInputConstant = {
-    initialText: '코멘트를 입력하세요'
-  };
-
   return (
     <MyNewIssueContent>
-      <TextInput
-        type={titleInputConstant.type}
-        isIcon={titleInputConstant.isIcon}
-        initialText={titleInputConstant.initialText}
-      />
-      <TextArea initialText={comentInputConstant.initialText}></TextArea>
+      <TextInput {...titleInputConstant} />
+      <TextArea initialText={'코멘트를 입력하세요'}></TextArea>
     </MyNewIssueContent>
   );
 };

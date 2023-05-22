@@ -3,12 +3,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { FilterSection } from '../components/filterSection/FiterSection';
-import { Header } from '../components/Header';
 import { IssueListContainer } from '../components/issueList/IssueListContainer';
 
 export const IssueListContext = React.createContext();
 
-const IssueListPage = styled.div`
+const MyIssueListPage = styled.div`
   width: 1280px;
   margin: 0 auto;
 `;
@@ -28,11 +27,10 @@ export const IssueList = () => {
 
   return (
     <IssueListContext.Provider value={data}>
-      <IssueListPage>
-        <Header />
+      <MyIssueListPage>
         <FilterSection />
         <IssueListContainer />
-      </IssueListPage>
+      </MyIssueListPage>
     </IssueListContext.Provider>
   );
 };

@@ -16,7 +16,7 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <div className="App">
-          {/* TODO : user 로그인 하면 헤더 고정 시키기 <Header /> */}
+          <Header />
           <Routes>
             <Route path="/" element={<IssueList />} />
             <Route path="/newIssue" element={<NewIssue />} />

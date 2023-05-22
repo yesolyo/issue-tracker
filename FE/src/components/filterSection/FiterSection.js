@@ -18,6 +18,7 @@ const MyFilterSection = styled.div`
 const TabButtons = styled.div`
   display: flex;
   gap: 15px;
+  align-items: center;
 `;
 
 export const FilterSection = () => {
