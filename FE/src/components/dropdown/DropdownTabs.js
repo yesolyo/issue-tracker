@@ -8,21 +8,78 @@ import { IssueListContext } from '../../pages/IssueList';
 const tabTypes = [
   {
     tabName: '작성자',
-    filterTabKey: 'author'
+    filterTabKey: 'author',
+    filterOption (author) {
+      return {
+        option: author.name,
+        profileUrl: author.profileUrl
+      };
+    }
   },
   {
     tabName: '레이블',
-    filterTabKey: 'labels'
+    filterTabKey: 'labels',
+    filterOption (labels) {
+      return labels.map((label) => {
+        return {
+          option: label.name,
+          backgroundColor: label.backgroundColor
+        };
+      });
+    }
   },
   {
     tabName: '마일스톤',
-    filterTabKey: 'milestone'
+    filterTabKey: 'milestone',
+    filterOption (milestone) {
+      return {
+        option: milestone.name
+      };
+    }
   },
   {
     tabName: '담당자',
-    filterTabKey: 'assignees'
+    filterTabKey: 'assignees',
+    filterOption (assignees) {
+      return assignees.map((assignee) => {
+        return {
+          option: assignee.name,
+          profileUrl: assignee.profileUrl
+        };
+      });
+    }
   }
 ];
+
+export const DropdownTabs = () => {
+  // TODO: queryString으로 filter
+  const getFilteredData = (filterTabKey, filterOption) => {
+    const issueData = useContext(IssueListContext);
+    const issueListData = issueData.issueList;
+    return issueListData
+      ?.reduce((acc, issue) => {
+        const filteredIssue = issue[filterTabKey];
+        if (filteredIssue) {
+          acc.push(filterOption(issue[filterTabKey]));
+        }
+        return acc;
+      }, [])
+      .flat(1);
+  };
+
+  return (
+    <MyDropdownTabs>
+      {tabTypes.map(({ tabName, filterTabKey, filterOption }) => (
+        <Dropdown
+          key={tabName}
+          title={tabName}
+          tabName={tabName}
+          tabOptions={getFilteredData(filterTabKey, filterOption)}
+        />
+      ))}
+    </MyDropdownTabs>
+  );
+};
 
 const MyDropdownTabs = styled.div`
   display: flex;
@@ -34,29 +91,3 @@ const MyDropdownTabs = styled.div`
     cursor: pointer;
   }
 `;
-
-export const DropdownTabs = () => {
-  // TODO: queryString으로 filter
-  const getFilteredData = (filterTabKey) => {
-    const issueData = useContext(IssueListContext);
-    const issueListData = issueData.issueList;
-    return issueListData
-      ?.map((issue) => issue[filterTabKey])
-      .filter((data) => !!data)
-      .flat(1);
-  };
-
-  return (
-    <MyDropdownTabs>
-      {tabTypes.map(({ tabName, filterTabKey }, index) => {
-        return (
-          <Dropdown
-            key={index}
-            tabName={tabName}
-            tabOptions={getFilteredData(filterTabKey)}
-          />
-        );
-      })}
-    </MyDropdownTabs>
-  );
-};

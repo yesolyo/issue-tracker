@@ -9,6 +9,28 @@ import { openButtonOption, closeButtonOption } from '../button/buttonConstant';
 import { CheckBox } from '../CheckBox';
 import { DropdownTabs } from '../dropdown/DropdownTabs';
 
+export const IssueListHeader = () => {
+  const issueData = useContext(IssueListContext);
+  const countInfo = issueData.countInfo;
+  const onClick = null;
+  return (
+    <MyIssueListHeader>
+      <MyIssueTabs>
+        <CheckBox type={'initial'} onClick={onClick} />
+        <Button
+          {...openButtonOption}
+          buttonText={`열린 이슈(${countInfo?.openCount || 0})`}
+        />
+        <Button
+          {...closeButtonOption}
+          buttonText={`닫힌 이슈(${countInfo?.closeCount || 0})`}
+        />
+      </MyIssueTabs>
+      <DropdownTabs />
+    </MyIssueListHeader>
+  );
+};
+
 const MyIssueListHeader = styled.div`
   display: flex;
   gap: 18px;
@@ -21,7 +43,7 @@ const MyIssueListHeader = styled.div`
   border-radius: 16px 16px 0px 0px;
 `;
 
-const IssueTabs = styled.div`
+const MyIssueTabs = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
@@ -31,25 +53,3 @@ const IssueTabs = styled.div`
     cursor: pointer;
   }
 `;
-
-export const IssueListHeader = () => {
-  const issueData = useContext(IssueListContext);
-  const countInfo = issueData.countInfo;
-  const onClick = null;
-  return (
-    <MyIssueListHeader>
-      <IssueTabs>
-        <CheckBox type={'initial'} onClick={onClick} />
-        <Button
-          {...openButtonOption}
-          buttonText={`열린 이슈(${countInfo?.openCount || 0})`}
-        />
-        <Button
-          {...closeButtonOption}
-          buttonText={`닫힌 이슈(${countInfo?.closeCount || 0})`}
-        />
-      </IssueTabs>
-      <DropdownTabs />
-    </MyIssueListHeader>
-  );
-};

@@ -8,6 +8,69 @@ import { CheckBox } from '../CheckBox';
 import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
 
+export const IssueItem = ({
+  id,
+  title,
+  author,
+  labels,
+  milestone,
+  assignees,
+  date,
+  isOpen,
+  replyAuthors
+}) => {
+  const labelsOption = {
+    tagType: 'labels',
+    hasIcon: false
+  };
+
+  return (
+    <MyIssueItem>
+      <MyIssueBox>
+        <CheckBox type={'initial'} onClick={null} />
+        <MyIssue>
+          <MyIssueTitle>
+            <Icon
+              iconType={isOpen ? 'alertCircle' : 'archive'}
+              fill={colors.blue}
+            />
+            <span>{title}</span>
+            {!!labels.length &&
+              labels.map((label, index) => (
+                <LabelTag
+                  key={index}
+                  {...labelsOption}
+                  text={label.name}
+                  backgroundColor={label.backgroundColor}
+                />
+              ))}
+          </MyIssueTitle>
+          <MyIssueDiscription>
+            <p>#{id}</p>
+            <p>
+              이 이슈가 {getTimeElapsed(date)}전, {author?.name}님에 의해
+              작성되었습니다
+            </p>
+            {milestone && (
+              <p>
+                <Icon iconType={'milestone'} fill={colors.gray600} />
+                {milestone?.name}
+              </p>
+            )}
+          </MyIssueDiscription>
+        </MyIssue>
+      </MyIssueBox>
+      {assignees && (
+        <MyIssueAssignee>
+          {assignees.map((assignee, index) => (
+            <Profile key={index} userInfo={assignee} />
+          ))}
+        </MyIssueAssignee>
+      )}
+    </MyIssueItem>
+  );
+};
+
 const MyIssueItem = styled.div`
   display: flex;
   justify-content: space-between;
@@ -21,7 +84,7 @@ const MyIssueItem = styled.div`
   }
 `;
 
-const IssueBox = styled.div`
+const MyIssueBox = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
@@ -31,13 +94,13 @@ const IssueBox = styled.div`
   }
 `;
 
-const Issue = styled.div`
+const MyIssue = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
 `;
 
-const IssueTitle = styled.div`
+const MyIssueTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -47,7 +110,7 @@ const IssueTitle = styled.div`
   }
 `;
 
-const IssueDiscription = styled.div`
+const MyIssueDiscription = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -62,75 +125,17 @@ const IssueDiscription = styled.div`
   }
 `;
 
-const IssueAssignee = styled.div`
-  padding-right: 20px;
+const MyIssueAssignee = styled.div`
+  padding-right: 15px;
 
-  & > img:last-of-type {
-    margin-left: -10px;
+  & > img:first-of-type:not(:last-child) {
+    margin-right: -10px;
   }
 
-  img:hover {
-    transition: margin 0.1s ease-in-out;
+  &:hover {
+    > img:first-of-type:not(:last-child) {
+      transform: translateX(-10px);
+      transition: all 0.2s ease-in-out;
+    }
   }
 `;
-
-export const IssueItem = ({
-  id,
-  title,
-  author,
-  labels = null,
-  milestone = null,
-  assignees = null,
-  date,
-  isOpen = null,
-  replyAuthors = null
-}) => {
-  const onClick = null;
-  const labelsOption = {
-    tagType: 'labels',
-    hasIcon: false
-  };
-
-  return (
-    <MyIssueItem>
-      <IssueBox>
-        <CheckBox type={'initial'} onClick={onClick} />
-        <Issue>
-          <IssueTitle>
-            <Icon iconType={'alertCircle'} fill={colors.blue} />
-            <span>{title}</span>
-            {!!labels.length &&
-              labels.map((label, index) => (
-                <LabelTag
-                  key={index}
-                  {...labelsOption}
-                  text={label.name}
-                  backgroundColor={label.backgroundColor}
-                />
-              ))}
-          </IssueTitle>
-          <IssueDiscription>
-            <p>#{id}</p>
-            <p>
-              이 이슈가 {getTimeElapsed(date)}전, {author?.name}님에 의해
-              작성되었습니다
-            </p>
-            {milestone && (
-              <p>
-                <Icon iconType={'milestone'} fill={colors.gray600} />
-                {milestone?.name}
-              </p>
-            )}
-          </IssueDiscription>
-        </Issue>
-      </IssueBox>
-      {assignees && (
-        <IssueAssignee>
-          {assignees.map((assignee, index) => (
-            <Profile key={index} isSmall={true} userInfo={assignee} />
-          ))}
-        </IssueAssignee>
-      )}
-    </MyIssueItem>
-  );
-};

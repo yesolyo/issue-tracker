@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -6,37 +6,44 @@ import { DropdownPanel } from './DropdownPanel';
 import { Button } from '../button/Button';
 import { tabButtonOption } from '../button/buttonConstant';
 
-const MyDropdown = styled.div`
-  position: relative;
-`;
-
-export const Dropdown = ({ tabName, tabOptions }) => {
+export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [target, setTarget] = useState('');
+  // const [target, setTarget] = useState('');
+  // const selectTarget = (target) => {
+  //   setTarget(target);
+  // };
 
-  // TODO : 팝업 외 다른 영역 클릭시 닫히게 구현
-  const selectTarget = (target) => {
-    setTarget(target);
-  };
   const panelRef = useRef(null);
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (panelRef.current && !panelRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('mousedown', handleClick);
+    return () => window.removeEventListener('mousedown', handleClick);
+  }, [panelRef]);
+
   return (
-    <MyDropdown>
-      <Button
-        {...tabButtonOption}
-        buttonText={tabName}
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      />
+    <MyDropdown
+      ref={panelRef}
+      onClick={() => {
+        setIsOpen(!isOpen);
+      }}
+    >
+      <Button {...tabButtonOption} buttonText={title} />
       {isOpen && (
         <DropdownPanel
-          panelRef={panelRef}
           title={tabName}
           options={tabOptions}
-          target={target}
-          selectedTarget={selectTarget}
+          isLeft={isLeft}
+          setIsOpen={setIsOpen}
         />
       )}
     </MyDropdown>
   );
 };
+
+const MyDropdown = styled.div`
+  position: relative;
+`;

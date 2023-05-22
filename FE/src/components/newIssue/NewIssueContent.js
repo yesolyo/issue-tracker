@@ -1,9 +1,24 @@
 import styled from 'styled-components';
 
-import { TextArea } from './TextArea';
-import { TextInput } from './TextInput';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
+import { TextArea } from '../textForm/TextArea';
+import { TextInput } from '../textForm/TextInput';
+
+export const NewIssueContent = () => {
+  const titleInputConstant = {
+    type: 'defaultTextInput',
+    isIcon: false,
+    initialText: '제목'
+  };
+
+  return (
+    <MyNewIssueContent>
+      <TextInput {...titleInputConstant} />
+      <TextArea initialText={'코멘트를 입력하세요'}></TextArea>
+    </MyNewIssueContent>
+  );
+};
 
 const MyNewIssueContent = styled.div`
   gap: 10px;
@@ -21,26 +36,3 @@ const MyNewIssueContent = styled.div`
     ${fontType.REGULAR}
   }
 `;
-
-export const NewIssueContent = () => {
-  const titleInputConstant = {
-    type: 'defaultTextInput',
-    isIcon: false,
-    initialText: '제목'
-  };
-
-  const comentInputConstant = {
-    initialText: '코멘트를 입력하세요'
-  };
-
-  return (
-    <MyNewIssueContent>
-      <TextInput
-        type={titleInputConstant.type}
-        isIcon={titleInputConstant.isIcon}
-        initialText={titleInputConstant.initialText}
-      />
-      <TextArea initialText={comentInputConstant.initialText}></TextArea>
-    </MyNewIssueContent>
-  );
-};

@@ -1,13 +1,38 @@
-import { useContext } from 'react';
+import { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
 import { Profile } from './Profile';
 import { Icon } from '../assets/Icon';
-import { IssueListContext } from '../pages/IssueList';
 import { fontSize, fontType } from '../styles/font';
+import { fetchData } from '../utils/fetch';
 
-const MyHeader = styled.header`
+export const Header = () => {
+  const [user, setUser] = useState('');
+  const initData = async () => {
+    // TODO: login user API에서 fetch
+    const resData = await fetchData('/issueList');
+    setUser(resData);
+  };
+
+  useEffect(() => {
+    initData();
+  }, [user]);
+
+  const logoInfo = {
+    iconType: 'logotypeLarge',
+    width: 200,
+    height: 40
+  };
+  return (
+    <MyHeader>
+      <Icon {...logoInfo} />
+      <Profile isLarge userInfo={user?.userInfo} />
+    </MyHeader>
+  );
+};
+
+export const MyHeader = styled.header`
   width: 1280px;
   margin: 0 auto;
   display: flex;
@@ -17,26 +42,3 @@ const MyHeader = styled.header`
   ${fontSize.XXL}
   ${fontType.LIGHT}
 `;
-
-export const Header = ({ text }) => {
-  const issueData = useContext(IssueListContext);
-
-  const logoInfo = {
-    iconType: 'logotypeLarge',
-    width: 200,
-    height: 40,
-    isSmall: false,
-    userInfo: issueData?.userInfo
-  };
-
-  return (
-    <MyHeader>
-      {text || (
-        <>
-          <Icon {...logoInfo} />
-          <Profile isSmall={logoInfo.isSmall} userInfo={logoInfo.userInfo} />
-        </>
-      )}
-    </MyHeader>
-  );
-};
