@@ -6,6 +6,7 @@
     "updateTime": "2023-05-22T05:34:16.754Z",
     "isOPen": true,
     "milestone": "First Milestone",
+    "commentAuthors": [2],
     "author": {
       "id": 0,
       "name": "GamJa",
@@ -34,6 +35,7 @@
     "updateTime": "2023-05-22T06:34:16.754Z",
     "isOPen": true,
     "milestone": "Second Milestone",
+    "commentAuthors": [1, 3],
     "author": {
       "id": 2,
       "name": "Demian",
@@ -62,6 +64,7 @@
     "updateTime": "2023-05-21T06:34:16.754Z",
     "isOPen": true,
     "milestone": "Third Milestone",
+    "commentAuthors": [2, 4],
     "author": {
       "id": 3,
       "name": "Birdie",
@@ -90,6 +93,7 @@
     "updateTime": "2023-05-22T07:34:16.754Z",
     "isOPen": true,
     "milestone": "Fourth Milestone",
+    "commentAuthors": [1, 2, 3],
     "author": {
       "id": 5,
       "name": "Water",
