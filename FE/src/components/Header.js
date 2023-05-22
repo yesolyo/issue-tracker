@@ -17,13 +17,14 @@ export const Header = () => {
 
   useEffect(() => {
     initData();
-  }, [user]);
+  }, []);
 
   const logoInfo = {
     iconType: 'logotypeLarge',
     width: 200,
     height: 40
   };
+
   return (
     <MyHeader>
       <Icon {...logoInfo} />

@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
@@ -15,6 +16,7 @@ export const TabButton = ({
   isIcon,
   isLeftPosition
 }) => {
+  const navigate = useNavigate();
   return (
     <MyTabButton>
       <MyLeftTabButton>
@@ -27,6 +29,7 @@ export const TabButton = ({
           iconType={leftIconType}
           isIcon={isIcon}
           isLeftPosition={isLeftPosition}
+          onClick={() => navigate('/LabelList')}
         />
       </MyLeftTabButton>
       <MyRightTabButton>
@@ -39,6 +42,7 @@ export const TabButton = ({
           iconType={rightIconType}
           isIcon={isIcon}
           isLeftPosition={isLeftPosition}
+          onClick={() => navigate('/MilestoneList')}
         />
       </MyRightTabButton>
     </MyTabButton>

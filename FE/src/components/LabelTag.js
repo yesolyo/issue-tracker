@@ -4,10 +4,18 @@ import { Icon } from '../assets/Icon';
 import { colors } from '../styles/color';
 import { fontSize } from '../styles/font';
 
-export const LabelTag = ({ tagType, text, icon, hasIcon, backgroundColor }) => {
+export const LabelTag = ({
+  tagType,
+  text,
+  icon,
+  hasIcon,
+  backgroundColor,
+  fontColor
+}) => {
   const MyLabelsTag = styled(MydefaultTag)`
     color: ${colors.gray50};
     background-color: ${backgroundColor};
+    color: ${fontColor};
   `;
 
   const tagTypes = {

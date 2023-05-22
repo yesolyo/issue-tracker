@@ -22,8 +22,8 @@ export const DropdownPanel = ({ title, options, isLeft }) => {
             />
           </li>
         )}
-        {options.map((option, index) => (
-          <DropdownPanelItem key={index} {...option} />
+        {options.map((option) => (
+          <DropdownPanelItem key={option.id} {...option} />
         ))}
       </ul>
     </MyDropdownPanel>

@@ -1,118 +1,142 @@
-[
-  {
-    "id": 0,
-    "title": "First Issue",
-    "createTime": "2023-05-22T05:34:16.754Z",
-    "updateTime": "2023-05-22T05:34:16.754Z",
-    "isOPen": true,
-    "milestone": "First Milestone",
-    "commentAuthors": [2],
-    "author": {
+{
+  "issueList": [
+    {
       "id": 0,
-      "name": "GamJa",
-      "profileUrl": "https://user-images.githubusercontent.com/107349637/237753262-ab666480-2d8f-4b8e-8868-f1c8a099e393.png"
-    },
-    "assignees": [
-      {
-        "id": 1,
-        "name": "Nani",
-        "profileUrl": "https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg"
-      }
-    ],
-    "labels": [
-      {
+      "title": "First Issue",
+      "createTime": "2023-05-22T05:34:16.754Z",
+      "updateTime": "2023-05-22T05:34:16.754Z",
+      "isOpen": false,
+      "milestone": "First Milestone",
+      "commentAuthors": [2],
+      "author": {
         "id": 0,
-        "name": "Bug",
-        "backgroundColor": "#0000FF",
-        "fontColor": "#FEFEFE"
-      }
-    ]
-  },
-  {
-    "id": 1,
-    "title": "Second Issue",
-    "createTime": "2023-05-12T03:34:16.754Z",
-    "updateTime": "2023-05-22T06:34:16.754Z",
-    "isOPen": true,
-    "milestone": "Second Milestone",
-    "commentAuthors": [1, 3],
-    "author": {
-      "id": 2,
-      "name": "Demian",
-      "profileUrl": "https://user-images.githubusercontent.com/63908856/237317530-536bef4a-f9f1-4305-9455-b1f1abdd39a8.jpg"
-    },
-    "assignees": [
-      {
-        "id": 1,
         "name": "GamJa",
-        "profileUrl": "https://user-images.githubusercontent.com/107349637/237753262-ab666480-2d8f-4b8e-8868-f1c8a099e393.png"
-      }
-    ],
-    "labels": [
-      {
-        "id": 1,
-        "name": "Feature",
-        "backgroundColor": "#FFFF00",
-        "fontColor": "#FEFEFE"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "title": "Third Issue",
-    "createTime": "2023-05-21T05:34:16.754Z",
-    "updateTime": "2023-05-21T06:34:16.754Z",
-    "isOPen": true,
-    "milestone": "Third Milestone",
-    "commentAuthors": [2, 4],
-    "author": {
-      "id": 3,
-      "name": "Birdie",
-      "profileUrl": "https://user-images.githubusercontent.com/63908856/237317551-16ca8971-fc7a-48b9-a2aa-0aadcadafcee.jpg"
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
+      },
+      "assignees": [
+        {
+          "id": 1,
+          "name": "Nani",
+          "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/db753467-76aa-493d-9875-6aff6fc6c656"
+        }
+      ],
+      "labels": [
+        {
+          "id": 0,
+          "name": "Bug",
+          "backgroundColor": "#389561",
+          "fontColor": "#fff"
+        },
+        {
+          "id": 3,
+          "name": "Refactor",
+          "backgroundColor": "#975a97",
+          "fontColor": "#fff"
+        }
+      ]
     },
-    "assignees": [
-      {
-        "id": 4,
-        "name": "Noah",
-        "profileUrl": "https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg"
-      }
-    ],
-    "labels": [
-      {
+    {
+      "id": 1,
+      "title": "Second Issue",
+      "createTime": "2023-05-12T03:34:16.754Z",
+      "updateTime": "2023-05-22T06:34:16.754Z",
+      "isOpen": true,
+      "milestone": "Second Milestone",
+      "commentAuthors": [1, 3],
+      "author": {
         "id": 2,
-        "name": "Enhancement",
-        "backgroundColor": "#FFFF00",
-        "fontColor": "#14142B"
-      }
-    ]
-  },
-  {
-    "id": 3,
-    "title": "Fourth Issue",
-    "createTime": "2023-05-22T05:34:16.754Z",
-    "updateTime": "2023-05-22T07:34:16.754Z",
-    "isOPen": true,
-    "milestone": "Fourth Milestone",
-    "commentAuthors": [1, 2, 3],
-    "author": {
-      "id": 5,
-      "name": "Water",
-      "profileUrl": "https://example.com/profile/robertsmith"
+        "name": "Demian",
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/a981d3b0-77ec-4402-a658-ca6a41ed41de"
+      },
+      "assignees": [
+        {
+          "id": 1,
+          "name": "GamJa",
+          "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
+        }
+      ],
+      "labels": [
+        {
+          "id": 1,
+          "name": "Feature",
+          "backgroundColor": "#FFBBC6",
+          "fontColor": "#000"
+        }
+      ]
     },
-    "assignees": [
-      {
-        "id": 4,
-        "name": "Noah",
-        "profileUrl": "https://user-images.githubusercontent.com/63908856/237317514-8869c616-bbb5-4f5d-80f9-547c383d6218.jpg"
-      }
-    ],
-    "labels": [
-      {
+    {
+      "id": 2,
+      "title": "Third Issue",
+      "createTime": "2023-05-21T05:34:16.754Z",
+      "updateTime": "2023-05-21T06:34:16.754Z",
+      "isOpen": true,
+      "milestone": "Third Milestone",
+      "commentAuthors": [2, 4],
+      "author": {
         "id": 3,
-        "name": "Enhancement",
-        "backgroundColor": "#0000FF",
-        "fontColor": "#14142B"
-      }
-    ]
+        "name": "Birdie",
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/bacc531d-a512-4a54-9c5c-5e22d7425900"
+      },
+      "assignees": [
+        {
+          "id": 4,
+          "name": "Noah",
+          "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d"
+        },
+        {
+          "id": 1,
+          "name": "GamJa",
+          "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
+        }
+      ],
+      "labels": [
+        {
+          "id": 2,
+          "name": "Enhancement",
+          "backgroundColor": "#6E6ED7",
+          "fontColor": "#fff"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Fourth Issue",
+      "createTime": "2023-05-22T05:34:16.754Z",
+      "updateTime": "2023-05-22T07:34:16.754Z",
+      "isOpen": true,
+      "milestone": "Fourth Milestone",
+      "commentAuthors": [1, 2, 3],
+      "author": {
+        "id": 5,
+        "name": "Water",
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e675d61f-2884-4084-b7db-604ad238fc87"
+      },
+      "assignees": [
+        {
+          "id": 4,
+          "name": "Noah",
+          "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d"
+        }
+      ],
+      "labels": [
+        {
+          "id": 5,
+          "name": "Build",
+          "backgroundColor": "#82B3ED",
+          "fontColor": "#14142B"
+        }
+      ]
+    }
+  ],
+  "countInfo": {
+    "labelCount": 4,
+    "milestoneCount": 1,
+    "openCount": 3,
+    "closeCount": 1
+  },
+  "userInfo": {
+    "id": 0,
+    "name": "GamJa",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
   }
-]
+}

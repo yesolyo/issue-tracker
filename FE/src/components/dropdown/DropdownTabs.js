@@ -11,6 +11,7 @@ const tabTypes = [
     filterTabKey: 'author',
     filterOption (author) {
       return {
+        id: author.id,
         option: author.name,
         profileUrl: author.profileUrl
       };
@@ -22,8 +23,10 @@ const tabTypes = [
     filterOption (labels) {
       return labels.map((label) => {
         return {
+          id: label.id,
           option: label.name,
-          backgroundColor: label.backgroundColor
+          backgroundColor: label.backgroundColor,
+          fontColor: label.fontColor
         };
       });
     }
@@ -33,7 +36,7 @@ const tabTypes = [
     filterTabKey: 'milestone',
     filterOption (milestone) {
       return {
-        option: milestone.name
+        option: milestone
       };
     }
   },
@@ -43,6 +46,7 @@ const tabTypes = [
     filterOption (assignees) {
       return assignees.map((assignee) => {
         return {
+          id: assignee.id,
           option: assignee.name,
           profileUrl: assignee.profileUrl
         };
