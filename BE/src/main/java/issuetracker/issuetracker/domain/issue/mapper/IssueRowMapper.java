@@ -15,7 +15,7 @@ public class IssueRowMapper implements RowMapper<IssueDTO> {
     @Override
     public IssueDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
         IssueDTO issue = new IssueDTO();
-        issue.setIssueId(rs.getLong("issue_id"));
+        issue.setId(rs.getLong("issue_id"));
         issue.setTitle(rs.getString("title"));
         issue.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
         issue.setUpdateTime(rs.getTimestamp("update_time").toLocalDateTime());
@@ -42,9 +42,9 @@ public class IssueRowMapper implements RowMapper<IssueDTO> {
 
         // author 매핑
         AuthorDTO author = new AuthorDTO();
-        author.setAuthorId(rs.getLong("author_id"));
-        author.setAuthorName(rs.getString("author_name"));
-        author.setAuthorProfileUrl(rs.getString("author_profile_url"));
+        author.setId(rs.getLong("author_id"));
+        author.setName(rs.getString("author_name"));
+        author.setProfileUrl(rs.getString("author_profile_url"));
         issue.setAuthor(author);
 
         return issue;

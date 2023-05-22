@@ -17,7 +17,7 @@ import java.util.Set;
 public class IssueDTO {
     @Id
     @NotNull
-    private Long issueId;
+    private Long id;
     @NotNull
     private String title;
     @NotNull

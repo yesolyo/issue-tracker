@@ -10,8 +10,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class AuthorDTO {
     @Id
-    private long authorId;
+    private long id;
     @NotNull
-    private String authorName;
-    private String authorProfileUrl;
+    private String name;
+    private String profileUrl;
 }
