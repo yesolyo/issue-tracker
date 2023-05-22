@@ -15,9 +15,8 @@ export const IssueItem = ({
   labels,
   milestone,
   assignees,
-  date,
-  isOpen,
-  replyAuthors
+  createTime,
+  isOpen
 }) => {
   const labelsOption = {
     tagType: 'labels',
@@ -36,25 +35,26 @@ export const IssueItem = ({
             />
             <span>{title}</span>
             {!!labels.length &&
-              labels.map((label, index) => (
+              labels.map((label) => (
                 <LabelTag
-                  key={index}
+                  key={label.id}
                   {...labelsOption}
                   text={label.name}
                   backgroundColor={label.backgroundColor}
+                  fontColor={label.fontColor}
                 />
               ))}
           </MyIssueTitle>
           <MyIssueDiscription>
             <p>#{id}</p>
             <p>
-              이 이슈가 {getTimeElapsed(date)}전, {author?.name}님에 의해
+              이 이슈가 {getTimeElapsed(createTime)}전, {author?.name}님에 의해
               작성되었습니다
             </p>
             {milestone && (
               <p>
                 <Icon iconType={'milestone'} fill={colors.gray600} />
-                {milestone?.name}
+                {milestone}
               </p>
             )}
           </MyIssueDiscription>
@@ -62,8 +62,8 @@ export const IssueItem = ({
       </MyIssueBox>
       {assignees && (
         <MyIssueAssignee>
-          {assignees.map((assignee, index) => (
-            <Profile key={index} userInfo={assignee} />
+          {assignees.map((assignee) => (
+            <Profile key={assignee.id} userInfo={assignee} />
           ))}
         </MyIssueAssignee>
       )}
