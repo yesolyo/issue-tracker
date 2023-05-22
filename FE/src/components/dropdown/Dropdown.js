@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { DropdownPanel } from './DropdownPanel';
 import { Button } from '../button/Button';
-import { tabButtonOption } from '../button/buttonConstant';
 
 export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +30,14 @@ export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
         setIsOpen(!isOpen);
       }}
     >
-      <Button {...tabButtonOption} buttonText={title} />
+      <Button
+        size={'s'}
+        color={title === '필터' ? 'ghostBlack' : 'ghostGray'}
+        iconType={'chevronDown'}
+        isIcon
+        isLeftPosition={false}
+        buttonText={title}
+      />
       {isOpen && (
         <DropdownPanel
           title={tabName}

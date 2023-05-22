@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 import { Button } from '../button/Button';
-import { openButtonOption, closeButtonOption } from '../button/buttonConstant';
 import { CheckBox } from '../CheckBox';
 import { DropdownTabs } from '../dropdown/DropdownTabs';
 
@@ -18,12 +17,20 @@ export const IssueListHeader = () => {
       <MyIssueTabs>
         <CheckBox type={'initial'} onClick={onClick} />
         <Button
-          {...openButtonOption}
+          size={'s'}
+          color={'ghostBlack'}
+          iconType={'alertCircle'}
+          isIcon
           buttonText={`열린 이슈(${countInfo?.openCount || 0})`}
+          isLeftPosition
         />
         <Button
-          {...closeButtonOption}
+          size={'s'}
+          color={'ghostGray'}
+          iconType={'archive'}
+          isIcon
           buttonText={`닫힌 이슈(${countInfo?.closeCount || 0})`}
+          isLeftPosition
         />
       </MyIssueTabs>
       <DropdownTabs />

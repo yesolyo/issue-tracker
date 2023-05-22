@@ -1,37 +1,28 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontType } from '../../styles/font';
 
 export const Button = ({
-  type,
-  buttonColor,
-  hoverColor,
-  backgroundColor,
-  buttonText,
-  buttonWidth,
-  buttonHeight,
+  disabled,
+  size,
+  color,
   iconType,
   isIcon,
+  buttonText,
   isLeftPosition,
   onClick
 }) => {
-  const buttonTypes = {
-    containerButton,
-    outlineButton,
-    ghostButton
-  };
-
-  const MyButton = buttonTypes[type];
+  const btnSize = btnSizes[size];
+  const btnColor = btnColors[color];
+  const icnoSize = icnoSizes[size];
 
   return (
     <MyButton
-      buttonColor={buttonColor}
-      hoverColor={hoverColor}
-      backgroundColor={backgroundColor}
-      buttonWidth={buttonWidth}
-      buttonHeight={buttonHeight}
+      disabled={disabled}
+      btnSize={btnSize}
+      btnColor={btnColor}
       onClick={onClick}
     >
       {isIcon
@@ -39,14 +30,14 @@ export const Button = ({
           isLeftPosition
             ? (
               <>
-                <Icon iconType={iconType} fill={buttonColor} width={10} />
+                <Icon iconType={iconType} width={icnoSize} />
                 {buttonText}
               </>
             )
             : (
               <>
                 {buttonText}
-                <Icon iconType={iconType} fill={buttonColor} width={10} />
+                <Icon iconType={iconType} width={icnoSize} />
               </>
             )
         )
@@ -57,43 +48,90 @@ export const Button = ({
   );
 };
 
+const icnoSizes = {
+  m: 14,
+  s: 9,
+  xs: 7
+};
+
+const btnSizes = {
+  l: css`
+    width: 320px;
+    height: 56px;
+  `,
+  m: css`
+    width: 240px;
+    height: 56px;
+  `,
+  s: css`
+    width: 120px;
+    height: 40px;
+  `,
+  xs: css`
+    width: 59px;
+    height: 28px;
+  `
+};
+
+const btnColors = {
+  containerBlue: css`
+    background-color: ${colors.blue};
+    color: ${colors.gray50};
+    border: none;
+  `,
+  containerBlack: css`
+    background-color: ${colors.gray900};
+    color: ${colors.gray50};
+    border: none;
+  `,
+  outlineBlue: css`
+    background-color: transparent;
+    color: ${colors.blue};
+    border-color: ${colors.blue};
+    > svg {
+      fill: ${colors.blue};
+    }
+  `,
+  ghostBlack: css`
+    background-color: transparent;
+    color: ${colors.gray900};
+    border: none;
+    > svg {
+      fill: ${colors.gray900};
+    }
+  `,
+  ghostGray: css`
+    background-color: transparent;
+    color: ${colors.gray600};
+    border: none;
+    > svg {
+      fill: ${colors.gray600};
+    }
+  `
+};
+
 const MyButton = styled.button`
+  ${(p) => p.btnSize};
+  ${(p) => p.btnColor};
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  height: 40px;
   display: flex;
-  padding: 0;
-  width: ${(props) => props.buttonWidth || 'max-content'};
-  height: ${(props) => props.buttonHeight || '40px'};
   border-radius: 11px;
   ${fontType.BOLD};
-  color: ${(props) => props.buttonColor || colors.gray50};
-
   > svg {
     margin: 5px;
   }
-
-  &:hover {
-    color: ${(props) => props.hoverColor || colors.gray50};
-    > svg {
-      fill: ${(props) => props.hoverColor || colors.gray50};
-    }
+  &: hover {
+    opacity: 0.8;
   }
-`;
 
-const containerButton = styled(MyButton)`
-  padding: 0px 16px;
-  border: none;
-  background: ${(props) => props.backgroundColor || colors.gray50};
-`;
+  &: active {
+    opacity: 0.64;
+  }
 
-const outlineButton = styled(MyButton)`
-  padding: 0px 16px;
-  background-color: transparent;
-  border-color: ${colors.blue};
-`;
-const ghostButton = styled(MyButton)`
-  background-color: transparent;
-  border: none;
+  & :disabled {
+    cursor: default;
+    opacity: 0.32;
+  }
 `;
