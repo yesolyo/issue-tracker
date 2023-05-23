@@ -1,7 +1,6 @@
 package issuetracker.issuetracker.domain.page;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
-import issuetracker.issuetracker.domain.issue.controller.IssueController;
 import issuetracker.issuetracker.domain.page.dto.request.FilterRequestDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.issue.service.IssueFilterService;
@@ -21,19 +20,16 @@ public class PageController {
 
     private final PageService service;
     private final IssueFilterService issueQueryService;
-    private final Logger logger = LoggerFactory.getLogger(IssueController.class);
 
 
-    @GetMapping
-    public List<IssueDTO> showMainPage() {
-        return service.getMainPage();
-    }
+//    @GetMapping
+//    public List<IssueDTO> showMainPage() {
+//        return service.getMainPage();
+//    }
 
     //TODO 이슈 필터링 기능 하는 메서드 처음에는 issue에 만들었지만 여기가 더 맞는것 같다.
     @GetMapping("/test")
     public List<IssueDTO> filterIssue(FilterRequestDTO filterRequestDTO) {
-        logger.debug("filterRequestDTO={}", filterRequestDTO);
-        logger.debug("검색어와 상태에 따른 이슈 조회");
         List<IssueDTO> filteredIssues = issueQueryService.filterIssues(filterRequestDTO);
         return filteredIssues;
     }

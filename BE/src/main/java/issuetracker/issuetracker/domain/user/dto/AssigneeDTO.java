@@ -14,5 +14,5 @@ public class AssigneeDTO {
     private long id;
     @NotNull
     private String name;
-    private String profile_url;
+    private String profileUrl;
 }

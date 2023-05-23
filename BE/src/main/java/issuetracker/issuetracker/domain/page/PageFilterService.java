@@ -1,6 +1,6 @@
 package issuetracker.issuetracker.domain.page;
 
-import issuetracker.issuetracker.domain.issue.repositroy.IssueRepository;
+import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
 import issuetracker.issuetracker.domain.label.LabelRepository;
 import issuetracker.issuetracker.domain.milestone.MileRepository;
 import issuetracker.issuetracker.domain.user.repository.MemberRepository;
