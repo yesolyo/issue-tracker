@@ -17,4 +17,5 @@ public class LabelDTO {
     private String title;
     @NotNull
     private String backgroundColor;
+    private String fontColor;
 }

@@ -1,11 +1,11 @@
-package issuetracker.issuetracker.domain.issue;
+package issuetracker.issuetracker.domain.issue.controller;
 
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import issuetracker.issuetracker.domain.issue.comment.dto.CommentInIssueDTO;
 import issuetracker.issuetracker.domain.issue.comment.dto.CommentPostDTO;
-import issuetracker.issuetracker.domain.issue.dto.PostingIssueDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
+import issuetracker.issuetracker.domain.issue.dto.PostingIssueDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/issues")
 public class IssueController {
-
 
     @PostMapping("/{issueId}")
     public void postIssue(@RequestBody PostingIssueDTO issue) {

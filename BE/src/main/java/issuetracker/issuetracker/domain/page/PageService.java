@@ -23,11 +23,7 @@ public class PageService {
     }
 
     public CountInfo getCountInfo() {
-        return new CountInfo(
-                repository.countLabel(),
-                repository.countMilestone(),
-                repository.countOpenIssue(),
-                repository.countCloseIssue()
-        );
+
+        return repository.countCountInfo();
     }
 }
