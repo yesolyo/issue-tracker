@@ -14,7 +14,7 @@ export const TextInput = ({ label, size }) => {
   };
 
   return (
-    <MyTextInput inputSize={inputSize}>
+    <MyTextInput inputSize={inputSize} value={value}>
       <input type="text" value={value} onChange={handleChange} />
       <label className={value && 'filled'} htmlFor={name}>
         {label}
@@ -74,8 +74,11 @@ const MyTextInput = styled.div`
 
   & label {
     position: absolute;
+    ${(props) =>
+    props.value.length > 0
+      ? 'transform: translate(0, 12px) scale(0.8);'
+      : 'transform: translate(0, 23px) scale(1);'}
     pointer-events: none;
-    transform: translate(0, 23px) scale(1);
     transform-origin: top left;
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     color: ${colors.gray600};
@@ -90,7 +93,7 @@ const MyTextInput = styled.div`
     border: none;
     outline: none;
     box-shadow: none;
-    padding: 10px 0px 0px 15px;
+    padding: 10px 0px 0px 30px;
     background: ${colors.gray200};
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     ${fontSize.M};

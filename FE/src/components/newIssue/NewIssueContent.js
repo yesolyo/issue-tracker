@@ -14,14 +14,13 @@ export const NewIssueContent = () => {
 
   return (
     <MyNewIssueContent>
-      <form>
-        <TextInput label={'제목'} size={'lg'} />
-      </form>
+      <TextInput label={'제목'} size={'lg'} />
+      <TextArea label={'코멘트를 입력하세요'} size={'l'} />
     </MyNewIssueContent>
   );
 };
 
-const MyNewIssueContent = styled.div`
+const MyNewIssueContent = styled.form`
   gap: 10px;
   display: flex;
   flex-direction: column;
