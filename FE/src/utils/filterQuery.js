@@ -1,10 +1,10 @@
 export const getFilterQueryString = ({
   isOpen,
   author,
-  labels,
+  labels, // 중복가능
   milestone,
-  assignees,
-  comments
+  assignees, // 중복가능
+  comments // user 1명만
 }) => {
   return [
     `isOpen=${isOpen}`,

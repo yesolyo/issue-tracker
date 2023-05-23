@@ -11,6 +11,9 @@ export const filterReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case 'INIT': {
+      return payload;
+    }
     case 'RESET': {
       return initialFilterState;
     }
@@ -31,7 +34,7 @@ export const filterReducer = (state, action) => {
   }
 };
 
-export const issueReducer = (state, action) => {
+export const issueListReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'CREATE': {
