@@ -1,87 +1,109 @@
+import { useContext } from 'react';
+
 import styled from 'styled-components';
 
+import { NewIssueContext } from '../../pages/NewIssue';
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
-import { Button } from '../button/Button';
+import { Dropdown } from '../dropdown/Dropdown';
+
+const sidebarTypes = [
+  {
+    tabName: '담당자',
+    filterTabKey: 'assignees',
+    filterOption (assignees) {
+      return assignees.map((assignee) => {
+        return {
+          id: assignee.id,
+          option: assignee.name,
+          profileUrl: assignee.profileUrl
+        };
+      });
+    }
+  },
+  {
+    tabName: '레이블',
+    filterTabKey: 'labels',
+    filterOption (labels) {
+      return labels.map((label) => {
+        return {
+          id: label.id,
+          option: label.name,
+          backgroundColor: label.backgroundColor,
+          fontColor: label.fontColor
+        };
+      });
+    }
+  },
+  {
+    tabName: '마일스톤',
+    filterTabKey: 'milestone',
+    filterOption (milestone) {
+      return {
+        id: milestone.id,
+        option: milestone.name
+      };
+    }
+  }
+];
+
+const buttonOption = {
+  disabled: false,
+  size: 'l',
+  color: 'ghostGray',
+  iconType: 'chevronDown',
+  isIcon: true,
+  isLeftPosition: false
+};
 
 export const Sidebar = () => {
+  const getFilteredData = (filterTabKey, filterOption) => {
+    const issueData = useContext(NewIssueContext);
+    const issueListData = issueData.issueList;
+    return issueListData
+      ?.reduce((acc, issue) => {
+        const filteredIssue = issue[filterTabKey];
+        if (filteredIssue) {
+          acc.push(filterOption(filteredIssue));
+        }
+        return acc;
+      }, [])
+      .flat(1)
+      .reduce((acc, issue) => {
+        if (acc.findIndex(({ id }) => id === issue.id) === -1) {
+          acc.push(issue);
+        }
+        return acc;
+      }, []);
+  };
   return (
     <MySidebar>
-      <MyTopSidebar>
-        <Button
-          disabled={false}
-          size={'s'}
-          color={'ghostGray'}
-          iconType={'chevronDown'}
-          isIcon
-          buttonText={'담당자'}
-          isLeftPosition={false}
+      {sidebarTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
+        <Dropdown
+          key={index}
+          type={'sidebar'}
+          title={tabName}
+          tabName={tabName}
+          tabOptions={getFilteredData(filterTabKey, filterOption)}
+          buttonOption={buttonOption}
         />
-      </MyTopSidebar>
-      <MyMiddleSidebar>
-        <Button
-          disabled={false}
-          size={'s'}
-          color={'ghostGray'}
-          iconType={'chevronDown'}
-          isIcon
-          buttonText={'레이블'}
-          isLeftPosition={false}
-        />
-      </MyMiddleSidebar>
-      <MyDownSidebar>
-        <Button
-          disabled={false}
-          size={'s'}
-          color={'ghostGray'}
-          iconType={'chevronDown'}
-          isIcon
-          buttonText={'마일스톤'}
-          isLeftPosition={false}
-        />
-      </MyDownSidebar>
+      ))}
     </MySidebar>
   );
 };
 
 const MySidebar = styled.div`
-  & button {
-    justify-content: space-between;
-    ${fontSize.M}
-    width:250px
+  border: 1px solid ${colors.gray300};
+  border-radius: 16px;
+  background: ${colors.gray50};
+  height: max-content;
+  > div:not(:last-child) {
+    border-bottom: 1px solid ${colors.gray300};
   }
-`;
-
-const MyTopSidebar = styled.div`
-  width: 288px;
-  height: 96px;
-  display: flex;
-  border: 1px solid ${colors.gray300};
-  border-radius: 16px 16px 0px 0px;
-  background: ${colors.gray50};
-  align-items: center;
-  justify-content: center;
-  border-bottom: none;
-`;
-
-const MyMiddleSidebar = styled.div`
-  border: 1px solid ${colors.gray300};
-  display: flex;
-  width: 288px;
-  height: 96px;
-  background: ${colors.gray50};
-  justify-content: center;
-  align-items: center;
-  border-bottom: none;
-`;
-
-const MyDownSidebar = styled.div`
-  display: flex;
-  width: 288px;
-  height: 96px;
-  border: 1px solid ${colors.gray300};
-  background: ${colors.gray50};
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px 0px 16px 16px;
+  & button {
+    height: 96px;
+    justify-content: space-between;
+    padding: 0 20px;
+    ${fontSize.M}
+  }
 `;

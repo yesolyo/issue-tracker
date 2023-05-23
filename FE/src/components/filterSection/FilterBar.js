@@ -6,11 +6,11 @@ import { Dropdown } from '../dropdown/Dropdown';
 import { TextInput } from '../textForm/TextInput';
 
 const filterTabOptions = [
-  { isSelected: true, option: '열린 이슈' },
-  { isSelected: false, option: '내가 작성한 이슈' },
-  { isSelected: false, option: '나에게 할당된 이슈' },
-  { isSelected: false, option: '내가 댓글을 남긴 이슈' },
-  { isSelected: false, option: '닫힌 이슈' }
+  { id: 'isOpen', isSelected: true, option: '열린 이슈' },
+  { id: 'isWrittenByMe', isSelected: false, option: '내가 작성한 이슈' },
+  { id: 'isAssignedToMe', isSelected: false, option: '나에게 할당된 이슈' },
+  { id: 'commentedByMe', isSelected: false, option: '내가 댓글을 남긴 이슈' },
+  { id: '!isOpen', isSelected: false, option: '닫힌 이슈' }
 ];
 
 export const FilterBar = () => {

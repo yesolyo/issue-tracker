@@ -5,18 +5,35 @@ import styled from 'styled-components';
 import { DropdownPanel } from './DropdownPanel';
 import { Button } from '../button/Button';
 
-export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  // const [target, setTarget] = useState('');
-  // const selectTarget = (target) => {
-  //   setTarget(target);
-  // };
+export const Dropdown = ({
+  type,
+  title,
+  tabName,
+  tabOptions,
+  buttonOption,
+  isLeft
+}) => {
+  const defaultButtonOption = {
+    size: 's',
+    color: title === '필터' ? 'ghostBlack' : 'ghostGray',
+    iconType: 'chevronDown',
+    isIcon: true,
+    isLeftPosition: false,
+    buttonText: title
+  };
+
+  const buttonType = buttonOption || defaultButtonOption;
+  const [isDropDown, setIsDropDown] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('isOpen');
+  const handleDropdownChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+  };
 
   const panelRef = useRef(null);
   useEffect(() => {
     const handleClick = (e) => {
       if (panelRef.current && !panelRef.current.contains(e.target)) {
-        setIsOpen(false);
+        setIsDropDown(false);
       }
     };
     window.addEventListener('mousedown', handleClick);
@@ -27,19 +44,19 @@ export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
     <MyDropdown
       ref={panelRef}
       onClick={() => {
-        setIsOpen(!isOpen);
+        setIsDropDown(!isDropDown);
       }}
     >
-      <Button
-        size={'s'}
-        color={title === '필터' ? 'ghostBlack' : 'ghostGray'}
-        iconType={'chevronDown'}
-        isIcon
-        isLeftPosition={false}
-        buttonText={title}
-      />
-      {isOpen && (
-        <DropdownPanel title={tabName} options={tabOptions} isLeft={isLeft} />
+      <Button {...buttonType} buttonText={tabName} />
+      {isDropDown && (
+        <DropdownPanel
+          type={type}
+          title={tabName}
+          options={tabOptions}
+          isLeft={isLeft}
+          selectedOption={selectedOption}
+          handleDropdownChange={handleDropdownChange}
+        />
       )}
     </MyDropdown>
   );
