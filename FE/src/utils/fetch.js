@@ -10,3 +10,8 @@ export const fetchAll = async (...url) => {
   const jsonObject = await Promise.all(resData.map((obj) => obj.json()));
   return jsonObject;
 };
+
+export const getIssueList = async (filterCondition) => {
+  const { data } = await get(`${url}`);
+  return data;
+};

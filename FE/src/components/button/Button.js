@@ -15,7 +15,9 @@ export const Button = ({
   iconType,
   isIcon,
   isLeftPosition,
-  onClick
+  onClick,
+  active
+  // 액티브할때 폰트 색 변경 필요함
 }) => {
   const buttonTypes = {
     containerButton,
@@ -33,6 +35,7 @@ export const Button = ({
       buttonWidth={buttonWidth}
       buttonHeight={buttonHeight}
       onClick={onClick}
+      active={active}
     >
       {isIcon
         ? (

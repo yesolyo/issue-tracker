@@ -4,20 +4,21 @@ import styled from 'styled-components';
 
 import { FilterSection } from '../components/filterSection/FiterSection';
 import { IssueListContainer } from '../components/issueList/IssueListContainer';
+import { fetchData } from '../utils/fetch';
 
 export const IssueListContext = React.createContext();
 
 export const IssueList = () => {
   // TODO : dispatch, useReducer 사용예정
   const [data, dispatch] = useState([]);
-  const initData = async () => {
-    const response = await fetch('/issueList');
-    const resData = await response.json();
-    dispatch(resData);
+  const [isOpen, setIsOpen] = useState(true);
+  const initData = async (issueListState) => {
+    const response = await fetchData(`/issueList?status=${issueListState}`);
+    dispatch(response);
   };
 
   useEffect(() => {
-    initData();
+    initData(isOpen);
   }, []);
 
   return (

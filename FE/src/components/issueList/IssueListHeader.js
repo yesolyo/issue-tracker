@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -12,19 +12,39 @@ import { DropdownTabs } from '../dropdown/DropdownTabs';
 export const IssueListHeader = () => {
   const issueData = useContext(IssueListContext);
   const countInfo = issueData.countInfo;
-  const onClick = null;
+  const issueButtonTypes = [
+    {
+      text: '열린 이슈',
+      status: true,
+      option: openButtonOption,
+      count: countInfo?.openCount
+    },
+    {
+      text: '닫힌 이슈',
+      status: false,
+      option: closeButtonOption,
+      count: countInfo?.closeCount
+    }
+  ];
+
+  const [activeTab, setActiveTab] = useState(true);
+  const handleTabClick = () => {
+    setActiveTab(!activeTab);
+  };
+
   return (
     <MyIssueListHeader>
       <MyIssueTabs>
-        <CheckBox type={'initial'} onClick={onClick} />
-        <Button
-          {...openButtonOption}
-          buttonText={`열린 이슈(${countInfo?.openCount || 0})`}
-        />
-        <Button
-          {...closeButtonOption}
-          buttonText={`닫힌 이슈(${countInfo?.closeCount || 0})`}
-        />
+        <CheckBox type={'initial'} onClick={null} />
+        {issueButtonTypes.map(({ text, status, option, count }, index) => (
+          <Button
+            key={index}
+            active={activeTab === status}
+            onClick={handleTabClick}
+            {...option}
+            buttonText={`${text}(${count || 0})`}
+          />
+        ))}
       </MyIssueTabs>
       <DropdownTabs />
     </MyIssueListHeader>

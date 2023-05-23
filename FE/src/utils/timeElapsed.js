@@ -11,11 +11,11 @@ export const getTimeElapsed = (date) => {
   };
 
   const timeTextOptions = {
-    seconds: '초',
-    minutes: '분',
-    hours: '시간',
-    days: '일',
-    weeks: '주'
+    seconds: '초 전',
+    minutes: '분 전',
+    hours: '시간 전',
+    days: '일 전',
+    weeks: '주 전'
   };
 
   let timeUnit = '';
@@ -27,8 +27,15 @@ export const getTimeElapsed = (date) => {
     timeUnit = 'hours';
   } else if (timeDifference < timeOptions.weeks) {
     timeUnit = 'days';
-  } else {
+  } else if (timeDifference < timeOptions.weeks * 4) {
     timeUnit = 'weeks';
+  } else {
+    return new Date(date).toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      weekday: 'long'
+    });
   }
 
   const elapsedTime = Math.floor(timeDifference / timeOptions[timeUnit]);
