@@ -14,8 +14,9 @@ export const NewIssueContent = () => {
 
   return (
     <MyNewIssueContent>
-      <TextInput {...titleInputConstant} />
-      <TextArea initialText={'코멘트를 입력하세요'}></TextArea>
+      <form>
+        <TextInput label={'제목'} size={'lg'} />
+      </form>
     </MyNewIssueContent>
   );
 };
@@ -25,14 +26,4 @@ const MyNewIssueContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 912px;
-
-  & textarea {
-    background: ${colors.gray200};
-    height: 435px;
-    padding: 24px;
-    border-radius: 11px;
-    border: 1px solid ${colors.gray300};
-    ${fontSize.M}
-    ${fontType.REGULAR}
-  }
 `;

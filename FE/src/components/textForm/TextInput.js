@@ -1,79 +1,104 @@
-import styled from 'styled-components';
+import { useState } from 'react';
 
-import { Icon } from '../../assets/Icon';
+import styled, { css } from 'styled-components';
+
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const TextInput = ({
-  type,
-  isIcon,
-  iconType,
-  initialText,
-  inputWidth,
-  inputHeight
-}) => {
-  const textInputType = {
-    sideLabeledTextInput,
-    topLabeledTextInput,
-    defaultTextInput
+export const TextInput = ({ label, size }) => {
+  const [value, setValue] = useState('');
+  const inputSize = inputSizes[size];
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
   };
-  const MyTextInput = textInputType[type];
+
   return (
-    <MyTextInput>
-      {isIcon
-        ? (
-          <>
-            <Icon
-              iconType={iconType}
-              fill={colors.gray600}
-              width={11}
-              height={11}
-            />
-            <input type="text" placeholder={initialText} />
-          </>
-        )
-        : (
-          <>
-            <input type="text" placeholder={initialText} />
-          </>
-        )}
+    <MyTextInput inputSize={inputSize}>
+      <input type="text" value={value} onChange={handleChange} />
+      <label className={value && 'filled'} htmlFor={name}>
+        {label}
+      </label>
     </MyTextInput>
   );
+};
+
+const inputSizes = {
+  xxl: css`
+    width: 1216px;
+    height: 40px;
+  `,
+  xl: css`
+    width: 1008px;
+    height: 40px;
+  `,
+  l: css`
+    width: 904px;
+    height: 40px;
+  `,
+  m: css`
+    width: 600px;
+    height: 40px;
+  `,
+  s: css`
+    width: 472px;
+    height: 40px;
+  `,
+  xs: css`
+    width: 240px;
+    height: 40px;
+  `,
+  lg: css`
+    width: 912px;
+    height: 56px;
+  `,
+  sm: css`
+    width: 320px;
+    height: 56px;
+  `
 };
 
 const MyTextInput = styled.div`
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
 
+  &: focus-within label {
+    transform: translate(0, 12px) scale(0.8);
+  }
+
+  &: filled {
+    transform: translate(0, 12px) scale(0.8);
+  }
+
+  & label {
+    position: absolute;
+    pointer-events: none;
+    transform: translate(0, 23px) scale(1);
+    transform-origin: top left;
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    color: ${colors.gray600};
+    font-size: 16px;
+    line-height: 1;
+    left: 16px;
+  }
+
   & input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
+    ${(props) => props.inputSize};
+    border-radius: 11px;
     border: none;
     outline: none;
-    ${fontType.REGULAR}
+    box-shadow: none;
+    padding: 10px 0px 0px 15px;
+    background: ${colors.gray200};
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    ${fontSize.M};
+    ${fontType.REGULAR};
   }
-`;
 
-const defaultTextInput = styled(MyTextInput)`
-  background: ${colors.gray200};
-  border: 1px solid ${colors.gray300};
-  box-sizing: border-box;
-  height: 55px;
-  padding: 0 24px;
-  border-radius: 11px;
-  ${fontSize.M}
-`;
-
-const sideLabeledTextInput = styled(MyTextInput)`
-  background: ${colors.gray200};
-  border-radius: 0px 11px 11px 0px;
-
-  &: hover {
+  & input:focus {
     background: ${colors.gray50};
-    border: 1px solid ${colors.gray400};
+    box-shadow: 0 0 0 2px #79b1ff;
   }
 `;
-
-const topLabeledTextInput = styled(MyTextInput)``;
