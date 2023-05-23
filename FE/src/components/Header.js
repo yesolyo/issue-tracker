@@ -10,7 +10,6 @@ import { fetchData } from '../utils/fetch';
 export const Header = () => {
   const [user, setUser] = useState('');
   const initData = async () => {
-    // TODO: login user API에서 fetch
     const resData = await fetchData('/issueList');
     setUser(resData);
   };

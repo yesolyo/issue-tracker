@@ -9,19 +9,19 @@ import { CheckBox } from '../CheckBox';
 import { DropdownTabs } from '../dropdown/DropdownTabs';
 
 export const IssueListHeader = () => {
-  const issueData = useContext(IssueListContext);
-  const countInfo = issueData.countInfo;
+  const { state } = useContext(IssueListContext);
+  const countInfo = state.countInfo;
 
   const issueButtonTypes = [
     {
       text: '열린 이슈',
       status: true,
-      option: {
+      onClick: () => setActiveTab(true),
+      buttonOption: {
         size: 's',
         color: 'ghostBlack',
         iconType: 'alertCircle',
         isIcon: true,
-        buttonText: `열린 이슈(${countInfo?.openCount || 0})`,
         isLeftPosition: true
       },
       count: countInfo?.openCount
@@ -29,12 +29,12 @@ export const IssueListHeader = () => {
     {
       text: '닫힌 이슈',
       status: false,
-      option: {
+      onClick: () => setActiveTab(false),
+      buttonOption: {
         size: 's',
         color: 'ghostGray',
         iconType: 'archive',
         isIcon: true,
-        buttonText: `닫힌 이슈(${countInfo?.closeCount || 0})`,
         isLeftPosition: true
       },
       count: countInfo?.closeCount
@@ -42,23 +42,22 @@ export const IssueListHeader = () => {
   ];
 
   const [activeTab, setActiveTab] = useState(true);
-  const handleTabClick = () => {
-    setActiveTab(!activeTab);
-  };
 
   return (
     <MyIssueListHeader>
       <MyIssueTabs>
         <CheckBox type={'initial'} onClick={null} />
-        {issueButtonTypes.map(({ text, status, option, count }, index) => (
-          <Button
-            key={index}
-            active={activeTab === status}
-            onClick={handleTabClick}
-            {...option}
-            buttonText={`${text}(${count || 0})`}
-          />
-        ))}
+        {issueButtonTypes.map(
+          ({ text, status, buttonOption, count, onClick }, index) => (
+            <Button
+              key={index}
+              active={activeTab === status}
+              onClick={onClick}
+              {...buttonOption}
+              buttonText={`${text}(${count || 0})`}
+            />
+          )
+        )}
       </MyIssueTabs>
       <DropdownTabs />
     </MyIssueListHeader>

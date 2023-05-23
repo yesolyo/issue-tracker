@@ -1,3 +1,5 @@
+import React from 'react';
+
 import styled from 'styled-components';
 
 import { DropdownPanelItem } from './DropdownPanelItem';
@@ -5,33 +7,44 @@ import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const DropdownPanel = ({ title, options, isLeft }) => {
-  const isSelected = false;
-  return (
-    // TODO : 로직 정리, select 적용
-    <MyDropdownPanel isLeft={isLeft}>
-      <h3>{title} 필터</h3>
-      <ul>
-        {title === '이슈' || (
-          <li>
-            {title}
-            {title === '담당자' || title === '작성자' ? `가` : `이`} 없는 이슈
-            <Icon
-              iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
-              fill={colors.gray700}
-            />
-          </li>
-        )}
-        {options &&
-          options.map((option) => (
-            <DropdownPanelItem key={option.id || option.option} {...option} />
-          ))}
-      </ul>
-    </MyDropdownPanel>
-  );
-};
+export const DropdownPanel = React.memo(
+  ({ type, title, options, isLeft, selectedOption, handleDropdownChange }) => {
+    const handleOptionClick = ({ currentTarget }) => {
+      handleDropdownChange(currentTarget.id);
+    };
 
-const MyDropdownPanel = styled.div`
+    const iconType =
+      selectedOption === 'none' ? 'checkOnCircle' : 'checkOffCircle';
+    const MyDropdownPanel =
+      type === 'sidebar' ? MySidebarPanel : MyDefaultPanel;
+    return (
+      <MyDropdownPanel isLeft={isLeft}>
+        {type === 'sidebar' || <h3>{title} 필터</h3>}
+        <ul>
+          {type === 'tabs' && (
+            <li id={'none'} onMouseUp={handleOptionClick}>
+              {title}
+              {title === '담당자' || title === '작성자' ? `가` : `이`} 없는 이슈
+              <Icon iconType={iconType} fill={colors.gray700} />
+            </li>
+          )}
+          {options &&
+            options.map((option) => (
+              <DropdownPanelItem
+                key={option.id}
+                id={option.id}
+                {...option}
+                isSelected={String(option.id) === selectedOption}
+                onMouseUp={handleOptionClick}
+              />
+            ))}
+        </ul>
+      </MyDropdownPanel>
+    );
+  }
+);
+
+const MyDefaultPanel = styled.div`
   position: absolute;
   top: 45px;
   right: ${({ isLeft }) => isLeft || 0};
@@ -70,6 +83,7 @@ const MyDropdownPanel = styled.div`
     ${fontType.LIGHT};
     color: ${colors.gray700};
     gap: 8px;
+    ${({ isSelected }) => (isSelected ? fontType.BOLD : fontType.REGULAR)};
 
     &:last-child {
       border-radius: 0px 0px 16px 16px;
@@ -82,5 +96,15 @@ const MyDropdownPanel = styled.div`
     &:hover {
       font-weight: 500;
     }
+  }
+`;
+
+const MySidebarPanel = styled(MyDefaultPanel)`
+  top: 80px;
+  right: -1px;
+  z-index: 10;
+
+  li:first-child {
+    border-radius: 16px 16px 0px 0px;
   }
 `;

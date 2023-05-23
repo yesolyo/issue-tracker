@@ -14,11 +14,15 @@ export const Button = ({
   isLeftPosition,
   onClick,
   active
-  // 액티브할때 폰트 색 변경 필요함
 }) => {
   const btnSize = btnSizes[size];
-  const btnColor = btnColors[color];
-  const icnoSize = icnoSizes[size];
+  const btnColor =
+    active === undefined
+      ? btnColors[color]
+      : active
+        ? btnColors.ghostBlack
+        : btnColors.ghostGray;
+  const iconSize = iconSizes[size];
 
   return (
     <MyButton
@@ -26,21 +30,20 @@ export const Button = ({
       btnSize={btnSize}
       btnColor={btnColor}
       onClick={onClick}
-      active={active}
     >
       {isIcon
         ? (
           isLeftPosition
             ? (
               <>
-                <Icon iconType={iconType} width={icnoSize} />
+                <Icon iconType={iconType} width={iconSize} />
                 {buttonText}
               </>
             )
             : (
               <>
                 {buttonText}
-                <Icon iconType={iconType} width={icnoSize} />
+                <Icon iconType={iconType} width={iconSize} />
               </>
             )
         )
@@ -51,7 +54,7 @@ export const Button = ({
   );
 };
 
-const icnoSizes = {
+const iconSizes = {
   m: 14,
   s: 9,
   xs: 7

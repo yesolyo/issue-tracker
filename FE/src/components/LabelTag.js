@@ -12,12 +12,6 @@ export const LabelTag = ({
   backgroundColor,
   fontColor
 }) => {
-  const MyLabelsTag = styled(MydefaultTag)`
-    color: ${colors.gray50};
-    background-color: ${backgroundColor};
-    color: ${fontColor};
-  `;
-
   const tagTypes = {
     open: MyOpenTag,
     close: MyCloseTag,
@@ -28,7 +22,7 @@ export const LabelTag = ({
   const MyLabelTag = tagTypes[tagType];
 
   return (
-    <MyLabelTag backgroundColor={backgroundColor}>
+    <MyLabelTag backgroundColor={backgroundColor} fontColor={fontColor}>
       {hasIcon && <Icon iconType={icon} fill={colors.gray50} />}
       {text}
     </MyLabelTag>
@@ -43,6 +37,12 @@ const MydefaultTag = styled.div`
   align-items: center;
   border-radius: 50px;
   ${fontSize.S}
+`;
+
+const MyLabelsTag = styled(MydefaultTag)`
+  color: ${colors.gray50};
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ fontColor }) => fontColor};
 `;
 
 const issueTag = styled(MydefaultTag)`

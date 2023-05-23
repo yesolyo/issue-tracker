@@ -18,10 +18,7 @@ export const IssueItem = ({
   createTime,
   isOpen
 }) => {
-  const labelsOption = {
-    tagType: 'labels',
-    hasIcon: false
-  };
+  const iconType = isOpen ? 'alertCircle' : 'archive';
 
   return (
     isOpen && (
@@ -30,16 +27,14 @@ export const IssueItem = ({
           <CheckBox type={'initial'} onClick={null} />
           <MyIssue>
             <MyIssueTitle>
-              <Icon
-                iconType={isOpen ? 'alertCircle' : 'archive'}
-                fill={colors.blue}
-              />
+              <Icon iconType={iconType} fill={colors.blue} />
               <span>{title}</span>
               {!!labels.length &&
                 labels.map((label) => (
                   <LabelTag
                     key={label.id}
-                    {...labelsOption}
+                    tagType={'labels'}
+                    hasIcon={false}
                     text={label.name}
                     backgroundColor={label.backgroundColor}
                     fontColor={label.fontColor}
@@ -53,10 +48,10 @@ export const IssueItem = ({
                 작성되었습니다
               </p>
               {milestone && (
-                <p>
+                <>
                   <Icon iconType={'milestone'} fill={colors.gray600} />
-                  {milestone.name}
-                </p>
+                  <p>{milestone.name}</p>
+                </>
               )}
             </MyIssueDiscription>
           </MyIssue>
@@ -115,7 +110,7 @@ const MyIssueTitle = styled.div`
 const MyIssueDiscription = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   height: 30px;
 
   > p {
