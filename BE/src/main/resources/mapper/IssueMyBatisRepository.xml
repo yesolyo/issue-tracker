@@ -8,7 +8,7 @@
         SELECT
         i.issue_id, i.title, i.create_time, i.update_time, i.is_open, m.title AS milestone, a.member_id AS author_id,
         a.member_name AS author_name, a.profile_url AS author_profile_url, asg.member_id AS assignee_id, asg.member_name AS assignee_name,
-        asg.profile_url AS assignee_profile_url, l.label_id, l.title AS label_name, l.background_color
+        asg.profile_url AS assignee_profile_url, l.label_id, l.title AS label_name, l.background_color, l.font_color
         FROM issue i
         LEFT JOIN milestone m ON i.milestone_id = m.milestone_id
         LEFT JOIN member a ON i.author = a.member_id
@@ -18,12 +18,33 @@
         LEFT JOIN label l ON ll.label_id = l.label_id
         <where>
             i.is_delete=false
-            <if test="assignee != null">
-                AND i.issue_id IN (SELECT issue_id FROM assignee WHERE member_id = #{assignee})
+            <if test="assignees != null and assignees.size() > 0">
+                AND i.issue_id IN (
+                SELECT issue_id FROM assignee
+                WHERE member_id IN
+                <foreach item="item" index="index" collection="assignees"
+                         open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                GROUP BY issue_id
+                HAVING COUNT(*) = #{assigneesSize}
+                )
             </if>
-            <if test="label != null">
-                AND i.issue_id IN (SELECT issue_id FROM label_list WHERE label_id = #{label})
+
+            <if test="labels != null and labels.size() > 0">
+                AND i.issue_id IN (
+                SELECT issue_id FROM label_list
+                WHERE label_id IN
+                <foreach item="item" index="index" collection="labels"
+                         open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+                GROUP BY issue_id
+                HAVING COUNT(*) = #{labelsSize}
+                )
             </if>
+
+
             <if test="milestone != null">
                 AND i.milestone_id = #{milestone}
             </if>
@@ -42,11 +63,9 @@
             <if test="commentedByMe">
                 AND i.issue_id IN (SELECT issue_id FROM comment WHERE member_id = #{myId})
             </if>
-            <if test="isDelete != null">
-                AND i.is_delete = #{isDelete}
-            </if>
         </where>
     </select>
+
 
     <resultMap id="IssueResultMap" type="issuetracker.issuetracker.domain.issue.dto.IssueDTO">
         <id property="id" column="issue_id"/>
@@ -69,6 +88,7 @@
             <id property="id" column="label_id"/>
             <result property="title" column="label_name"/>
             <result property="backgroundColor" column="background_color"/>
+            <result property="fontColor" column="font_color"/>
         </collection>
     </resultMap>
 </mapper>

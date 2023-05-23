@@ -19,6 +19,13 @@ import java.util.List;
 @RequestMapping("/issues")
 public class IssueController {
 
+    private final IssueMyBatisRepository repository;
+
+    @GetMapping
+    public List<IssueDTO> getAllIssues(@ModelAttribute IssueFilterCondition issueFilterCondition) {
+        return repository.findIssueFilter(issueFilterCondition);
+    }
+
 
     @PostMapping("/{issueId}")
     public void postIssue(@RequestBody PostingIssueDTO issue) {
@@ -64,10 +71,7 @@ public class IssueController {
         // TODO 댓글 삭제하기 구현
     }
 
-    private final IssueMyBatisRepository repository;
 
-    @GetMapping("/mybatisTest")
-    public List<IssueDTO> testBatis(@ModelAttribute IssueFilterCondition issueFilterCondition) {
-        return repository.findIssueFilter(issueFilterCondition);
-    }
+
+
 }

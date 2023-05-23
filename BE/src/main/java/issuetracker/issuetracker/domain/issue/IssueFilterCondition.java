@@ -2,21 +2,29 @@ package issuetracker.issuetracker.domain.issue;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 public class IssueFilterCondition {
-    private Long assignee;
-    private Long label;
+    private List<Long> assignees;
+    private List<Long> labels;
     private Long milestone;
     private Long author;
     private Boolean isOpen;
     private Boolean isWrittenByMe;
     private Boolean isAssignedToMe;
     private Boolean commentedByMe;
-    private Boolean isDelete;
+
+    public int getLabelsSize() {
+        return (labels != null) ? labels.size() : 0;
+    }
+
+    public int getAssigneesSize() {
+        return (assignees != null) ? assignees.size() : 0;
+    }
+
 }

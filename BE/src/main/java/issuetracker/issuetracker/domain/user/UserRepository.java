@@ -1,4 +1,4 @@
-package issuetracker.issuetracker.domain.user.repository;
+package issuetracker.issuetracker.domain.user;
 
 import issuetracker.issuetracker.domain.user.User;
 import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
