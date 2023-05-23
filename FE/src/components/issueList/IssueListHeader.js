@@ -5,46 +5,52 @@ import styled from 'styled-components';
 import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 import { Button } from '../button/Button';
-import { openButtonOption, closeButtonOption } from '../button/buttonConstant';
 import { CheckBox } from '../CheckBox';
 import { DropdownTabs } from '../dropdown/DropdownTabs';
 
 export const IssueListHeader = () => {
   const issueData = useContext(IssueListContext);
   const countInfo = issueData.countInfo;
-  const issueButtonTypes = [
-    {
-      text: '열린 이슈',
-      status: true,
-      option: openButtonOption,
-      count: countInfo?.openCount
-    },
-    {
-      text: '닫힌 이슈',
-      status: false,
-      option: closeButtonOption,
-      count: countInfo?.closeCount
-    }
-  ];
+  // const issueButtonTypes = [
+  //   {
+  //     text: '열린 이슈',
+  //     status: true,
+  //     option: openButtonOption,
+  //     count: countInfo?.openCount
+  //   },
+  //   {
+  //     text: '닫힌 이슈',
+  //     status: false,
+  //     option: closeButtonOption,
+  //     count: countInfo?.closeCount
+  //   }
+  // ];
 
-  const [activeTab, setActiveTab] = useState(true);
-  const handleTabClick = () => {
-    setActiveTab(!activeTab);
-  };
+  // const [activeTab, setActiveTab] = useState(true);
+  // const handleTabClick = () => {
+  //   setActiveTab(!activeTab);
+  // };
 
   return (
     <MyIssueListHeader>
       <MyIssueTabs>
-        <CheckBox type={'initial'} onClick={null} />
-        {issueButtonTypes.map(({ text, status, option, count }, index) => (
-          <Button
-            key={index}
-            active={activeTab === status}
-            onClick={handleTabClick}
-            {...option}
-            buttonText={`${text}(${count || 0})`}
-          />
-        ))}
+        <CheckBox type={'initial'} onClick={onClick} />
+        <Button
+          size={'s'}
+          color={'ghostBlack'}
+          iconType={'alertCircle'}
+          isIcon
+          buttonText={`열린 이슈(${countInfo?.openCount || 0})`}
+          isLeftPosition
+        />
+        <Button
+          size={'s'}
+          color={'ghostGray'}
+          iconType={'archive'}
+          isIcon
+          buttonText={`닫힌 이슈(${countInfo?.closeCount || 0})`}
+          isLeftPosition
+        />
       </MyIssueTabs>
       <DropdownTabs />
     </MyIssueListHeader>

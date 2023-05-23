@@ -5,55 +5,39 @@ import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
 
 export const Sidebar = () => {
-  const sidebarConstant = {
-    type: 'ghostButton',
-    btnColor: colors.gray600,
-    hoverColor: colors.blue,
-    backgroundColor: colors.gray50,
-    topBtnText: '담당자',
-    middleBtnText: '레이블',
-    downBtnText: '마일스톤',
-    isIcon: true,
-    iconType: 'chevronDown',
-    isLeftPosition: false
-  };
-
   return (
     <MySidebar>
       <MyTopSidebar>
         <Button
-          type={sidebarConstant.type}
-          buttonColor={sidebarConstant.btnColor}
-          hoverColor={sidebarConstant.hoverColor}
-          backgroundColor={sidebarConstant.backgroundColor}
-          buttonText={sidebarConstant.topBtnText}
-          isIcon={sidebarConstant.isIcon}
-          iconType={sidebarConstant.iconType}
-          isLeftPosition={sidebarConstant.isLeftPosition}
+          disabled={false}
+          size={'s'}
+          color={'ghostGray'}
+          iconType={'chevronDown'}
+          isIcon
+          buttonText={'담당자'}
+          isLeftPosition={false}
         />
       </MyTopSidebar>
       <MyMiddleSidebar>
         <Button
-          type={sidebarConstant.type}
-          buttonColor={sidebarConstant.btnColor}
-          hoverColor={sidebarConstant.hoverColor}
-          backgroundColor={sidebarConstant.backgroundColor}
-          buttonText={sidebarConstant.middleBtnText}
-          isIcon={sidebarConstant.isIcon}
-          iconType={sidebarConstant.iconType}
-          isLeftPosition={sidebarConstant.isLeftPosition}
+          disabled={false}
+          size={'s'}
+          color={'ghostGray'}
+          iconType={'chevronDown'}
+          isIcon
+          buttonText={'레이블'}
+          isLeftPosition={false}
         />
       </MyMiddleSidebar>
       <MyDownSidebar>
         <Button
-          type={sidebarConstant.type}
-          buttonColor={sidebarConstant.btnColor}
-          hoverColor={sidebarConstant.hoverColor}
-          backgroundColor={sidebarConstant.backgroundColor}
-          buttonText={sidebarConstant.downBtnText}
-          isIcon={sidebarConstant.isIcon}
-          iconType={sidebarConstant.iconType}
-          isLeftPosition={sidebarConstant.isLeftPosition}
+          disabled={false}
+          size={'s'}
+          color={'ghostGray'}
+          iconType={'chevronDown'}
+          isIcon
+          buttonText={'마일스톤'}
+          isLeftPosition={false}
         />
       </MyDownSidebar>
     </MySidebar>
