@@ -36,7 +36,8 @@ const tabTypes = [
     filterTabKey: 'milestone',
     filterOption (milestone) {
       return {
-        option: milestone
+        id: milestone.id,
+        option: milestone.name
       };
     }
   },
@@ -64,18 +65,24 @@ export const DropdownTabs = () => {
       ?.reduce((acc, issue) => {
         const filteredIssue = issue[filterTabKey];
         if (filteredIssue) {
-          acc.push(filterOption(issue[filterTabKey]));
+          acc.push(filterOption(filteredIssue));
         }
         return acc;
       }, [])
-      .flat(1);
+      .flat(1)
+      .reduce((acc, issue) => {
+        if (acc.findIndex(({ id }) => id === issue.id) === -1) {
+          acc.push(issue);
+        }
+        return acc;
+      }, []);
   };
 
   return (
     <MyDropdownTabs>
-      {tabTypes.map(({ tabName, filterTabKey, filterOption }) => (
+      {tabTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
         <Dropdown
-          key={tabName}
+          key={index}
           title={tabName}
           tabName={tabName}
           tabOptions={getFilteredData(filterTabKey, filterOption)}

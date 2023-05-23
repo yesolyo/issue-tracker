@@ -3,13 +3,14 @@ import { colors } from '../../styles/color';
 import { Profile } from '../Profile';
 
 export const DropdownPanelItem = ({
+  id,
   option,
   profileUrl,
   backgroundColor,
   isSelected
 }) => {
   return (
-    <li key={option}>
+    <li>
       {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
       {backgroundColor && (
         <Icon iconType={'roundImage'} fill={backgroundColor} />

@@ -39,12 +39,7 @@ export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
         buttonText={title}
       />
       {isOpen && (
-        <DropdownPanel
-          title={tabName}
-          options={tabOptions}
-          isLeft={isLeft}
-          setIsOpen={setIsOpen}
-        />
+        <DropdownPanel title={tabName} options={tabOptions} isLeft={isLeft} />
       )}
     </MyDropdown>
   );

@@ -12,7 +12,9 @@ export const Button = ({
   isIcon,
   buttonText,
   isLeftPosition,
-  onClick
+  onClick,
+  active
+  // 액티브할때 폰트 색 변경 필요함
 }) => {
   const btnSize = btnSizes[size];
   const btnColor = btnColors[color];
@@ -24,6 +26,7 @@ export const Button = ({
       btnSize={btnSize}
       btnColor={btnColor}
       onClick={onClick}
+      active={active}
     >
       {isIcon
         ? (

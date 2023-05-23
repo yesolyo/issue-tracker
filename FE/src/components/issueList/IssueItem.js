@@ -24,50 +24,52 @@ export const IssueItem = ({
   };
 
   return (
-    <MyIssueItem>
-      <MyIssueBox>
-        <CheckBox type={'initial'} onClick={null} />
-        <MyIssue>
-          <MyIssueTitle>
-            <Icon
-              iconType={isOpen ? 'alertCircle' : 'archive'}
-              fill={colors.blue}
-            />
-            <span>{title}</span>
-            {!!labels.length &&
-              labels.map((label) => (
-                <LabelTag
-                  key={label.id}
-                  {...labelsOption}
-                  text={label.name}
-                  backgroundColor={label.backgroundColor}
-                  fontColor={label.fontColor}
-                />
-              ))}
-          </MyIssueTitle>
-          <MyIssueDiscription>
-            <p>#{id}</p>
-            <p>
-              이 이슈가 {getTimeElapsed(createTime)}전, {author?.name}님에 의해
-              작성되었습니다
-            </p>
-            {milestone && (
+    isOpen && (
+      <MyIssueItem>
+        <MyIssueBox>
+          <CheckBox type={'initial'} onClick={null} />
+          <MyIssue>
+            <MyIssueTitle>
+              <Icon
+                iconType={isOpen ? 'alertCircle' : 'archive'}
+                fill={colors.blue}
+              />
+              <span>{title}</span>
+              {!!labels.length &&
+                labels.map((label) => (
+                  <LabelTag
+                    key={label.id}
+                    {...labelsOption}
+                    text={label.name}
+                    backgroundColor={label.backgroundColor}
+                    fontColor={label.fontColor}
+                  />
+                ))}
+            </MyIssueTitle>
+            <MyIssueDiscription>
+              <p>#{id}</p>
               <p>
-                <Icon iconType={'milestone'} fill={colors.gray600} />
-                {milestone}
+                이 이슈가 {getTimeElapsed(createTime)}, {author?.name}님에 의해
+                작성되었습니다
               </p>
-            )}
-          </MyIssueDiscription>
-        </MyIssue>
-      </MyIssueBox>
-      {assignees && (
-        <MyIssueAssignee>
-          {assignees.map((assignee) => (
-            <Profile key={assignee.id} userInfo={assignee} />
-          ))}
-        </MyIssueAssignee>
-      )}
-    </MyIssueItem>
+              {milestone && (
+                <p>
+                  <Icon iconType={'milestone'} fill={colors.gray600} />
+                  {milestone.name}
+                </p>
+              )}
+            </MyIssueDiscription>
+          </MyIssue>
+        </MyIssueBox>
+        {assignees && (
+          <MyIssueAssignee>
+            {assignees.map((assignee) => (
+              <Profile key={assignee.id} userInfo={assignee} />
+            ))}
+          </MyIssueAssignee>
+        )}
+      </MyIssueItem>
+    )
   );
 };
 

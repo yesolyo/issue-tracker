@@ -13,6 +13,6 @@ export const Profile = ({ isLarge, width, height, userInfo }) => {
 
 const MyProfile = styled.img`
   border-radius: 50%;
-  width: ${(props) => props.width || '20px'};
-  height: ${(props) => props.height || '20px'};
+  width: ${(props) => props.width || '25px'};
+  height: ${(props) => props.height || '25px'};
 `;
