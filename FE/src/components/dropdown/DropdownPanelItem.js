@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { Profile } from '../Profile';
@@ -10,7 +12,7 @@ export const DropdownPanelItem = ({
   isSelected
 }) => {
   return (
-    <li>
+    <MyDropdownPanelItem>
       {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
       {backgroundColor && (
         <Icon iconType={'roundImage'} fill={backgroundColor} />
@@ -20,6 +22,10 @@ export const DropdownPanelItem = ({
         iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
         fill={colors.gray700}
       />
-    </li>
+    </MyDropdownPanelItem>
   );
 };
+
+const MyDropdownPanelItem = styled.li`
+  z-index: 3;
+`;

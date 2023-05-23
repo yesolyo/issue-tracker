@@ -5,28 +5,39 @@ import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const DropdownPanel = ({ title, options, isLeft }) => {
+export const DropdownPanel = ({ title, options, isLeft, isNotIssue }) => {
   const isSelected = false;
   return (
     // TODO : 로직 정리, select 적용
     <MyDropdownPanel isLeft={isLeft}>
       <h3>{title} 필터</h3>
-      <ul>
-        {title === '이슈' || (
-          <li>
-            {title}
-            {title === '담당자' || title === '작성자' ? `가` : `이`} 없는 이슈
-            <Icon
-              iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
-              fill={colors.gray700}
-            />
-          </li>
+      {isNotIssue
+        ? (
+          <ul>
+            {title === '이슈' || (
+              <li>
+                {title}
+                {title === '담당자' || title === '작성자' ? `가` : `이`} 없는 이슈
+                <Icon
+                  iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
+                  fill={colors.gray700}
+                />
+              </li>
+            )}
+            {options &&
+            options.map((option) => (
+              <DropdownPanelItem key={option.id || option.option} {...option} />
+            ))}
+          </ul>
+        )
+        : (
+          <ul>
+            {options &&
+            options.map((option) => (
+              <DropdownPanelItem key={option.id || option.option} {...option} />
+            ))}
+          </ul>
         )}
-        {options &&
-          options.map((option) => (
-            <DropdownPanelItem key={option.id || option.option} {...option} />
-          ))}
-      </ul>
     </MyDropdownPanel>
   );
 };
@@ -52,6 +63,10 @@ const MyDropdownPanel = styled.div`
     ${fontSize.S};
     ${fontType.REGULAR};
     color: ${colors.gray900};
+  }
+
+  ul {
+    z-index: 2;
   }
 
   div {

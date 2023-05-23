@@ -5,7 +5,14 @@ import styled from 'styled-components';
 import { DropdownPanel } from './DropdownPanel';
 import { Button } from '../button/Button';
 
-export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
+export const Dropdown = ({
+  isLeft,
+  title,
+  tabName,
+  tabOptions,
+  size,
+  isNotIssue
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   // const [target, setTarget] = useState('');
   // const selectTarget = (target) => {
@@ -31,7 +38,7 @@ export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
       }}
     >
       <Button
-        size={'s'}
+        size={size || 's'}
         color={title === '필터' ? 'ghostBlack' : 'ghostGray'}
         iconType={'chevronDown'}
         isIcon
@@ -39,7 +46,12 @@ export const Dropdown = ({ isLeft, title, tabName, tabOptions }) => {
         buttonText={title}
       />
       {isOpen && (
-        <DropdownPanel title={tabName} options={tabOptions} isLeft={isLeft} />
+        <DropdownPanel
+          title={tabName}
+          options={tabOptions}
+          isLeft={isLeft}
+          isNotIssue={isNotIssue}
+        />
       )}
     </MyDropdown>
   );
