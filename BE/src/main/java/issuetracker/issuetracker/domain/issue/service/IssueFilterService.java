@@ -3,7 +3,7 @@ package issuetracker.issuetracker.domain.issue.service;
 import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.page.dto.request.FilterRequestDTO;
 import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
-import issuetracker.issuetracker.domain.issue.repositroy.IssueRepository;
+import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

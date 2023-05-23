@@ -1,7 +1,7 @@
 package issuetracker.issuetracker.domain.issue.service;
 
 import issuetracker.issuetracker.domain.issue.Issue;
-import issuetracker.issuetracker.domain.issue.repositroy.IssueRepository;
+import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
 import issuetracker.issuetracker.domain.milestone.MileRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,12 @@
-package issuetracker.issuetracker.domain.issue.controller;
+package issuetracker.issuetracker.domain.issue;
 
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import issuetracker.issuetracker.domain.issue.comment.dto.CommentInIssueDTO;
 import issuetracker.issuetracker.domain.issue.comment.dto.CommentPostDTO;
-import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
 import issuetracker.issuetracker.domain.issue.dto.PostingIssueDTO;
+import issuetracker.issuetracker.domain.issue.dto.IssueDTO;
+import issuetracker.issuetracker.domain.issue.repository.IssueMyBatisRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/issues")
 public class IssueController {
+
 
     @PostMapping("/{issueId}")
     public void postIssue(@RequestBody PostingIssueDTO issue) {
@@ -60,5 +62,12 @@ public class IssueController {
     @DeleteMapping("/{issueId}/comments/{commentId}")
     public void deleteComment(@RequestParam Long issueId, @RequestParam Long commentId) {
         // TODO 댓글 삭제하기 구현
+    }
+
+    private final IssueMyBatisRepository repository;
+
+    @GetMapping("/mybatisTest")
+    public List<IssueDTO> testBatis(@ModelAttribute IssueFilterCondition issueFilterCondition) {
+        return repository.findIssueFilter(issueFilterCondition);
     }
 }
