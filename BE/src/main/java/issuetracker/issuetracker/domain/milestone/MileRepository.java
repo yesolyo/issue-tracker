@@ -1,6 +1,5 @@
 package issuetracker.issuetracker.domain.milestone;
 
-import issuetracker.issuetracker.domain.issue.Issue;
 import issuetracker.issuetracker.domain.milestone.dto.MilestoneFilterDTO;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
