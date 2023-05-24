@@ -9,23 +9,18 @@ export const DropdownPanelItem = ({
   option,
   profileUrl,
   backgroundColor,
-  isSelected
+  isSelected,
+  onMouseUp
 }) => {
+  const iconType = isSelected ? 'checkOnCircle' : 'checkOffCircle';
   return (
-    <MyDropdownPanelItem>
+    <li id={id} onMouseUp={onMouseUp}>
       {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
       {backgroundColor && (
         <Icon iconType={'roundImage'} fill={backgroundColor} />
       )}
       <div>{option}</div>
-      <Icon
-        iconType={isSelected ? 'checkOnCircle' : 'checkOffCircle'}
-        fill={colors.gray700}
-      />
-    </MyDropdownPanelItem>
+      <Icon iconType={iconType} fill={colors.gray700} />
+    </li>
   );
 };
-
-const MyDropdownPanelItem = styled.li`
-  z-index: 3;
-`;

@@ -7,8 +7,8 @@ import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 
 export const IssueListContent = () => {
-  const issueData = useContext(IssueListContext);
-  const issueListData = issueData.issueList;
+  const { state } = useContext(IssueListContext);
+  const issueListData = state.issueList;
 
   return (
     <MyIssueListContent>

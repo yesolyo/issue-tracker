@@ -1,4 +1,4 @@
-const initialFilterState = {
+export const initialFilterState = {
   isOpen: true,
   author: null, // 작성자
   labels: null, // 레이블
@@ -38,10 +38,10 @@ export const issueListReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case 'CREATE': {
-      return initialFilterState;
+      break;
     }
     case 'REMOVE': {
-      return initialFilterState;
+      break;
     }
   }
 };

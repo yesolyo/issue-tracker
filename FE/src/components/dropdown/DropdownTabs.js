@@ -59,8 +59,8 @@ const tabTypes = [
 export const DropdownTabs = () => {
   // TODO: queryString으로 filter
   const getFilteredData = (filterTabKey, filterOption) => {
-    const issueData = useContext(IssueListContext);
-    const issueListData = issueData.issueList;
+    const { state } = useContext(IssueListContext);
+    const issueListData = state.issueList;
     return issueListData
       ?.reduce((acc, issue) => {
         const filteredIssue = issue[filterTabKey];
@@ -83,6 +83,7 @@ export const DropdownTabs = () => {
       {tabTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
         <Dropdown
           key={index}
+          type={'tabs'}
           title={tabName}
           tabName={tabName}
           tabOptions={getFilteredData(filterTabKey, filterOption)}

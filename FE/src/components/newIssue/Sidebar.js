@@ -2,11 +2,12 @@ import { useContext } from 'react';
 
 import styled from 'styled-components';
 
-import { Dropdown } from './../dropdown/Dropdown';
-import { IssueListContext } from '../../pages/IssueList';
 import { NewIssueContext } from '../../pages/NewIssue';
 import { colors } from '../../styles/color';
-const tabTypes = [
+import { fontSize } from '../../styles/font';
+import { Dropdown } from '../dropdown/Dropdown';
+
+const sidebarTypes = [
   {
     tabName: '담당자',
     filterTabKey: 'assignees',
@@ -46,8 +47,16 @@ const tabTypes = [
   }
 ];
 
+const buttonOption = {
+  disabled: false,
+  size: 'l',
+  color: 'ghostGray',
+  iconType: 'chevronDown',
+  isIcon: true,
+  isLeftPosition: false
+};
+
 export const Sidebar = () => {
-  // TODO: queryString으로 filter
   const getFilteredData = (filterTabKey, filterOption) => {
     const issueData = useContext(NewIssueContext);
     const issueListData = issueData.issueList;
@@ -69,22 +78,23 @@ export const Sidebar = () => {
   };
 
   return (
-    <MyDropdownTabs>
-      {tabTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
+    <MySidebar>
+      {sidebarTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
         <Dropdown
           key={index}
+          type={'sidebar'}
           title={tabName}
           tabName={tabName}
           size={'m'}
-          isNotIssue={false}
           tabOptions={getFilteredData(filterTabKey, filterOption)}
+          buttonOption={buttonOption}
         />
       ))}
-    </MyDropdownTabs>
+    </MySidebar>
   );
 };
 
-const MyDropdownTabs = styled.div`
+const MySidebar = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;

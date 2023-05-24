@@ -4,15 +4,23 @@ export const getFilterQueryString = ({
   labels, // 중복가능
   milestone,
   assignees, // 중복가능
-  comments // user 1명만
+  comments, // user 1명만
+  isWrittenByMe,
+  isAssignedToMe,
+  commentedByMe
 }) => {
   return [
     `isOpen=${isOpen}`,
     author && `&author=${author.id}`,
-    labels && `&labels=${labels.id}`,
+    labels?.length ? `&labels=${labels.map(({ id }) => id).join(',')}` : null,
     milestone && `&milestone=${milestone.id}`,
-    assignees && `&assignees=${assignees.id}`,
-    comments && `&comments=${comments.id}`
+    assignees?.length
+      ? `&assignees=${assignees.map(({ id }) => id).join(',')}`
+      : null,
+    comments && `&comments=${comments.id}`,
+    isWrittenByMe && `&isWrittenByMe=${isWrittenByMe}`,
+    isAssignedToMe && `&isAssignedToMe=${isAssignedToMe}`,
+    commentedByMe && `&commentedByMe=${commentedByMe}`
   ].join('');
 };
 
@@ -22,14 +30,37 @@ export const convertFilterQueryToInputValue = ({
   labels,
   milestone,
   assignees,
-  comments
+  comments,
+  isWrittenByMe,
+  isAssignedToMe,
+  commentedByMe
 }) => {
   return [
     `is:${isOpen ? 'open' : 'close'} is:issue`,
     author && `author:${author.id}`,
-    labels && `labels:${labels.id}`,
+    labels?.length ? `&labels=${labels.map(({ id }) => id).join(',')}` : null,
     milestone && `milestone:${milestone.id}`,
-    assignees && `assignees:${assignees.id}`,
-    comments && `comments:${comments.id}`
-  ].join(' ');
+    assignees?.length
+      ? `&assignees=${assignees.map(({ id }) => id).join(',')}`
+      : null,
+    comments && `comments:${comments.id}`,
+    isWrittenByMe && `isWrittenByMe=@me`,
+    isAssignedToMe && `isAssignedToMe=@me`,
+    commentedByMe && `commentedByMe=@me`
+  ]
+    .filter((query) => query)
+    .join(' ');
 };
+
+// console.log(
+//   getFilterQueryString({
+//     isOpen: true,
+//     isWrittenByMe: true
+//   })
+// );
+// console.log(
+//   convertFilterQueryToInputValue({
+//     isOpen: true,
+//     isWrittenByMe: true
+//   })
+// );

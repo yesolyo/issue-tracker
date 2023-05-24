@@ -6,24 +6,35 @@ import { DropdownPanel } from './DropdownPanel';
 import { Button } from '../button/Button';
 
 export const Dropdown = ({
-  isLeft,
+  type,
   title,
   tabName,
   tabOptions,
   size,
-  isNotIssue
+  buttonOption,
+  isLeft
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  // const [target, setTarget] = useState('');
-  // const selectTarget = (target) => {
-  //   setTarget(target);
-  // };
+  const defaultButtonOption = {
+    size: 's',
+    color: title === '필터' ? 'ghostBlack' : 'ghostGray',
+    iconType: 'chevronDown',
+    isIcon: true,
+    isLeftPosition: false,
+    buttonText: title
+  };
 
+  const buttonType = buttonOption || defaultButtonOption;
+  const [isDropDown, setIsDropDown] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('isOpen');
+  const handleDropdownChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+  };
+  
   const panelRef = useRef(null);
   useEffect(() => {
     const handleClick = (e) => {
       if (panelRef.current && !panelRef.current.contains(e.target)) {
-        setIsOpen(false);
+        setIsDropDown(false);
       }
     };
     window.addEventListener('mousedown', handleClick);
@@ -34,23 +45,23 @@ export const Dropdown = ({
     <MyDropdown
       ref={panelRef}
       onClick={() => {
-        setIsOpen(!isOpen);
+        setIsDropDown(!isDropDown);
       }}
     >
-      <Button
-        size={size || 's'}
+      <Button size={size || 's'}
         color={title === '필터' ? 'ghostBlack' : 'ghostGray'}
         iconType={'chevronDown'}
         isIcon
         isLeftPosition={false}
-        buttonText={title}
-      />
-      {isOpen && (
+        buttonText={tabName} />
+      {isDropDown && (
         <DropdownPanel
+          type={type}
           title={tabName}
           options={tabOptions}
           isLeft={isLeft}
-          isNotIssue={isNotIssue}
+          selectedOption={selectedOption}
+          handleDropdownChange={handleDropdownChange}
         />
       )}
     </MyDropdown>
