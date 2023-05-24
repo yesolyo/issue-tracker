@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
+import { Icon } from '../assets/Icon';
 import { Button } from '../components/button/Button';
 import { TextInput } from '../components/textForm/TextInput';
 import { fontSize, fontType } from '../styles/font';
@@ -10,8 +11,15 @@ export const Login = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
+  const logoInfo = {
+    iconType: 'logotypeLarge',
+    width: 342,
+    height: 72
+  };
+
   return (
     <MyLogin>
+      <Icon {...logoInfo} />
       <Button
         size={'l'}
         color={'containerBlack'}
@@ -50,7 +58,10 @@ const MyLogin = styled.form`
   align-items: center;
   width: 1280px;
 
-  > button {
+  > svg {
+      margin: 50px;
+    }
+
     &:not(:last-child) {
       ${fontSize.L};
       ${fontType.BOLD};
