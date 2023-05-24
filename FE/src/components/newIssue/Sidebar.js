@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { NewIssueContext } from '../../pages/NewIssue';
 import { colors } from '../../styles/color';
-import { fontSize } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
 
 const sidebarTypes = [
@@ -105,7 +104,6 @@ const MySidebar = styled.div`
     width: 240px;
     height: 96px;
     background: ${colors.gray50};
-    z-index: 1;
     &: first-child {
       border-radius: 16px 16px 0px 0px;
     }

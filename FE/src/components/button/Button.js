@@ -13,7 +13,7 @@ export const Button = ({
   buttonText,
   isLeftPosition,
   onClick,
-  active
+  active,
 }) => {
   const btnSize = btnSizes[size];
   const btnColor =
@@ -136,8 +136,7 @@ const MyButton = styled.button`
     opacity: 0.64;
   }
 
-  & :disabled {
-    cursor: default;
+  &: disabled {
     opacity: 0.32;
   }
 `;

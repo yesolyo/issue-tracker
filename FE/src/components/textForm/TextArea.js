@@ -6,8 +6,7 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
 
-export const TextArea = ({ label, size }) => {
-  const [value, setValue] = useState('');
+export const TextArea = ({ label, size, value, setValue }) => {
   const areaSize = areaSizes[size];
   const fileSize = fileSizes[size];
 

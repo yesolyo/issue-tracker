@@ -29,7 +29,6 @@ export const Dropdown = ({
   const handleDropdownChange = (selectedOption) => {
     setSelectedOption(selectedOption);
   };
-  
   const panelRef = useRef(null);
   useEffect(() => {
     const handleClick = (e) => {
@@ -48,12 +47,14 @@ export const Dropdown = ({
         setIsDropDown(!isDropDown);
       }}
     >
-      <Button size={size || 's'}
+      <Button
+        size={size || 's'}
         color={title === '필터' ? 'ghostBlack' : 'ghostGray'}
         iconType={'chevronDown'}
         isIcon
         isLeftPosition={false}
-        buttonText={tabName} />
+        buttonText={tabName}
+      />
       {isDropDown && (
         <DropdownPanel
           type={type}
