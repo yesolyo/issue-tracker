@@ -1,9 +1,11 @@
+import { useState } from 'react';
+
 import styled from 'styled-components';
 
+import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
-import { TextInput } from '../textForm/TextInput';
 
 const filterTabOptions = [
   { id: 'isOpen', isSelected: true, option: '열린 이슈' },
@@ -14,13 +16,10 @@ const filterTabOptions = [
 ];
 
 export const FilterBar = () => {
-  const filterTextInputOptions = {
-    type: 'sideLabeledTextInput',
-    isIcon: true,
-    iconType: 'search',
-    initialText: 'is:issue is:open'
+  const [value, setValue] = useState('is:issue is:open');
+  const handleChange = (e) => {
+    setValue(e.target.value);
   };
-
   return (
     <MyfilterBar>
       <Dropdown
@@ -29,7 +28,15 @@ export const FilterBar = () => {
         tabName={'이슈'}
         tabOptions={filterTabOptions}
       />
-      <TextInput {...filterTextInputOptions} />
+      <MyIconTextInput>
+        <Icon
+          iconType={'search'}
+          fill={colors.gray600}
+          width={11}
+          height={11}
+        />
+        <input type="text" value={value} onChange={handleChange} />
+      </MyIconTextInput>
     </MyfilterBar>
   );
 };
@@ -60,9 +67,28 @@ const MyfilterBar = styled.div`
   button {
     ${fontType.BOLD}
   }
+`;
 
-  input {
-    width: 472px;
-    ${fontType.LIGHT}
+const MyIconTextInput = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: ${colors.gray200};
+  border-radius: 0px 11px 11px 0px;
+  width: 472px;
+  ${fontType.LIGHT}
+
+  & input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    ${fontType.REGULAR}
+  }
+
+  &: hover {
+    background: ${colors.gray50};
+    border: 1px solid ${colors.gray400};
   }
 `;

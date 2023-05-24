@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { Profile } from '../Profile';

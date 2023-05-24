@@ -67,6 +67,10 @@ const MyDefaultPanel = styled.div`
     color: ${colors.gray900};
   }
 
+  ul {
+    z-index: 2;
+  }
+
   div {
     width: 160px;
   }

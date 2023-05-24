@@ -76,6 +76,7 @@ export const Sidebar = () => {
         return acc;
       }, []);
   };
+
   return (
     <MySidebar>
       {sidebarTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
@@ -84,6 +85,7 @@ export const Sidebar = () => {
           type={'sidebar'}
           title={tabName}
           tabName={tabName}
+          size={'m'}
           tabOptions={getFilteredData(filterTabKey, filterOption)}
           buttonOption={buttonOption}
         />
@@ -93,17 +95,26 @@ export const Sidebar = () => {
 };
 
 const MySidebar = styled.div`
-  border: 1px solid ${colors.gray300};
-  border-radius: 16px;
-  background: ${colors.gray50};
-  height: max-content;
-  > div:not(:last-child) {
-    border-bottom: 1px solid ${colors.gray300};
-  }
-  & button {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  > div {
+    justify-content: space-around;
+    border: 1px solid ${colors.gray400};
+    width: 240px;
     height: 96px;
-    justify-content: space-between;
-    padding: 0 20px;
-    ${fontSize.M}
+    background: ${colors.gray50};
+    z-index: 1;
+    &: first-child {
+      border-radius: 16px 16px 0px 0px;
+    }
+    &: last-child {
+      border-radius: 0px 0px 16px 16px;
+    }
+  }
+  > svg,
+  > button {
+    cursor: pointer;
   }
 `;
