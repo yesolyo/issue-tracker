@@ -10,6 +10,8 @@ export const NewIssueContext = React.createContext();
 
 export const NewIssue = () => {
   const [data, dispatch] = useState([]);
+  const [title, setTitle] = useState('');
+  const [comment, setComment] = useState('');
   // TODO : Fetch -> user 정보 필요
   const initData = async () => {
     const response = await fetch('/issueList');
@@ -25,8 +27,13 @@ export const NewIssue = () => {
     <NewIssueContext.Provider value={data}>
       <MyNewIssuePage>
         <PageHeader leftChild={'새로운 이슈 작성'} />
-        <NewIssueContainer />
-        <NewIssueFooter />
+        <NewIssueContainer
+          titleValue={title}
+          titleSetValue={setTitle}
+          commentValue={comment}
+          commentSetValue={setComment}
+        />
+        <NewIssueFooter titleValue={title} commentValue={comment} />
       </MyNewIssuePage>
     </NewIssueContext.Provider>
   );

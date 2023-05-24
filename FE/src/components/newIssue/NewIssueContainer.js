@@ -7,13 +7,23 @@ import { Sidebar } from './Sidebar';
 import { NewIssueContext } from '../../pages/NewIssue';
 import { Profile } from '../Profile';
 
-export const NewIssueContainer = () => {
+export const NewIssueContainer = ({
+  titleValue,
+  titleSetValue,
+  commentValue,
+  commentSetValue
+}) => {
   const issueData = useContext(NewIssueContext);
 
   return (
     <MyNewIssueContainer>
       <Profile isLarge userInfo={issueData?.userInfo} />
-      <NewIssueContent />
+      <NewIssueContent
+        titleValue={titleValue}
+        titleSetValue={titleSetValue}
+        commentValue={commentValue}
+        commentSetValue={commentSetValue}
+      />
       <Sidebar />
     </MyNewIssueContainer>
   );

@@ -5,17 +5,37 @@ import styled, { css } from 'styled-components';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const TextInput = ({ label, size }) => {
-  const [value, setValue] = useState('');
+export const TextInput = ({ label, size, value, setValue }) => {
+  // const [value, setValue] = useState('');
   const inputSize = inputSizes[size];
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setValue(e.target.value);
+  // };
+
+  // const handleIdChange = (e) => {
+  //   id(e.target.value);
+  // };
+  // const handlePwChange = (e) => {
+  //   pw(e.target.value);
+  // };
 
   return (
     <MyTextInput inputSize={inputSize} value={value}>
-      <input type="text" value={value} onChange={handleChange} />
+      <input
+        type="text"
+        // value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        // onChange={
+        //   label !== '제목'
+        //     ? label === '아이디'
+        //       ? handleIdChange
+        //       : handlePwChange
+        //     : handleChange
+        // }
+      />
       <label className={value && 'filled'} htmlFor={name}>
         {label}
       </label>
@@ -53,7 +73,7 @@ const inputSizes = {
     height: 56px;
   `,
   sm: css`
-    width: 320px;
+    width: 290px;
     height: 56px;
   `
 };

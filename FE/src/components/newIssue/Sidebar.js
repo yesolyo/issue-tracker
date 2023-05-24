@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { NewIssueContext } from '../../pages/NewIssue';
 import { colors } from '../../styles/color';
-import { fontSize } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
 
 const sidebarTypes = [

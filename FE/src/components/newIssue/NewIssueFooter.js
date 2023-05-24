@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Button } from '../button/Button';
 
-export const NewIssueFooter = () => {
+export const NewIssueFooter = ({ titleValue, commentValue }) => {
   const navigate = useNavigate();
   return (
     <MyNewIssueFooter>
@@ -17,7 +17,7 @@ export const NewIssueFooter = () => {
         onClick={() => navigate(-1)}
       />
       <Button
-        disabled
+        disabled={titleValue.length < 1 || commentValue.length < 1}
         size={'m'}
         color={'containerBlue'}
         isIcon={false}
