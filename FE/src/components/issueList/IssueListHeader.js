@@ -9,8 +9,8 @@ import { CheckBox } from '../CheckBox';
 import { DropdownTabs } from '../dropdown/DropdownTabs';
 
 export const IssueListHeader = () => {
-  const { state } = useContext(IssueListContext);
-  const countInfo = state.countInfo;
+  const issues = useContext(IssueListContext);
+  const countInfo = issues.countInfo;
 
   const issueButtonTypes = [
     {

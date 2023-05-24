@@ -9,8 +9,8 @@ import { Button } from '../button/Button';
 
 export const TabButton = () => {
   const navigate = useNavigate();
-  const { state } = useContext(IssueListContext);
-  const issueCountInfo = state.countInfo;
+  const issues = useContext(IssueListContext);
+  const issueCountInfo = issues.countInfo;
   return (
     <MyTabButton>
       <MyLeftTabButton>

@@ -18,29 +18,35 @@ export const filterReducer = (state, action) => {
       return initialFilterState;
     }
     case 'FILTER': {
-      return { ...state, ...payload };
-    }
-    case 'CHECK': {
-      break;
-    }
-    case 'ALL_CHECK': {
-      break;
-    }
-    case 'UN_CHECK': {
-      break;
+      return {
+        ...initialFilterState,
+        ...payload
+      };
     }
     default:
       return state;
   }
 };
 
-export const issueListReducer = (state, action) => {
+export const initialCheckState = {
+  checkBox: 'initial',
+  selectedIssue: {}
+};
+
+export const checkReducer = (state, action) => {
   const { type, payload } = action;
+
   switch (type) {
-    case 'CREATE': {
+    case 'CHECK': {
       break;
     }
-    case 'REMOVE': {
+    case 'UNCHECK': {
+      break;
+    }
+    case 'ALL_CHECK': {
+      break;
+    }
+    case 'ALL_UNCHECK': {
       break;
     }
   }

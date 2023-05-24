@@ -5,16 +5,23 @@ import styled from 'styled-components';
 import { IssueItem } from './IssueItem';
 import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
+import { fontSize } from '../../styles/font';
 
 export const IssueListContent = () => {
-  const { state } = useContext(IssueListContext);
-  const issueListData = state.issueList;
+  const issues = useContext(IssueListContext);
+  const issueListData = issues.issueList;
 
   return (
     <MyIssueListContent>
-      {issueListData?.map((issueData) => (
-        <IssueItem key={issueData.id} {...issueData} />
-      ))}
+      {issueListData
+        ? (
+          issueListData.map((issueData) => (
+            <IssueItem key={issueData.id} {...issueData} />
+          ))
+        )
+        : (
+          <MyEmptyContent>등록된 이슈가 없습니다</MyEmptyContent>
+        )}
     </MyIssueListContent>
   );
 };
@@ -27,4 +34,12 @@ const MyIssueListContent = styled.div`
   > div:last-child {
     border-radius: 0px 0px 16px 16px;
   }
+`;
+
+const MyEmptyContent = styled.div`
+  ${fontSize.M}
+  height: 150px;
+  line-height: 150px;
+  text-align: center;
+  background-color: ${colors.gray50};
 `;
