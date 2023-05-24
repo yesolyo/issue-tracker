@@ -46,15 +46,6 @@ const sidebarTypes = [
   }
 ];
 
-const buttonOption = {
-  disabled: false,
-  size: 'l',
-  color: 'ghostGray',
-  iconType: 'chevronDown',
-  isIcon: true,
-  isLeftPosition: false
-};
-
 export const Sidebar = () => {
   const getFilteredData = (filterTabKey, filterOption) => {
     const issueData = useContext(NewIssueContext);
@@ -84,9 +75,16 @@ export const Sidebar = () => {
           type={'sidebar'}
           title={tabName}
           tabName={tabName}
-          size={'m'}
           tabOptions={getFilteredData(filterTabKey, filterOption)}
-          buttonOption={buttonOption}
+          buttonOption={{
+            disabled: false,
+            size: 'm',
+            color: 'ghostGray',
+            iconType: 'chevronDown',
+            isIcon: true,
+            isLeftPosition: false,
+            buttonText: tabName
+          }}
         />
       ))}
     </MySidebar>
@@ -94,25 +92,17 @@ export const Sidebar = () => {
 };
 
 const MySidebar = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-
-  > div {
-    justify-content: space-around;
-    border: 1px solid ${colors.gray400};
-    width: 240px;
-    height: 96px;
-    background: ${colors.gray50};
-    &: first-child {
-      border-radius: 16px 16px 0px 0px;
-    }
-    &: last-child {
-      border-radius: 0px 0px 16px 16px;
-    }
+  border: 1px solid ${colors.gray300};
+  border-radius: 16px;
+  background: ${colors.gray50};
+  height: max-content;
+  > div:not(:last-child) {
+    border-bottom: 1px solid ${colors.gray300};
   }
-  > svg,
-  > button {
-    cursor: pointer;
+  & button {
+    height: 96px;
+    justify-content: space-between;
+    padding: 0 20px;
+    ${fontSize.M}
   }
 `;

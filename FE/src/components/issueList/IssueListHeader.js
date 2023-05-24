@@ -22,6 +22,7 @@ export const IssueListHeader = () => {
         color: 'ghostBlack',
         iconType: 'alertCircle',
         isIcon: true,
+        iconWidth: 16,
         isLeftPosition: true
       },
       count: countInfo?.openCount
@@ -35,6 +36,7 @@ export const IssueListHeader = () => {
         color: 'ghostGray',
         iconType: 'archive',
         isIcon: true,
+        iconWidth: 16,
         isLeftPosition: true
       },
       count: countInfo?.closeCount

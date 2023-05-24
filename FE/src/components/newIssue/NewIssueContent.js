@@ -2,8 +2,6 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { colors } from '../../styles/color';
-import { fontSize, fontType } from '../../styles/font';
 import { TextArea } from '../textForm/TextArea';
 import { TextInput } from '../textForm/TextInput';
 
@@ -13,12 +11,6 @@ export const NewIssueContent = ({
   commentValue,
   commentSetValue
 }) => {
-  const titleInputConstant = {
-    type: 'defaultTextInput',
-    isIcon: false,
-    initialText: '제목'
-  };
-
   return (
     <MyNewIssueContent>
       <TextInput

@@ -67,10 +67,6 @@ const MyDefaultPanel = styled.div`
     color: ${colors.gray900};
   }
 
-  ul {
-    z-index: 2;
-  }
-
   div {
     width: 160px;
   }
@@ -104,6 +100,7 @@ const MyDefaultPanel = styled.div`
 `;
 
 const MySidebarPanel = styled(MyDefaultPanel)`
+  width: 210px;
   top: 80px;
   right: -1px;
   z-index: 10;

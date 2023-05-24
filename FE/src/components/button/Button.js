@@ -9,6 +9,7 @@ export const Button = ({
   size,
   color,
   iconType,
+  iconWidth,
   isIcon,
   buttonText,
   isLeftPosition,
@@ -22,7 +23,7 @@ export const Button = ({
       : active
         ? btnColors.ghostBlack
         : btnColors.ghostGray;
-  const iconSize = iconSizes[size];
+  const iconSize = iconWidth || '9';
 
   return (
     <MyButton
@@ -52,12 +53,6 @@ export const Button = ({
         )}
     </MyButton>
   );
-};
-
-const iconSizes = {
-  m: 14,
-  s: 9,
-  xs: 7
 };
 
 const btnSizes = {

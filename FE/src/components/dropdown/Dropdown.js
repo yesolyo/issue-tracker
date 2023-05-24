@@ -10,13 +10,12 @@ export const Dropdown = ({
   title,
   tabName,
   tabOptions,
-  size,
   buttonOption,
   isLeft
 }) => {
   const defaultButtonOption = {
     size: 's',
-    color: title === '필터' ? 'ghostBlack' : 'ghostGray',
+    color: 'ghostGray',
     iconType: 'chevronDown',
     isIcon: true,
     isLeftPosition: false,
@@ -47,14 +46,7 @@ export const Dropdown = ({
         setIsDropDown(!isDropDown);
       }}
     >
-      <Button
-        size={size || 's'}
-        color={title === '필터' ? 'ghostBlack' : 'ghostGray'}
-        iconType={'chevronDown'}
-        isIcon
-        isLeftPosition={false}
-        buttonText={tabName}
-      />
+      <Button {...buttonType} />
       {isDropDown && (
         <DropdownPanel
           type={type}
