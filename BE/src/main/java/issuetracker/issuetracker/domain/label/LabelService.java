@@ -4,6 +4,7 @@ import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class LabelService {
         return repository.getLabelList();
     }
 
+    @Transactional(readOnly = true)
     public List<LabelFilterDTO> getLabelFilter() {
         return repository.getLabelFilter();
     }

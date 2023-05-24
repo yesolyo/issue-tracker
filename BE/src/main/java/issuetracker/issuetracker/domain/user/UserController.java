@@ -11,10 +11,10 @@ import java.util.List;
 @RestController
 public class UserController {
 
-    private final UserRepository repository;
+    private final UserService service;
 
     @GetMapping("/users")
     public List<UserFilterDTO> getUserFilter() {
-        return repository.getUserFilter();
+        return service.getUserFilter();
     }
 }
