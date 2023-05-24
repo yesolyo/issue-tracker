@@ -18,11 +18,11 @@ export const NewIssueFooter = () => {
       />
       <Button
         disabled
-        size={'l'}
+        size={'m'}
         color={'containerBlue'}
         isIcon={false}
         buttonText={'완료'}
-        onClick={() => navigate(-1)}
+        onClick={() => navigate('/')}
       />
     </MyNewIssueFooter>
   );

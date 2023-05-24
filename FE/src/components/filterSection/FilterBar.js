@@ -35,7 +35,13 @@ export const FilterBar = () => {
           width={11}
           height={11}
         />
-        <input type="text" value={value} onChange={handleChange} />
+        {/* TODO : 활성화되면 Input text color: gray900 으로 변경 */}
+        <input
+          type="text"
+          value={value}
+          onChange={handleChange}
+          placeholder="Search all issues"
+        />
       </MyIconTextInput>
     </MyfilterBar>
   );
@@ -85,6 +91,11 @@ const MyIconTextInput = styled.div`
     border: none;
     outline: none;
     ${fontType.REGULAR}
+    color: ${colors.gray600};
+
+    &::placeholder {
+      color: ${colors.gray700};
+    }
   }
 
   &: hover {
