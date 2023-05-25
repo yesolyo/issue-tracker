@@ -33,10 +33,9 @@ export const DropdownPanel = React.memo(
         {type === 'sidebar' || <h3>{tabName} 필터</h3>}
         <ul>
           {type === 'tabs' && (
-            <li id={'none'} onMouseUp={handleOptionClick}>
+            <li id={'none'} value={tabId} onMouseUp={handleOptionClick}>
               {tabName}
-              {tabName === '담당자' || tabName === '작성자' ? `가` : `이`} 없는
-              이슈
+              {tabName === '담당자' || tabName === '작성자' ? `가` : `이`} 없는 이슈
               <Icon iconType={iconType} fill={colors.gray700} />
             </li>
           )}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "name": "Bug",
+    "backgroundColor": "#389561",
+    "fontColor": "#fff"
+  },
+  {
+    "id": 1,
+    "name": "Feature",
+    "backgroundColor": "#FFBBC6",
+    "fontColor": "#000"
+  },
+  {
+    "id": 2,
+    "name": "Enhancement",
+    "backgroundColor": "#6E6ED7",
+    "fontColor": "#fff"
+  },
+  {
+    "id": 3,
+    "name": "Refactor",
+    "backgroundColor": "#975a97",
+    "fontColor": "#fff"
+  }
+]

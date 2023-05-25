@@ -31,6 +31,7 @@ export const Button = ({
       btnSize={btnSize}
       btnColor={btnColor}
       onClick={onClick}
+      type="button"
     >
       {isIcon
         ? (
