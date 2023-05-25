@@ -11,7 +11,7 @@ import issuetracker.issuetracker.domain.issue.repository.IssueRepository;
 import issuetracker.issuetracker.domain.label.Label;
 import issuetracker.issuetracker.domain.label.LabelRepository;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
-import issuetracker.issuetracker.domain.milestone.MileStoneService;
+import issuetracker.issuetracker.domain.milestone.MilestoneService;
 import issuetracker.issuetracker.domain.milestone.dto.MileStoneDTO;
 import issuetracker.issuetracker.domain.user.Member;
 import issuetracker.issuetracker.domain.user.MemberRepository;
@@ -32,7 +32,7 @@ import java.util.List;
 public class IssueService {
 
     private final IssueRepository issueRepository;
-    private final MileStoneService mileStoneService;
+    private final MilestoneService mileStoneService;
     private final LabelRepository labelRepository;
     private final MemberService userService;
     private final MemberRepository memberRepository;
