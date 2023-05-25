@@ -1,0 +1,20 @@
+[
+  {
+    "userId": 0,
+    "userName": "John",
+    "userUrl": "https://example.com/users/0",
+    "replyContents": "Hello, everyone!",
+    "emojiShape": "heart",
+    "emojiCount": 10,
+    "fileAttachmentUrl": "https://example.com/files/0"
+  },
+  {
+    "userId": 1,
+    "userName": "Jane",
+    "userUrl": "https://example.com/users/1",
+    "replyContents": "I agree with John!",
+    "emojiShape": "thumbs-up",
+    "emojiCount": 5,
+    "fileAttachmentUrl": "https://example.com/files/1"
+  }
+]

@@ -29,7 +29,7 @@ export const Dropdown = ({
   const handleDropdownChange = (selectedOption, selectedTab) => {
     setSelectedOption(selectedOption);
     setSelectedTab(selectedTab);
-    setValue(selectedOption);
+    if (setValue) setValue(selectedOption);
   };
   const panelRef = useRef(null);
   useEffect(() => {

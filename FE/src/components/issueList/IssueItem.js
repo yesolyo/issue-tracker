@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { CheckboxStateContext } from './IssueListContainer';
@@ -10,7 +11,6 @@ import { getTimeElapsed } from '../../utils/timeElapsed';
 import { CheckBox } from '../CheckBox';
 import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
-
 export const IssueItem = ({
   id,
   title,
@@ -22,6 +22,7 @@ export const IssueItem = ({
   isOpen
 }) => {
   const { checkState, checkDispatch } = useContext(CheckboxStateContext);
+  const navigate = useNavigate();
   const { checkedIssues } = checkState;
   const iconType = isOpen ? 'alertCircle' : 'archive';
   const handleCheckBoxClick = ({ currentTarget }) => {
@@ -44,7 +45,7 @@ export const IssueItem = ({
           <MyIssue>
             <MyIssueTitle>
               <Icon iconType={iconType} fill={colors.blue} />
-              <span>{title}</span>
+              <span onClick={() => navigate('/issueDetail/:id')}>{title}</span>
               {!!labels.length &&
                 labels.map((label) => (
                   <LabelTag
