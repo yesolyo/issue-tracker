@@ -17,11 +17,16 @@ import java.util.List;
 @RestController
 public class LabelController {
 
-    private final LabelRepository repository;
+    private final LabelService labelService;
 
     @GetMapping
     public List<LabelListDTO> showLabelList() {
         return new ArrayList<>();
+    }
+
+    @GetMapping("/filter")
+    public List<LabelFilterDTO> getLabelFilter() {
+        return labelService.getLabelFilter();
     }
 
     @PostMapping
@@ -40,10 +45,5 @@ public class LabelController {
     @PutMapping("/{labelId}")
     public void updateLabel(@RequestParam Long labelId, @RequestBody PostingLabelDTO label) {
         // TODO 라벨 수정
-    }
-
-    @GetMapping("/filter")
-    public List<LabelFilterDTO> getLabelFilter() {
-        return repository.getLabelFilter();
     }
 }
