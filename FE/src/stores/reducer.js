@@ -11,37 +11,16 @@ export const filterReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case 'INIT': {
-      return payload;
-    }
     case 'RESET': {
       return initialFilterState;
     }
     case 'FILTER': {
-      return { ...state, ...payload };
-    }
-    case 'CHECK': {
-      break;
-    }
-    case 'ALL_CHECK': {
-      break;
-    }
-    case 'UN_CHECK': {
-      break;
+      return {
+        ...initialFilterState,
+        ...payload
+      };
     }
     default:
       return state;
-  }
-};
-
-export const issueListReducer = (state, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case 'CREATE': {
-      break;
-    }
-    case 'REMOVE': {
-      break;
-    }
   }
 };

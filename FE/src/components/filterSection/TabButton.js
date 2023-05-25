@@ -5,12 +5,13 @@ import styled from 'styled-components';
 
 import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
+import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
 
 export const TabButton = () => {
   const navigate = useNavigate();
-  const { state } = useContext(IssueListContext);
-  const issueCountInfo = state.countInfo;
+  const issues = useContext(IssueListContext);
+  const issueCountInfo = issues.countInfo;
   return (
     <MyTabButton>
       <MyLeftTabButton>
@@ -20,7 +21,7 @@ export const TabButton = () => {
           iconType={'label'}
           iconWidth={16}
           isIcon
-          buttonText={`레이블(${issueCountInfo?.labelCount || 0})`}
+          buttonText={`레이블 (${issueCountInfo?.labelCount || 0})`}
           isLeftPosition
           onClick={() => navigate('/LabelList')}
         />
@@ -32,7 +33,7 @@ export const TabButton = () => {
           iconType={'milestone'}
           iconWidth={16}
           isIcon
-          buttonText={`마일스톤(${issueCountInfo?.milestoneCount || 0})`}
+          buttonText={`마일스톤 (${issueCountInfo?.milestoneCount || 0})`}
           isLeftPosition
           onClick={() => navigate('/MilestoneList')}
         />
@@ -51,6 +52,7 @@ const MyTabButton = styled.div`
   background: ${colors.gray100};
 
   button {
+    /* ${fontSize.M} */
     margin: 0 auto;
   }
 

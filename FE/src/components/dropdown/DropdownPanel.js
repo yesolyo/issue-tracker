@@ -10,8 +10,8 @@ import { fontSize, fontType } from '../../styles/font';
 export const DropdownPanel = React.memo(
   ({
     tabId,
+    tabName,
     type,
-    title,
     options,
     isLeft,
     selectedOption,
@@ -30,12 +30,12 @@ export const DropdownPanel = React.memo(
       type === 'sidebar' ? MySidebarPanel : MyDefaultPanel;
     return (
       <MyDropdownPanel isLeft={isLeft}>
-        {type === 'sidebar' || <h3>{title} 필터</h3>}
+        {type === 'sidebar' || <h3>{tabName} 필터</h3>}
         <ul>
           {type === 'tabs' && (
             <li id={'none'} value={tabId} onMouseUp={handleOptionClick}>
-              {title}
-              {title === '담당자' || title === '작성자' ? `가` : `이`} 없는 이슈
+              {tabName}
+              {tabName === '담당자' || tabName === '작성자' ? `가` : `이`} 없는 이슈
               <Icon iconType={iconType} fill={colors.gray700} />
             </li>
           )}

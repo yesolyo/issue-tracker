@@ -2,73 +2,107 @@ import React, { useContext, useState } from 'react';
 
 import styled from 'styled-components';
 
+import { CheckboxStateContext } from './IssueListContainer';
 import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
+import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
 import { CheckBox } from '../CheckBox';
+import { Dropdown } from '../dropdown/Dropdown';
 import { DropdownTabs } from '../dropdown/DropdownTabs';
 
-export const IssueListHeader = () => {
-  const { state } = useContext(IssueListContext);
-  const countInfo = state.countInfo;
-
-  const issueButtonTypes = [
+const checkTabsType = {
+  tabId: 'checkTab',
+  tabName: '상태 수정',
+  tabOptions: [
     {
-      text: '열린 이슈',
-      status: true,
-      onClick: () => setActiveTab(true),
-      buttonOption: {
-        size: 's',
-        color: 'ghostBlack',
-        iconType: 'alertCircle',
-        isIcon: true,
-        iconWidth: 16,
-        isLeftPosition: true
-      },
-      count: countInfo?.openCount
+      id: 'open',
+      option: '선택한 이슈 열기'
     },
     {
-      text: '닫힌 이슈',
-      status: false,
-      onClick: () => setActiveTab(false),
-      buttonOption: {
-        size: 's',
-        color: 'ghostGray',
-        iconType: 'archive',
-        isIcon: true,
-        iconWidth: 16,
-        isLeftPosition: true
-      },
-      count: countInfo?.closeCount
+      id: 'close',
+      option: '선택한 이슈 닫기'
     }
-  ];
+  ]
+};
+
+const issueButtonTypes = [
+  {
+    buttonText: '열린 이슈',
+    status: true,
+    buttonOption: {
+      size: 's',
+      color: 'ghostBlack',
+      iconType: 'alertCircle',
+      isIcon: true,
+      iconWidth: 16,
+      isLeftPosition: true
+    }
+  },
+  {
+    buttonText: '닫힌 이슈',
+    status: false,
+    buttonOption: {
+      size: 's',
+      color: 'ghostGray',
+      iconType: 'archive',
+      isIcon: true,
+      iconWidth: 16,
+      isLeftPosition: true
+    }
+  }
+];
+
+export const IssueListHeader = () => {
+  const { checkState, checkDispatch } = useContext(CheckboxStateContext);
+  const { isAllChecked, checkedIssues } = checkState;
+  const issues = useContext(IssueListContext);
+  const countInfo = issues.countInfo;
+
+  const handleCheckedIssueTabsClick = () => {
+    if (isAllChecked) checkDispatch({ type: 'ALL_UNCHECK' });
+    else {
+      checkDispatch({ type: 'ALL_CHECK', payload: issues.issueList });
+    }
+  };
 
   const [activeTab, setActiveTab] = useState(true);
 
   return (
     <MyIssueListHeader>
       <MyIssueTabs>
-        <CheckBox type={'initial'} onClick={null} />
-        {issueButtonTypes.map(
-          ({ text, status, buttonOption, count, onClick }, index) => (
-            <Button
-              key={index}
-              active={activeTab === status}
-              onClick={onClick}
-              {...buttonOption}
-              buttonText={`${text}(${count || 0})`}
-            />
+        <CheckBox
+          id={'select-all'}
+          checked={isAllChecked}
+          onChange={handleCheckedIssueTabsClick}
+        />
+        {isAllChecked
+          ? (
+            <div>{checkedIssues.length} 개 이슈 선택</div>
           )
-        )}
+          : (
+            issueButtonTypes.map(
+              ({ buttonText, status, buttonOption }, index) => (
+                <Button
+                  key={index}
+                  active={activeTab === status}
+                  onClick={() => setActiveTab(status)}
+                  {...buttonOption}
+                  buttonText={`${buttonText} (${
+                    status ? countInfo?.openCount : countInfo?.closeCount || 0
+                  })`}
+                />
+              )
+            )
+          )}
       </MyIssueTabs>
-      <DropdownTabs />
+      {isAllChecked ? <Dropdown {...checkTabsType} /> : <DropdownTabs />}
     </MyIssueListHeader>
   );
 };
 
 const MyIssueListHeader = styled.div`
   display: flex;
-  gap: 18px;
   justify-content: space-between;
   align-items: center;
   padding: 0 25px;
@@ -76,13 +110,19 @@ const MyIssueListHeader = styled.div`
   background-color: ${colors.gray100};
   border-bottom: 1px solid ${colors.gray300};
   border-radius: 16px 16px 0px 0px;
+
+  button {
+    justify-content: space-between;
+    gap: 8px;
+    width: max-content;
+    ${fontSize.M}
+  }
 `;
 
 const MyIssueTabs = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
-
   > svg,
   > button {
     cursor: pointer;

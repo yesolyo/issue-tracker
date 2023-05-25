@@ -59,8 +59,8 @@ const tabTypes = [
 export const DropdownTabs = () => {
   // TODO: queryString으로 filter
   const getFilteredData = (filterTabKey, filterOption) => {
-    const { state } = useContext(IssueListContext);
-    const issueListData = state.issueList;
+    const issues = useContext(IssueListContext);
+    const issueListData = issues.issueList;
     return issueListData
       ?.reduce((acc, issue) => {
         const filteredIssue = issue[filterTabKey];
@@ -80,12 +80,12 @@ export const DropdownTabs = () => {
 
   return (
     <MyDropdownTabs>
-      {tabTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
+      {tabTypes.map(({ tabName, filterTabKey, filterOption }) => (
         <Dropdown
-          key={index}
-          type={'tabs'}
-          title={tabName}
+          key={filterTabKey}
+          tabId={filterTabKey}
           tabName={tabName}
+          type={'tabs'}
           tabOptions={getFilteredData(filterTabKey, filterOption)}
         />
       ))}
@@ -101,5 +101,9 @@ const MyDropdownTabs = styled.div`
   > svg,
   > button {
     cursor: pointer;
+  }
+
+  button {
+    padding: 10px;
   }
 `;

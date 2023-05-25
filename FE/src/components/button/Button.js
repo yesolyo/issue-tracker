@@ -120,9 +120,10 @@ const MyButton = styled.button`
   align-items: center;
   display: flex;
   border-radius: 11px;
+  padding: 0;
   ${fontType.BOLD};
   > svg {
-    margin: 5px;
+    margin-right: 5px;
   }
   &: hover {
     opacity: 0.8;
