@@ -1,34 +1,32 @@
-{
-  "users": [
-    {
-      "id": 0,
-      "name": "나니",
-      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/db753467-76aa-493d-9875-6aff6fc6c656"
-    },
-    {
-      "id": 1,
-      "name": "워터",
-      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e675d61f-2884-4084-b7db-604ad238fc87"
-    },
-    {
-      "id": 2,
-      "name": "버디",
-      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/bacc531d-a512-4a54-9c5c-5e22d7425900"
-    },
-    {
-      "id": 3,
-      "name": "감자",
-      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
-    },
-    {
-      "id": 4,
-      "name": "노아",
-      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d"
-    },
-    {
-      "id": 5,
-      "name": "데미안",
-      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/a981d3b0-77ec-4402-a658-ca6a41ed41de"
-    }
-  ]
-}
+[
+  {
+    "id": 0,
+    "name": "나니",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/db753467-76aa-493d-9875-6aff6fc6c656"
+  },
+  {
+    "id": 1,
+    "name": "워터",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e675d61f-2884-4084-b7db-604ad238fc87"
+  },
+  {
+    "id": 2,
+    "name": "버디",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/bacc531d-a512-4a54-9c5c-5e22d7425900"
+  },
+  {
+    "id": 3,
+    "name": "감자",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
+  },
+  {
+    "id": 4,
+    "name": "노아",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d"
+  },
+  {
+    "id": 5,
+    "name": "데미안",
+    "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/a981d3b0-77ec-4402-a658-ca6a41ed41de"
+  }
+]

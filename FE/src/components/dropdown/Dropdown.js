@@ -3,9 +3,7 @@ import { useEffect, useRef, useState, useContext } from 'react';
 import styled from 'styled-components';
 
 import { DropdownPanel } from './DropdownPanel';
-import { NewIssueContext } from '../../pages/NewIssue';
 import { Button } from '../button/Button';
-import { Sidebar } from '../newIssue/Sidebar';
 export const Dropdown = ({
   tabId,
   type,
@@ -29,9 +27,6 @@ export const Dropdown = ({
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('isOpen');
   const [selectedTab, setSelectedTab] = useState('');
-  const [selectedAssignee, setSelectedAssignee] = useState('');
-  const [selectedLabel, setSelectedLabel] = useState('');
-  const [selectedMilestone, setSelectedMilestone] = useState('');
 
   const handleDropdownChange = (selectedOption, selectedTab) => {
     setSelectedOption(selectedOption);
@@ -57,7 +52,6 @@ export const Dropdown = ({
       }}
     >
       <Button {...buttonType} />
-      <div>그래</div>
       {isDropDown && (
         <DropdownPanel
           tabId={tabId}
