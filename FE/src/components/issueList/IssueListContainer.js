@@ -4,15 +4,21 @@ import styled from 'styled-components';
 
 import { IssueListContent } from './IssueListContent';
 import { IssueListHeader } from './IssueListHeader';
-import { checkReducer, initialCheckState } from '../../stores/reducer';
+import {
+  checkBoxReducer,
+  initialCheckState
+} from '../../stores/checkBoxReducer';
 
 export const CheckboxStateContext = React.createContext();
 
 export const IssueListContainer = () => {
-  const [check, checkDispatch] = useReducer(checkReducer, initialCheckState);
+  const [checkState, checkDispatch] = useReducer(
+    checkBoxReducer,
+    initialCheckState
+  );
 
   return (
-    <CheckboxStateContext.Provider value={{ check, checkDispatch }}>
+    <CheckboxStateContext.Provider value={{ checkState, checkDispatch }}>
       <MyIssueListContainer>
         <IssueListHeader />
         <IssueListContent />

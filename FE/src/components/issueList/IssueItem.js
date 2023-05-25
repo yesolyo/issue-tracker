@@ -21,15 +21,14 @@ export const IssueItem = ({
   createTime,
   isOpen
 }) => {
-  const { check, checkDispatch } = useContext(CheckboxStateContext);
+  const { checkState, checkDispatch } = useContext(CheckboxStateContext);
+  const { checkedIssues } = checkState;
   const iconType = isOpen ? 'alertCircle' : 'archive';
   const handleCheckBoxClick = ({ currentTarget }) => {
-    if (
-      check.selectedIssues.some(({ id }) => id === Number(currentTarget.id))
-    ) {
-      checkDispatch({ type: 'UNCHECK', payload: { id } });
+    if (checkedIssues.some((id) => id === Number(currentTarget.id))) {
+      checkDispatch({ type: 'UNCHECK', payload: id });
     } else {
-      checkDispatch({ type: 'CHECK', payload: { id } });
+      checkDispatch({ type: 'CHECK', payload: id });
     }
   };
 
@@ -37,7 +36,11 @@ export const IssueItem = ({
     isOpen && (
       <MyIssueItem>
         <MyIssueBox>
-          <CheckBox id={id} onChange={handleCheckBoxClick} />
+          <CheckBox
+            id={id}
+            onChange={handleCheckBoxClick}
+            checked={checkedIssues.includes(id)}
+          />
           <MyIssue>
             <MyIssueTitle>
               <Icon iconType={iconType} fill={colors.blue} />
