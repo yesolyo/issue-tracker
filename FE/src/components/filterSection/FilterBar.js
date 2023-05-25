@@ -55,12 +55,6 @@ const MyfilterBar = styled.div`
   border: 1px solid ${colors.gray300};
   ${fontSize.M}
 
-  > div {
-    height: 100%;
-    padding: 0px 24px;
-    gap: 8px;
-  }
-
   > div:first-child {
     border-radius: 11px 0px 0px 11px;
     border-right: 1px solid ${colors.gray300};
@@ -68,6 +62,11 @@ const MyfilterBar = styled.div`
     &:hover {
       background: ${colors.gray200};
     }
+  }
+
+  > div:last-child {
+    height: 100%;
+    padding: 0 24px;
   }
 
   button {
@@ -82,6 +81,7 @@ const MyIconTextInput = styled.div`
   background: ${colors.gray200};
   border-radius: 0px 11px 11px 0px;
   width: 472px;
+  gap: 10px;
   ${fontType.LIGHT}
 
   & input {

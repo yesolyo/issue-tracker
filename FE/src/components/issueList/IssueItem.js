@@ -1,5 +1,8 @@
+import { useContext } from 'react';
+
 import styled from 'styled-components';
 
+import { CheckboxStateContext } from './IssueListContainer';
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
@@ -18,13 +21,23 @@ export const IssueItem = ({
   createTime,
   isOpen
 }) => {
+  const { check, checkDispatch } = useContext(CheckboxStateContext);
   const iconType = isOpen ? 'alertCircle' : 'archive';
+  const handleCheckBoxClick = ({ currentTarget }) => {
+    if (
+      check.selectedIssues.some(({ id }) => id === Number(currentTarget.id))
+    ) {
+      checkDispatch({ type: 'UNCHECK', payload: { id } });
+    } else {
+      checkDispatch({ type: 'CHECK', payload: { id } });
+    }
+  };
 
   return (
     isOpen && (
       <MyIssueItem>
         <MyIssueBox>
-          <CheckBox type={'initial'} onClick={null} />
+          <CheckBox id={id} onChange={handleCheckBoxClick} />
           <MyIssue>
             <MyIssueTitle>
               <Icon iconType={iconType} fill={colors.blue} />

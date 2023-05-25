@@ -11,7 +11,6 @@ export const FilterStateContext = React.createContext();
 export const IssueListContext = React.createContext();
 
 export const IssueList = () => {
-  const [state, dispatch] = useReducer(filterReducer, initialFilterState);
   const [issues, setIssue] = useState([]);
   const initData = async () => {
     const response = await fetchData(`/issueList`);
@@ -22,8 +21,10 @@ export const IssueList = () => {
     initData();
   }, []);
 
+  const [state, stateDispatch] = useReducer(filterReducer, initialFilterState);
+
   return (
-    <FilterStateContext.Provider value={{ state, dispatch }}>
+    <FilterStateContext.Provider value={{ state, stateDispatch }}>
       <IssueListContext.Provider value={issues}>
         <MyIssueListPage>
           <FilterSection />

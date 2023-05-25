@@ -80,12 +80,12 @@ export const DropdownTabs = () => {
 
   return (
     <MyDropdownTabs>
-      {tabTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
+      {tabTypes.map(({ tabName, filterTabKey, filterOption }) => (
         <Dropdown
-          key={index}
-          type={'tabs'}
-          title={tabName}
+          key={filterTabKey}
+          tabId={filterTabKey}
           tabName={tabName}
+          type={'tabs'}
           tabOptions={getFilteredData(filterTabKey, filterOption)}
         />
       ))}
@@ -101,5 +101,9 @@ const MyDropdownTabs = styled.div`
   > svg,
   > button {
     cursor: pointer;
+  }
+
+  button {
+    padding: 10px;
   }
 `;

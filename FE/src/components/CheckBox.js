@@ -1,3 +1,7 @@
+import { useState } from 'react';
+
+import styled from 'styled-components';
+
 import { Icon } from '../assets/Icon';
 import { colors } from '../styles/color';
 
@@ -16,6 +20,11 @@ const checkType = {
   }
 };
 
-export const CheckBox = ({ type, onClick }) => {
-  return <Icon {...checkType[type]} onClick={onClick} />;
+export const CheckBox = ({ id, checked, onChange }) => {
+  const isChecked = checked;
+  return (
+    <MyCheckBox id={id} type={'checkbox'} onClick={onChange}></MyCheckBox>
+  );
 };
+
+const MyCheckBox = styled.input``;

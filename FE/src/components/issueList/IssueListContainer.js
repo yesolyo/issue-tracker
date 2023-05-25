@@ -1,14 +1,23 @@
+import React, { useReducer } from 'react';
+
 import styled from 'styled-components';
 
 import { IssueListContent } from './IssueListContent';
 import { IssueListHeader } from './IssueListHeader';
+import { checkReducer, initialCheckState } from '../../stores/reducer';
+
+export const CheckboxStateContext = React.createContext();
 
 export const IssueListContainer = () => {
+  const [check, checkDispatch] = useReducer(checkReducer, initialCheckState);
+
   return (
-    <MyIssueListContainer>
-      <IssueListHeader />
-      <IssueListContent />
-    </MyIssueListContainer>
+    <CheckboxStateContext.Provider value={{ check, checkDispatch }}>
+      <MyIssueListContainer>
+        <IssueListHeader />
+        <IssueListContent />
+      </MyIssueListContainer>
+    </CheckboxStateContext.Provider>
   );
 };
 

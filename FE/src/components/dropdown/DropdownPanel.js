@@ -8,9 +8,20 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
 export const DropdownPanel = React.memo(
-  ({ type, title, options, isLeft, selectedOption, handleDropdownChange }) => {
+  ({
+    tabId,
+    tabName,
+    type,
+    options,
+    isLeft,
+    selectedOption,
+    handleDropdownChange
+  }) => {
     const handleOptionClick = ({ currentTarget }) => {
-      handleDropdownChange(currentTarget.id);
+      handleDropdownChange(
+        currentTarget.id,
+        currentTarget.getAttribute('value')
+      );
     };
 
     const iconType =
@@ -19,12 +30,13 @@ export const DropdownPanel = React.memo(
       type === 'sidebar' ? MySidebarPanel : MyDefaultPanel;
     return (
       <MyDropdownPanel isLeft={isLeft}>
-        {type === 'sidebar' || <h3>{title} 필터</h3>}
+        {type === 'sidebar' || <h3>{tabName} 필터</h3>}
         <ul>
           {type === 'tabs' && (
             <li id={'none'} onMouseUp={handleOptionClick}>
-              {title}
-              {title === '담당자' || title === '작성자' ? `가` : `이`} 없는 이슈
+              {tabName}
+              {tabName === '담당자' || tabName === '작성자' ? `가` : `이`} 없는
+              이슈
               <Icon iconType={iconType} fill={colors.gray700} />
             </li>
           )}
@@ -32,6 +44,7 @@ export const DropdownPanel = React.memo(
             options.map((option) => (
               <DropdownPanelItem
                 key={option.id}
+                tabId={tabId}
                 id={option.id}
                 {...option}
                 isSelected={String(option.id) === selectedOption}

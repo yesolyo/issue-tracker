@@ -6,9 +6,9 @@ import { DropdownPanel } from './DropdownPanel';
 import { Button } from '../button/Button';
 
 export const Dropdown = ({
-  type,
-  title,
+  tabId,
   tabName,
+  type,
   tabOptions,
   buttonOption,
   isLeft
@@ -19,14 +19,16 @@ export const Dropdown = ({
     iconType: 'chevronDown',
     isIcon: true,
     isLeftPosition: false,
-    buttonText: title
+    buttonText: tabName
   };
 
   const buttonType = buttonOption || defaultButtonOption;
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('isOpen');
-  const handleDropdownChange = (selectedOption) => {
+  const [selectedTab, setSelectedTab] = useState('');
+  const handleDropdownChange = (selectedOption, selectedTab) => {
     setSelectedOption(selectedOption);
+    setSelectedTab(selectedTab);
   };
   const panelRef = useRef(null);
   useEffect(() => {
@@ -49,8 +51,9 @@ export const Dropdown = ({
       <Button {...buttonType} />
       {isDropDown && (
         <DropdownPanel
+          tabId={tabId}
+          tabName={tabName}
           type={type}
-          title={tabName}
           options={tabOptions}
           isLeft={isLeft}
           selectedOption={selectedOption}

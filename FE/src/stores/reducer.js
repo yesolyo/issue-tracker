@@ -11,9 +11,6 @@ export const filterReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case 'INIT': {
-      return payload;
-    }
     case 'RESET': {
       return initialFilterState;
     }
@@ -29,25 +26,41 @@ export const filterReducer = (state, action) => {
 };
 
 export const initialCheckState = {
-  checkBox: 'initial',
-  selectedIssue: {}
+  isAllChecked: false, // false(initial) 또는 true(disable)
+  selectedIssues: []
 };
 
 export const checkReducer = (state, action) => {
+  const { selectedIssues } = state;
   const { type, payload } = action;
 
   switch (type) {
     case 'CHECK': {
-      break;
+      return {
+        isAllChecked: true,
+        selectedIssues: [...selectedIssues, payload]
+      };
     }
     case 'UNCHECK': {
-      break;
+      const updateSelectedIssues = selectedIssues.filter(
+        ({ id }) => id !== payload.id
+      );
+      const updateIsAllChecked = updateSelectedIssues.length > 0;
+      return {
+        isAllChecked: updateIsAllChecked,
+        selectedIssues: [...updateSelectedIssues]
+      };
     }
     case 'ALL_CHECK': {
-      break;
+      // check박스가 몇개있는지 카운트를 어떻게 함 ?? (모두선택)
+      const updateSelectedIssues = [payload];
+      return {
+        isAllChecked: true,
+        selectedIssues: []
+      };
     }
     case 'ALL_UNCHECK': {
-      break;
+      return { isAllChecked: false, selectedIssues: [] };
     }
   }
 };

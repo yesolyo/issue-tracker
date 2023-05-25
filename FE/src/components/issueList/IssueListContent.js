@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 
 import styled from 'styled-components';
 
@@ -7,7 +7,7 @@ import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 
-export const IssueListContent = () => {
+export const IssueListContent = React.memo(() => {
   const issues = useContext(IssueListContext);
   const issueListData = issues.issueList;
 
@@ -24,7 +24,7 @@ export const IssueListContent = () => {
         )}
     </MyIssueListContent>
   );
-};
+});
 
 const MyIssueListContent = styled.div`
   > div:not(:last-child) {
