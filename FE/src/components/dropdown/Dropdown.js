@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { DropdownPanel } from './DropdownPanel';
+import { fetchData } from '../../utils/fetch';
 import { Button } from '../button/Button';
 
 const defaultButtonOption = {
@@ -17,6 +18,7 @@ export const Dropdown = ({
   tabId,
   tabName,
   tabOptions,
+  filterOptions,
   buttonOption,
   isLeft,
   setValue,
@@ -25,12 +27,16 @@ export const Dropdown = ({
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('isOpen');
   const [selectedTab, setSelectedTab] = useState('');
+  const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
+
   const handleDropdownChange = (selectedOption, selectedTab) => {
     setSelectedOption(selectedOption);
     setSelectedTab(selectedTab);
     if (setValue) setValue(selectedOption);
   };
+
   const panelRef = useRef(null);
+
   useEffect(() => {
     const handleClick = (e) => {
       if (panelRef.current && !panelRef.current.contains(e.target)) {
@@ -41,20 +47,36 @@ export const Dropdown = ({
     return () => window.removeEventListener('mousedown', handleClick);
   }, [panelRef]);
 
+  const fetchSelectedTab = async (selectedTab, filterOptions) => {
+    const selectedTabApi =
+      selectedTab === 'assignees' || selectedTab === 'author'
+        ? 'user'
+        : selectedTab;
+    const response = await fetchData(`/${selectedTabApi}`);
+    const tabData = await getFilteredOptions(filterOptions, response);
+    setTabOptionsInfo(tabData);
+  };
+
+  const getFilteredOptions = (filterOptions, tabOptionsInfo) => {
+    return tabOptionsInfo?.map((option) => filterOptions(option));
+  };
+
+  const handleDropdownTabMouseDown = () => {
+    setIsDropDown(!isDropDown);
+    setSelectedTab(tabId);
+    if (tabId === 'filter') return;
+    !isDropDown && fetchSelectedTab(tabId, filterOptions);
+  };
+
   return (
-    <MyDropdown
-      ref={panelRef}
-      onClick={() => {
-        setIsDropDown(!isDropDown);
-      }}
-    >
+    <MyDropdown ref={panelRef} onMouseDown={handleDropdownTabMouseDown}>
       <Button {...defaultButtonOption} buttonText={tabName} {...buttonOption} />
       {isDropDown && (
         <DropdownPanel
           tabId={tabId}
           tabName={tabName}
           type={type}
-          options={tabOptions}
+          options={tabOptions || tabOptionsInfo}
           isLeft={isLeft}
           selectedOption={selectedOption}
           handleDropdownChange={handleDropdownChange}

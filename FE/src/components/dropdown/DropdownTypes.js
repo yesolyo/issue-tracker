@@ -8,20 +8,18 @@ export const tabTypes = {
         option: author.name,
         profileUrl: author.profileUrl
       };
-    },
+    }
   },
   labels: {
     tabId: 'labels',
     tabName: '레이블',
-    filterOptions (labels) {
-      return labels.map((label) => {
-        return {
-          id: label.id,
-          option: label.name,
-          backgroundColor: label.backgroundColor,
-          fontColor: label.fontColor
-        };
-      });
+    filterOptions (label) {
+      return {
+        id: label.id,
+        option: label.name,
+        backgroundColor: label.backgroundColor,
+        fontColor: label.fontColor
+      };
     }
   },
   milestone: {
@@ -37,14 +35,12 @@ export const tabTypes = {
   assignees: {
     tabId: 'assignees',
     tabName: '담당자',
-    filterOptions (assignees) {
-      return assignees.map((assignee) => {
-        return {
-          id: assignee.id,
-          option: assignee.name,
-          profileUrl: assignee.profileUrl
-        };
-      });
-    },
+    filterOptions (assignee) {
+      return {
+        id: assignee.id,
+        option: assignee.name,
+        profileUrl: assignee.profileUrl
+      };
+    }
   }
 };

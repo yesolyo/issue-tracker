@@ -51,16 +51,3 @@ export const convertFilterQueryToInputValue = ({
     .filter((query) => query)
     .join(' ');
 };
-
-// console.log(
-//   getFilterQueryString({
-//     isOpen: true,
-//     isWrittenByMe: true
-//   })
-// );
-// console.log(
-//   convertFilterQueryToInputValue({
-//     isOpen: true,
-//     isWrittenByMe: true
-//   })
-// );

@@ -13,7 +13,7 @@ export const IssueListContext = React.createContext();
 export const IssueList = () => {
   const [issues, setIssues] = useState([]);
   const initData = async () => {
-    const response = await fetchData(`/issueList`);
+    const response = await fetchData('/issues');
     setIssues(response);
   };
 

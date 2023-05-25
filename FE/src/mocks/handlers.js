@@ -6,7 +6,7 @@ import issueData from './mockIssueData.json';
 import userData from './userData.json';
 
 export const handlers = [
-  rest.get('/issueList', (req, res, ctx) => {
+  rest.get('/issues', (req, res, ctx) => {
     const status = req.url.searchParams.get('status');
     return res(ctx.status(200), ctx.json(issueData));
   }),

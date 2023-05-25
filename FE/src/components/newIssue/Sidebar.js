@@ -1,8 +1,5 @@
-import { useContext } from 'react';
-
 import styled from 'styled-components';
 
-import { NewIssueContext } from '../../pages/NewIssue';
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
@@ -20,25 +17,6 @@ export const Sidebar = ({
     labels: labelSetValue,
     milestone: milestoneSetValue
   };
-  const getFilteredData = (filterTabKey, filterOption) => {
-    const issueData = useContext(NewIssueContext);
-    const issueListData = issueData.issueList;
-    return issueListData
-      ?.reduce((acc, issue) => {
-        const filteredIssue = issue[filterTabKey];
-        if (filteredIssue) {
-          acc.push(filterOption(filteredIssue));
-        }
-        return acc;
-      }, [])
-      .flat(1)
-      .reduce((acc, issue) => {
-        if (acc.findIndex(({ id }) => id === issue.id) === -1) {
-          acc.push(issue);
-        }
-        return acc;
-      }, []);
-  };
 
   return (
     <MySidebar>
@@ -49,7 +27,7 @@ export const Sidebar = ({
           tabId={tabId}
           tabName={tabName}
           setValue={setValue[tabId]}
-          tabOptions={getFilteredData(tabId, filterOptions)}
+          filterOptions={filterOptions}
           buttonOption={{
             disabled: false,
             size: 'm'

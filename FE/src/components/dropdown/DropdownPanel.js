@@ -7,56 +7,52 @@ import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const DropdownPanel = React.memo(
-  ({
-    tabId,
-    tabName,
-    type,
-    options,
-    isLeft,
-    selectedOption,
-    handleDropdownChange,
-    optionalArea
-  }) => {
-    const handleOptionClick = ({ currentTarget }) => {
-      handleDropdownChange(
-        currentTarget.id,
-        currentTarget.getAttribute('value')
-      );
-    };
+export const DropdownPanel = ({
+  tabId,
+  tabName,
+  type,
+  options,
+  isLeft,
+  selectedOption,
+  handleDropdownChange,
+  optionalArea
+}) => {
+  const handleOptionClick = ({ currentTarget }) => {
+    handleDropdownChange(currentTarget.id, currentTarget.getAttribute('value'));
+  };
 
-    const iconType =
-      selectedOption === 'none' ? 'checkOnCircle' : 'checkOffCircle';
-    const MyDropdownPanel =
-      type === 'sidebar' ? MySidebarPanel : MyDefaultPanel;
-    return (
-      <MyDropdownPanel isLeft={isLeft}>
-        {type === 'sidebar' || (
-          <MyDropdownHeader>{tabName} 필터</MyDropdownHeader>
+  const iconType =
+    selectedOption === 'none' ? 'checkOnCircle' : 'checkOffCircle';
+  const MyDropdownPanel = type === 'sidebar' ? MySidebarPanel : MyDefaultPanel;
+  return (
+    <MyDropdownPanel isLeft={isLeft}>
+      {type === 'sidebar' || (
+        <MyDropdownHeader>
+          {type === 'filter' ? '이슈' : tabName} 필터
+        </MyDropdownHeader>
+      )}
+      <MyDropdownList>
+        {type === 'tabs' && (
+          <li id={'none'} value={tabId} onMouseUp={handleOptionClick}>
+            {optionalArea}
+            <Icon iconType={iconType} fill={colors.gray700} />
+          </li>
         )}
-        <MyDropdownList>
-          {type === 'tabs' && (
-            <li id={'none'} value={tabId} onMouseUp={handleOptionClick}>
-              {optionalArea}
-              <Icon iconType={iconType} fill={colors.gray700} />
-            </li>
-          )}
-          {options &&
-            options.map((option) => (
-              <DropdownPanelItem
-                key={option.id}
-                tabId={tabId}
-                id={option.id}
-                {...option}
-                isSelected={String(option.id) === selectedOption}
-                onMouseUp={handleOptionClick}
-              />
-            ))}
-        </MyDropdownList>
-      </MyDropdownPanel>
-    );
-  }
-);
+        {options &&
+          options.map((option) => (
+            <DropdownPanelItem
+              key={option.id}
+              tabId={tabId}
+              id={option.id}
+              {...option}
+              isSelected={String(option.id) === selectedOption}
+              onMouseUp={handleOptionClick}
+            />
+          ))}
+      </MyDropdownList>
+    </MyDropdownPanel>
+  );
+};
 
 const MyDefaultPanel = styled.div`
   position: absolute;
