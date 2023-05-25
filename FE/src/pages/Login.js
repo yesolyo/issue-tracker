@@ -16,7 +16,11 @@ export const Login = () => {
     width: 342,
     height: 72
   };
-
+  const loginUri =
+    'https://github.com/login/oauth/authorize?client_id=3b1dfca72b24afb9ebb2&redirect_uri=http://localhost:3000/auth&scope=user';
+  const loginHandler = () => {
+    window.location.href = loginUri;
+  };
   return (
     <MyLogin>
       <Icon {...logoInfo} />
@@ -26,7 +30,9 @@ export const Login = () => {
         isIcon={false}
         buttonText={'GitHub 계정으로 로그인'}
         isLeftPosition
+        onClick={loginHandler}
       />
+
       <span>or</span>
       <TextInput label={'아이디'} size={'sm'} value={id} setValue={setId} />
       <TextInput label={'비밀번호'} size={'sm'} value={pw} setValue={setPw} />

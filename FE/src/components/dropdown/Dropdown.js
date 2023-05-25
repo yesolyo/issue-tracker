@@ -1,17 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useContext } from 'react';
 
 import styled from 'styled-components';
 
 import { DropdownPanel } from './DropdownPanel';
+import { NewIssueContext } from '../../pages/NewIssue';
 import { Button } from '../button/Button';
-
+import { Sidebar } from '../newIssue/Sidebar';
 export const Dropdown = ({
+  tabId,
   type,
   title,
   tabName,
   tabOptions,
   buttonOption,
-  isLeft
+  isLeft,
+  setValue
 }) => {
   const defaultButtonOption = {
     size: 's',
@@ -25,8 +28,15 @@ export const Dropdown = ({
   const buttonType = buttonOption || defaultButtonOption;
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('isOpen');
-  const handleDropdownChange = (selectedOption) => {
+  const [selectedTab, setSelectedTab] = useState('');
+  const [selectedAssignee, setSelectedAssignee] = useState('');
+  const [selectedLabel, setSelectedLabel] = useState('');
+  const [selectedMilestone, setSelectedMilestone] = useState('');
+
+  const handleDropdownChange = (selectedOption, selectedTab) => {
     setSelectedOption(selectedOption);
+    setSelectedTab(selectedTab);
+    setValue(selectedOption);
   };
   const panelRef = useRef(null);
   useEffect(() => {
@@ -47,8 +57,10 @@ export const Dropdown = ({
       }}
     >
       <Button {...buttonType} />
+      <div>그래</div>
       {isDropDown && (
         <DropdownPanel
+          tabId={tabId}
           type={type}
           title={tabName}
           options={tabOptions}

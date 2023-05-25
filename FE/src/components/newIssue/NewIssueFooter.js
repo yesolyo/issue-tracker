@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -5,6 +7,12 @@ import { Button } from '../button/Button';
 
 export const NewIssueFooter = ({ titleValue, commentValue }) => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [addIssue, setAddIssue] = useState({});
+
+  const handleSubmit = (e) => {
+    setLoading(true);
+  };
   return (
     <MyNewIssueFooter>
       <Button

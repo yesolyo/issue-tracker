@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -78,6 +78,15 @@ export const DropdownTabs = () => {
       }, []);
   };
 
+  const initData = async () => {
+    const response = await fetch('/label');
+    const resData = await response.json();
+    console.log(resData);
+  };
+
+  useEffect(() => {
+    initData();
+  });
   return (
     <MyDropdownTabs>
       {tabTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
