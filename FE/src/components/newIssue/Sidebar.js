@@ -6,55 +6,20 @@ import { NewIssueContext } from '../../pages/NewIssue';
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
+import { tabTypes } from '../dropdown/DropdownTypes';
 
 export const Sidebar = ({
   assigneeSetValue,
   labelSetValue,
   milestoneSetValue
 }) => {
-  const sidebarTypes = [
-    {
-      tabName: '담당자',
-      filterTabKey: 'assignees',
-      setValue: assigneeSetValue,
-      filterOption (assignees) {
-        return assignees.map((assignee) => {
-          return {
-            id: assignee.id,
-            option: assignee.name,
-            profileUrl: assignee.profileUrl
-          };
-        });
-      }
-    },
-    {
-      tabName: '레이블',
-      filterTabKey: 'labels',
-      setValue: labelSetValue,
-      filterOption (labels) {
-        return labels.map((label) => {
-          return {
-            id: label.id,
-            option: label.name,
-            backgroundColor: label.backgroundColor,
-            fontColor: label.fontColor
-          };
-        });
-      }
-    },
-    {
-      tabName: '마일스톤',
-      filterTabKey: 'milestone',
-      setValue: milestoneSetValue,
-      filterOption (milestone) {
-        return {
-          id: milestone.id,
-          option: milestone.name
-        };
-      }
-    }
-  ];
-
+  const sideBarTabs = ['assignees', 'labels', 'milestone'];
+  const sideBarInfo = sideBarTabs.map((tab) => tabTypes[tab]);
+  const setValue = {
+    assignees: assigneeSetValue,
+    labels: labelSetValue,
+    milestone: milestoneSetValue
+  };
   const getFilteredData = (filterTabKey, filterOption) => {
     const issueData = useContext(NewIssueContext);
     const issueListData = issueData.issueList;
@@ -77,28 +42,20 @@ export const Sidebar = ({
 
   return (
     <MySidebar>
-      {sidebarTypes.map(
-        ({ tabName, filterTabKey, setValue, filterOption }, index) => (
-          <Dropdown
-            key={index}
-            tabId={filterTabKey}
-            type={'sidebar'}
-            title={tabName}
-            tabName={tabName}
-            setValue={setValue}
-            tabOptions={getFilteredData(filterTabKey, filterOption)}
-            buttonOption={{
-              disabled: false,
-              size: 'm',
-              color: 'ghostGray',
-              iconType: 'chevronDown',
-              isIcon: true,
-              isLeftPosition: false,
-              buttonText: tabName
-            }}
-          />
-        )
-      )}
+      {sideBarInfo.map(({ tabId, tabName, filterOptions }) => (
+        <Dropdown
+          key={tabId}
+          type={'sidebar'}
+          tabId={tabId}
+          tabName={tabName}
+          setValue={setValue[tabId]}
+          tabOptions={getFilteredData(tabId, filterOptions)}
+          buttonOption={{
+            disabled: false,
+            size: 'm'
+          }}
+        />
+      ))}
     </MySidebar>
   );
 };

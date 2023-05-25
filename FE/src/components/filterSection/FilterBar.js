@@ -8,11 +8,11 @@ import { fontSize, fontType } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
 
 const filterTabOptions = [
-  { id: 'isOpen', isSelected: true, option: '열린 이슈' },
-  { id: 'isWrittenByMe', isSelected: false, option: '내가 작성한 이슈' },
-  { id: 'isAssignedToMe', isSelected: false, option: '나에게 할당된 이슈' },
-  { id: 'commentedByMe', isSelected: false, option: '내가 댓글을 남긴 이슈' },
-  { id: '!isOpen', isSelected: false, option: '닫힌 이슈' }
+  { id: 'isOpen', option: '열린 이슈', isSelected: true },
+  { id: 'isWrittenByMe', option: '내가 작성한 이슈', isSelected: false },
+  { id: 'isAssignedToMe', option: '나에게 할당된 이슈', isSelected: false },
+  { id: 'commentedByMe', option: '내가 댓글을 남긴 이슈', isSelected: false },
+  { id: '!isOpen', option: '닫힌 이슈', isSelected: false }
 ];
 
 export const FilterBar = () => {
@@ -23,19 +23,14 @@ export const FilterBar = () => {
   return (
     <MyfilterBar>
       <Dropdown
-        isLeft
-        title={'필터'}
-        tabName={'이슈'}
+        tabId={'filter'}
+        tabName={'필터'}
         tabOptions={filterTabOptions}
+        buttonOption={{ size: 's' }}
+        isLeft
       />
       <MyIconTextInput>
-        <Icon
-          iconType={'search'}
-          fill={colors.gray600}
-          width={11}
-          height={11}
-        />
-        {/* TODO : 활성화되면 Input text color: gray900 으로 변경 */}
+        <Icon iconType={'search'} fill={colors.gray600} width={11} />
         <input
           type="text"
           value={value}

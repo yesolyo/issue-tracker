@@ -11,10 +11,10 @@ export const FilterStateContext = React.createContext();
 export const IssueListContext = React.createContext();
 
 export const IssueList = () => {
-  const [issues, setIssue] = useState([]);
+  const [issues, setIssues] = useState([]);
   const initData = async () => {
     const response = await fetchData(`/issueList`);
-    setIssue(response);
+    setIssues(response);
   };
 
   useEffect(() => {

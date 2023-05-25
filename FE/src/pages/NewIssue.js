@@ -25,7 +25,6 @@ export const NewIssue = () => {
   useEffect(() => {
     initData();
     setNewIssue({ assignee, label, milestone });
-    console.log(newIssue);
   }, []);
 
   return (

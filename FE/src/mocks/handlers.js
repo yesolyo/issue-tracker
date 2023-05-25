@@ -11,7 +11,7 @@ export const handlers = [
     return res(ctx.status(200), ctx.json(issueData));
   }),
 
-  rest.get('/label', (req, res, ctx) => {
+  rest.get('/labels', (req, res, ctx) => {
     const status = req.url.searchParams.get('status');
     return res(ctx.status(200), ctx.json(labelData));
   }),

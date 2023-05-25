@@ -65,12 +65,11 @@ const MyLogin = styled.form`
   width: 1280px;
 
   > svg {
-      margin: 50px;
-    }
+    margin: 50px;
+  }
 
-    &:not(:last-child) {
-      ${fontSize.L};
-      ${fontType.BOLD};
-    }
+  &:not(:last-child) {
+    ${fontSize.L};
+    ${fontType.BOLD};
   }
 `;
