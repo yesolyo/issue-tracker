@@ -5,6 +5,7 @@ import { colors } from '../../styles/color';
 import { Profile } from '../Profile';
 
 export const DropdownPanelItem = ({
+  tabId,
   id,
   option,
   profileUrl,
@@ -14,7 +15,7 @@ export const DropdownPanelItem = ({
 }) => {
   const iconType = isSelected ? 'checkOnCircle' : 'checkOffCircle';
   return (
-    <li id={id} onMouseUp={onMouseUp}>
+    <li id={id} value={tabId} onMouseUp={onMouseUp}>
       {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
       {backgroundColor && (
         <Icon iconType={'roundImage'} fill={backgroundColor} />

@@ -10,8 +10,11 @@ import { Profile } from '../Profile';
 export const NewIssueContainer = ({
   titleValue,
   titleSetValue,
+  commentSetValue,
+  assigneeSetValue,
+  labelSetValue,
   commentValue,
-  commentSetValue
+  milestoneSetValue
 }) => {
   const issueData = useContext(NewIssueContext);
 
@@ -24,7 +27,11 @@ export const NewIssueContainer = ({
         commentValue={commentValue}
         commentSetValue={commentSetValue}
       />
-      <Sidebar />
+      <Sidebar
+        assigneeSetValue={assigneeSetValue}
+        labelSetValue={labelSetValue}
+        milestoneSetValue={milestoneSetValue}
+      />
     </MyNewIssueContainer>
   );
 };

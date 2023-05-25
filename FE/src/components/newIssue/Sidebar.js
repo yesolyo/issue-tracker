@@ -4,49 +4,57 @@ import styled from 'styled-components';
 
 import { NewIssueContext } from '../../pages/NewIssue';
 import { colors } from '../../styles/color';
+import { fontSize } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
 
-const sidebarTypes = [
-  {
-    tabName: '담당자',
-    filterTabKey: 'assignees',
-    filterOption (assignees) {
-      return assignees.map((assignee) => {
+export const Sidebar = ({
+  assigneeSetValue,
+  labelSetValue,
+  milestoneSetValue
+}) => {
+  const sidebarTypes = [
+    {
+      tabName: '담당자',
+      filterTabKey: 'assignees',
+      setValue: assigneeSetValue,
+      filterOption (assignees) {
+        return assignees.map((assignee) => {
+          return {
+            id: assignee.id,
+            option: assignee.name,
+            profileUrl: assignee.profileUrl
+          };
+        });
+      }
+    },
+    {
+      tabName: '레이블',
+      filterTabKey: 'labels',
+      setValue: labelSetValue,
+      filterOption (labels) {
+        return labels.map((label) => {
+          return {
+            id: label.id,
+            option: label.name,
+            backgroundColor: label.backgroundColor,
+            fontColor: label.fontColor
+          };
+        });
+      }
+    },
+    {
+      tabName: '마일스톤',
+      filterTabKey: 'milestone',
+      setValue: milestoneSetValue,
+      filterOption (milestone) {
         return {
-          id: assignee.id,
-          option: assignee.name,
-          profileUrl: assignee.profileUrl
+          id: milestone.id,
+          option: milestone.name
         };
-      });
+      }
     }
-  },
-  {
-    tabName: '레이블',
-    filterTabKey: 'labels',
-    filterOption (labels) {
-      return labels.map((label) => {
-        return {
-          id: label.id,
-          option: label.name,
-          backgroundColor: label.backgroundColor,
-          fontColor: label.fontColor
-        };
-      });
-    }
-  },
-  {
-    tabName: '마일스톤',
-    filterTabKey: 'milestone',
-    filterOption (milestone) {
-      return {
-        id: milestone.id,
-        option: milestone.name
-      };
-    }
-  }
-];
+  ];
 
-export const Sidebar = () => {
   const getFilteredData = (filterTabKey, filterOption) => {
     const issueData = useContext(NewIssueContext);
     const issueListData = issueData.issueList;
@@ -69,24 +77,28 @@ export const Sidebar = () => {
 
   return (
     <MySidebar>
-      {sidebarTypes.map(({ tabName, filterTabKey, filterOption }, index) => (
-        <Dropdown
-          key={index}
-          type={'sidebar'}
-          title={tabName}
-          tabName={tabName}
-          tabOptions={getFilteredData(filterTabKey, filterOption)}
-          buttonOption={{
-            disabled: false,
-            size: 'm',
-            color: 'ghostGray',
-            iconType: 'chevronDown',
-            isIcon: true,
-            isLeftPosition: false,
-            buttonText: tabName
-          }}
-        />
-      ))}
+      {sidebarTypes.map(
+        ({ tabName, filterTabKey, setValue, filterOption }, index) => (
+          <Dropdown
+            key={index}
+            tabId={filterTabKey}
+            type={'sidebar'}
+            title={tabName}
+            tabName={tabName}
+            setValue={setValue}
+            tabOptions={getFilteredData(filterTabKey, filterOption)}
+            buttonOption={{
+              disabled: false,
+              size: 'm',
+              color: 'ghostGray',
+              iconType: 'chevronDown',
+              isIcon: true,
+              isLeftPosition: false,
+              buttonText: tabName
+            }}
+          />
+        )
+      )}
     </MySidebar>
   );
 };
