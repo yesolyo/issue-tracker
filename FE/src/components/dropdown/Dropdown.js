@@ -47,6 +47,13 @@ export const Dropdown = ({
     return () => window.removeEventListener('mousedown', handleClick);
   }, [panelRef]);
 
+  const handleDropdownTabMouseDown = (e) => {
+    setIsDropDown(!isDropDown);
+    setSelectedTab(tabId);
+    if (tabId === 'filter') return;
+    if (!isDropDown) fetchSelectedTab(tabId, filterOptions);
+  };
+
   const fetchSelectedTab = async (selectedTab, filterOptions) => {
     const selectedTabApi =
       selectedTab === 'assignees' || selectedTab === 'author'
@@ -61,15 +68,8 @@ export const Dropdown = ({
     return tabOptionsInfo?.map((option) => filterOptions(option));
   };
 
-  const handleDropdownTabMouseDown = () => {
-    setIsDropDown(!isDropDown);
-    setSelectedTab(tabId);
-    if (tabId === 'filter') return;
-    !isDropDown && fetchSelectedTab(tabId, filterOptions);
-  };
-
   return (
-    <MyDropdown ref={panelRef} onMouseDown={handleDropdownTabMouseDown}>
+    <MyDropdown ref={panelRef} onClick={handleDropdownTabMouseDown}>
       <Button {...defaultButtonOption} buttonText={tabName} {...buttonOption} />
       {isDropDown && (
         <DropdownPanel
