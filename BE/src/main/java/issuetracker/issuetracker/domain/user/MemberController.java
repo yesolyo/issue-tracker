@@ -10,9 +10,9 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-public class UserController {
+public class MemberController {
 
-    private final UserRepository repository;
+    private final MemberRepository repository;
 
     @GetMapping("/assignees")
     public List<AssigneeDTO> getAssignees() {
