@@ -1,21 +1,15 @@
 package issuetracker.issuetracker.domain.label.dto;
 
 import lombok.*;
-import org.springframework.data.annotation.Id;
-
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class LabelDTO {
-    @Id
-    @NotNull
-    private long id;
-    @NotNull
-    private String title;
-    @NotNull
+    private Long id;
+    private String labelName;
     private String backgroundColor;
     private String fontColor;
 }

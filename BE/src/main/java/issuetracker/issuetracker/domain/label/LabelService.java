@@ -2,14 +2,14 @@ package issuetracker.issuetracker.domain.label;
 
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LabelService {
 
     private final LabelRepository repository;
@@ -22,5 +22,4 @@ public class LabelService {
     public List<LabelFilterDTO> getLabelFilter() {
         return repository.getLabelFilter();
     }
-
 }

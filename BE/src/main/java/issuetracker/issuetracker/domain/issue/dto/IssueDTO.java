@@ -3,8 +3,7 @@ package issuetracker.issuetracker.domain.issue.dto;
 import issuetracker.issuetracker.domain.label.dto.LabelDTO;
 import issuetracker.issuetracker.domain.user.dto.AssigneeDTO;
 import issuetracker.issuetracker.domain.user.dto.AuthorDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
@@ -14,6 +13,9 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class IssueDTO {
     @Id
     @NotNull
@@ -37,5 +39,4 @@ public class IssueDTO {
 
     @MappedCollection(idColumn = "issue_id")
     private Set<LabelDTO> labels;
-
 }

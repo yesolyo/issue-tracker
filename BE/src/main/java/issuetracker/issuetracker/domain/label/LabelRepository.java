@@ -1,15 +1,17 @@
 package issuetracker.issuetracker.domain.label;
 
-import issuetracker.issuetracker.domain.issue.Issue;
+
 import issuetracker.issuetracker.domain.label.dto.LabelFilterDTO;
 import issuetracker.issuetracker.domain.label.dto.LabelListDTO;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface LabelRepository extends CrudRepository<Label, Long> {
 
+@Repository
+public interface LabelRepository extends CrudRepository<Label, Long> {
 
     @Query("SELECT " +
             "label.label_id AS id, " +

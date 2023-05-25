@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="issuetracker.issuetracker.domain.issue.repository.IssueMyBatisRepository">
+<mapper namespace="issuetracker.issuetracker.domain.issue.repository.IssueMybatisRepository">
 
     <select id="findIssueFilter" resultMap="IssueResultMap" parameterType="issuetracker.issuetracker.domain.issue.IssueFilterCondition">
         SELECT
@@ -79,14 +79,13 @@
             <result property="name" column="author_name"/>
             <result property="profileUrl" column="author_profile_url"/>
         </association>
-        <collection property="assignees" ofType="issuetracker.issuetracker.domain.user.dto.AssigneeDTO">
+        <collection property="assignees" ofType="issuetracker.issuetracker.domain.user.dto.AssigneeDTO" javaType="java.util.Set">
             <id property="id" column="assignee_id"/>
             <result property="name" column="assignee_name"/>
             <result property="profileUrl" column="assignee_profile_url"/>
         </collection>
         <collection property="labels" ofType="issuetracker.issuetracker.domain.label.dto.LabelDTO" javaType="java.util.Set">
             <id property="id" column="label_id"/>
-            <result property="title" column="label_name"/>
             <result property="backgroundColor" column="background_color"/>
             <result property="fontColor" column="font_color"/>
         </collection>
