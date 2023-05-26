@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { colors } from '../styles/color';
+
 export const Profile = ({ isLarge, width, height, userInfo }) => {
   return (
     <MyProfile

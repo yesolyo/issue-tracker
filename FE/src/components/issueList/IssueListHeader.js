@@ -28,6 +28,7 @@ const checkTabsType = {
 
 const issueButtonTypes = [
   {
+    tabId: 'isOpen',
     buttonText: '열린 이슈',
     status: true,
     buttonOption: {
@@ -40,6 +41,7 @@ const issueButtonTypes = [
     }
   },
   {
+    tabId: '!isOpen',
     buttonText: '닫힌 이슈',
     status: false,
     buttonOption: {
@@ -89,7 +91,9 @@ export const IssueListHeader = () => {
                   onClick={() => setActiveTab(status)}
                   {...buttonOption}
                   buttonText={`${buttonText} (${
-                    status ? countInfo?.openCount : countInfo?.closeCount || 0
+                    status
+                      ? countInfo?.openCount || 0
+                      : countInfo?.closeCount || 0
                   })`}
                 />
               )

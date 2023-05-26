@@ -30,6 +30,11 @@ const MyFilterSection = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+
+  button {
+    font-size: 14px;
+    cursor: pointer;
+  }
 `;
 
 const MyTabButtons = styled.div`

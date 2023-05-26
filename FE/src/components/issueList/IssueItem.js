@@ -11,6 +11,7 @@ import { getTimeElapsed } from '../../utils/timeElapsed';
 import { CheckBox } from '../CheckBox';
 import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
+
 export const IssueItem = ({
   id,
   title,
@@ -21,8 +22,8 @@ export const IssueItem = ({
   createTime,
   isOpen
 }) => {
-  const { checkState, checkDispatch } = useContext(CheckboxStateContext);
   const navigate = useNavigate();
+  const { checkState, checkDispatch } = useContext(CheckboxStateContext);
   const { checkedIssues } = checkState;
   const iconType = isOpen ? 'alertCircle' : 'archive';
   const handleCheckBoxClick = ({ currentTarget }) => {
@@ -121,6 +122,7 @@ const MyIssueTitle = styled.div`
 
   > span {
     ${fontSize.L};
+    cursor: pointer;
   }
 `;
 
@@ -141,6 +143,10 @@ const MyIssueDiscription = styled.div`
 
 const MyIssueAssignee = styled.div`
   padding-right: 15px;
+
+  img {
+    cursor: pointer;
+  }
 
   & > img:first-of-type:not(:last-child) {
     margin-right: -10px;

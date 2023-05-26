@@ -31,4 +31,6 @@ export const CheckBox = ({ id, checked, onChange }) => {
   );
 };
 
-const MyCheckBox = styled.input``;
+const MyCheckBox = styled.input`
+  cursor: pointer;
+`;

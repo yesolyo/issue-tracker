@@ -16,9 +16,9 @@ export const checkBoxReducer = (state, action) => {
     }
     case 'UNCHECK': {
       const updateCheckedIssues = checkedIssues.filter((id) => id !== payload);
-      const isUpdateIsAllChecked = updateCheckedIssues.length > 0;
+      const isAllUpdatedChecked = updateCheckedIssues.length > 0;
       return {
-        isAllChecked: isUpdateIsAllChecked,
+        isAllChecked: isAllUpdatedChecked,
         checkedIssues: updateCheckedIssues
       };
     }

@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import { NewIssueContent } from './NewIssueContent';
-import { Sidebar } from './SideBar';
+import { SideBar } from './SideBar';
 import { NewIssueContext } from '../../pages/NewIssue';
 import { Profile } from '../Profile';
 
@@ -27,7 +27,7 @@ export const NewIssueContainer = ({
         commentValue={commentValue}
         commentSetValue={commentSetValue}
       />
-      <Sidebar
+      <SideBar
         assigneeSetValue={assigneeSetValue}
         labelSetValue={labelSetValue}
         milestoneSetValue={milestoneSetValue}

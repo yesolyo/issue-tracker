@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 import { IssueDetailContent } from './IssueDetailContent';
-import { Sidebar } from '../newIssue/SideBar';
+import { SideBar } from '../newIssue/SideBar';
 export const IssueDetailContainer = () => {
   return (
     <MysIssueDetailContainer>
       <IssueDetailContent />
-      <Sidebar />
+      <SideBar />
     </MysIssueDetailContainer>
   );
 };

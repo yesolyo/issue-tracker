@@ -22,8 +22,7 @@ export const IssueDetailContent = () => {
         CommentInfo.map((comment) => (
           <CommentElements
             key={comment.userId}
-            name={comment.userName}
-            profilUrl={comment.userUrl}
+            userInfo={{ name: comment.userName, profileUrl: comment.userUrl }}
             reply={comment.replyContents}
           />
         ))}

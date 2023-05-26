@@ -10,7 +10,6 @@ import { fontSize, fontType } from '../styles/font';
 
 export const Login = () => {
   const navigate = useNavigate();
-
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
