@@ -1,6 +1,25 @@
+import React, { useEffect, useState } from 'react';
+
 import { useParams } from 'react-router-dom';
 
+import { IssueDetailContent } from '../components/issueDetail/IssueDetailContent';
+import { IssueDetailHeader } from '../components/issueDetail/IssueDetailHeader';
+import { fetchAll } from '../utils/fetch';
+export const IssueDetailContext = React.createContext();
 export const IssueDetail = () => {
+  const [issueDetail, setIssueDetail] = useState([]);
   const { id } = useParams();
-  return <div>이슈 상세 페이지</div>;
+  const initData = async () => {
+    const response = await fetchAll('/issueDetail', '/issueDetail/comment');
+    setIssueDetail(response);
+  };
+  useEffect(() => {
+    initData();
+  }, []);
+  return (
+    <IssueDetailContext.Provider value={issueDetail}>
+      <IssueDetailHeader />
+      <IssueDetailContent />
+    </IssueDetailContext.Provider>
+  );
 };

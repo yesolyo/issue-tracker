@@ -6,7 +6,6 @@ export const Auth = () => {
   const navigate = useNavigate();
   const url = new URL(window.location.href);
   const queryCode = url.searchParams.get('code');
-  console.log(queryCode);
 
   useEffect(() => {
     navigate('/IssueList');

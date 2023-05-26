@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 
 import { NewIssueContent } from './NewIssueContent';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from './SideBar';
 import { NewIssueContext } from '../../pages/NewIssue';
 import { Profile } from '../Profile';
 
