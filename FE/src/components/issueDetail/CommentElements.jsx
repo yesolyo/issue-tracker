@@ -9,6 +9,15 @@ import { Profile } from '../Profile';
 
 // user.map((user) => name = username, profileurl = userurl)
 export const CommentElements = ({ name, profilUrl, reply }) => {
+  const emogiBtn = {
+    size: 's',
+    color: 'ghostGray',
+    iconType: 'smile',
+    iconWidth: '13',
+    isIcon: true,
+    buttonText: '반응',
+    isLeftPosition: true
+  };
   return (
     <MyCommentElements>
       <CommentHeader>
@@ -18,15 +27,7 @@ export const CommentElements = ({ name, profilUrl, reply }) => {
           <spna>1분 전</spna>
         </ProfileInfo>
         <EditHeader>
-          <Button
-            size={'s'}
-            color={'ghostGray'}
-            iconType={'smile'}
-            iconWidth={'13'}
-            isIcon={true}
-            buttonText={'반응'}
-            isLeftPosition={true}
-          />
+          <Button {...emogiBtn} />
         </EditHeader>
       </CommentHeader>
       <div>{reply}</div>
@@ -35,8 +36,8 @@ export const CommentElements = ({ name, profilUrl, reply }) => {
 };
 
 const MyCommentElements = styled.div`
-  width: 958px;
-  background: #f7f7fc;
+  width: 100%;
+  background: ${colors.gray100};
   > div {
     :first-child {
       background: ${colors.gray100};

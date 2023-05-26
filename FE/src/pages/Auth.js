@@ -8,6 +8,6 @@ export const Auth = () => {
   const queryCode = url.searchParams.get('code');
 
   useEffect(() => {
-    navigate('/IssueList');
+    navigate('/issues');
   });
 };

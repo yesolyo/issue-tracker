@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
+import { Header } from '../components/Header';
+import { IssueDetailContainer } from '../components/issueDetail/IssueDetailContainer';
 import { IssueDetailContent } from '../components/issueDetail/IssueDetailContent';
 import { IssueDetailHeader } from '../components/issueDetail/IssueDetailHeader';
 import { fetchAll } from '../utils/fetch';
 export const IssueDetailContext = React.createContext();
+
 export const IssueDetail = () => {
   const [issueDetail, setIssueDetail] = useState([]);
   const { id } = useParams();
@@ -18,8 +21,9 @@ export const IssueDetail = () => {
   }, []);
   return (
     <IssueDetailContext.Provider value={issueDetail}>
+      <Header />
       <IssueDetailHeader />
-      <IssueDetailContent />
+      <IssueDetailContainer />
     </IssueDetailContext.Provider>
   );
 };

@@ -20,23 +20,31 @@ export const FilterBar = () => {
   const handleChange = (e) => {
     setValue(e.target.value);
   };
+
+  const dropdownInfo = {
+    tabId: 'filter',
+    tabName: '필터',
+    tabOptions: filterTabOptions,
+    buttonOption: { size: 's' },
+    isLeft: true
+  };
+  const iconInfo = {
+    iconType: 'search',
+    fill: colors.gray600,
+    width: 11
+  };
+  const filterInput = {
+    type: 'text',
+    value,
+    onChange: handleChange,
+    placeholder: 'Search all issues'
+  };
   return (
     <MyfilterBar>
-      <Dropdown
-        tabId={'filter'}
-        tabName={'필터'}
-        tabOptions={filterTabOptions}
-        buttonOption={{ size: 's' }}
-        isLeft
-      />
+      <Dropdown {...dropdownInfo} />
       <MyIconTextInput>
-        <Icon iconType={'search'} fill={colors.gray600} width={11} />
-        <input
-          type="text"
-          value={value}
-          onChange={handleChange}
-          placeholder="Search all issues"
-        />
+        <Icon {...iconInfo} />
+        <input {...filterInput} />
       </MyIconTextInput>
     </MyfilterBar>
   );

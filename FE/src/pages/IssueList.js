@@ -3,6 +3,7 @@ import React, { useEffect, useReducer, useState } from 'react';
 import styled from 'styled-components';
 
 import { FilterSection } from '../components/filterSection/FiterSection';
+import { Header } from '../components/Header';
 import { IssueListContainer } from '../components/issueList/IssueListContainer';
 import { filterReducer, initialFilterState } from '../stores/reducer';
 import { fetchData } from '../utils/fetch';
@@ -27,6 +28,7 @@ export const IssueList = () => {
     <FilterStateContext.Provider value={{ state, stateDispatch }}>
       <IssueListContext.Provider value={issues}>
         <MyIssueListPage>
+          <Header />
           <FilterSection />
           <IssueListContainer />
         </MyIssueListPage>

@@ -5,8 +5,16 @@ export const Icon = ({
   iconType,
   width = 16,
   height,
-  fill = colors.gray50
+  fill = colors.gray50,
+  onClick
 }) => {
   const IconSvg = icons[iconType];
-  return <IconSvg width={width} height={height || width} fill={fill} />;
+  return (
+    <IconSvg
+      width={width}
+      height={height || width}
+      fill={fill}
+      onClick={onClick}
+    />
+  );
 };
