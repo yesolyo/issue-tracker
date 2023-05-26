@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Profile } from './Profile';
@@ -8,6 +9,7 @@ import { fontSize, fontType } from '../styles/font';
 import { fetchData } from '../utils/fetch';
 
 export const Header = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState('');
   const initData = async () => {
     const resData = await fetchData('/issues');
@@ -21,7 +23,8 @@ export const Header = () => {
   const logoInfo = {
     iconType: 'logotypeLarge',
     width: 200,
-    height: 40
+    height: 40,
+    onClick: () => navigate('/issues')
   };
 
   return (

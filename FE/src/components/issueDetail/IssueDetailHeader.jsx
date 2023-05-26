@@ -12,43 +12,63 @@ import { PageHeader } from '../PageHeader';
 export const IssueDetailHeader = () => {
   const issueDetail = useContext(IssueDetailContext);
   const [issueSubInfo, CommentInfo] = issueDetail;
+
+  const pageHeaderInfo = {
+    leftChild: `FE 이슈트래커 디자인 시스템 구현`,
+    middleChild: `#${issueSubInfo?.id}`
+  };
+
+  const editBtn = [
+    {
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'edit',
+      iconWidth: '12',
+      buttonText: '제목 편집'
+    },
+    {
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'archive',
+      iconWidth: '12',
+
+      buttonText: '이슈 닫기'
+    }
+  ];
+
+  const labelTagBtn = {
+    tagType: 'open',
+    hasIcon: true,
+    icon: 'archive',
+    text: '열린 이슈',
+    backgroundColor: colors.blue,
+    fontColor: colors.gray50
+  };
+
   return (
     <MyIssueDetailHeader>
       <PageHeader
-        leftChild={`FE 이슈트래커 디자인 시스템 구현`}
-        middleChild={`#${issueSubInfo?.id}`}
+        leftChild={pageHeaderInfo.leftChild}
+        middleChild={pageHeaderInfo.middleChild}
         rigthChild={
           <ButtonHeader>
-            <Button
-              size={'s'}
-              color={'outlineBlue'}
-              iconType={'edit'}
-              iconWidth={'12'}
-              isIcon={true}
-              buttonText={'제목 편집'}
-              isLeftPosition={true}
-            />
-            <Button
-              size={'s'}
-              color={'outlineBlue'}
-              iconType={'archive'}
-              iconWidth={'12'}
-              isIcon={true}
-              buttonText={'이슈 닫기'}
-              isLeftPosition={true}
-            />
+            {editBtn.map((edit) => (
+              <Button
+                key={edit.index}
+                size={edit.size}
+                color={edit.color}
+                iconType={edit.iconType}
+                iconWidth={edit.iconWidth}
+                isIcon
+                buttonText={edit.buttonText}
+                isLeftPosition
+              />
+            ))}
           </ButtonHeader>
         }
       />
       <SubHeader>
-        <LabelTag
-          tagType={'open'}
-          hasIcon={true}
-          icon={'archive'}
-          text={'열린 이슈'}
-          backgroundColor={colors.blue}
-          fontColor={colors.gray50}
-        />
+        <LabelTag {...labelTagBtn} />
         <p>
           이 이슈가 {getTimeElapsed(issueSubInfo?.createTime)}에{' '}
           {issueSubInfo?.author.name}님에 의해 열렸습니다. * 코멘트{' '}

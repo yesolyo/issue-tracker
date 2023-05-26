@@ -23,10 +23,11 @@ const App = () => {
       <BrowserRouter>
         <div className="App">
           {login.isLogin && <Header />}
+          {/* {<Header />} */}
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/Issues" element={<IssueList />} />
+            <Route path="/issues" element={<IssueList />} />
             <Route path="/newIssue" element={<NewIssue />} />
             <Route path="/issueDetail/:id" element={<IssueDetail />} />
             <Route path="/labels" element={<LabelList />} />

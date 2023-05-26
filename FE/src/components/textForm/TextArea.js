@@ -40,7 +40,7 @@ const areaSizes = {
     height: 384px;
   `,
   s: css`
-    width: 958px;
+    width: 938px;
     height: 188px;
   `
 };
@@ -51,7 +51,7 @@ const fileSizes = {
     height: 52px;
   `,
   s: css`
-    width: 988px;
+    width: 958px;
     height: 52px;
   `
 };
@@ -61,6 +61,7 @@ const MyTextArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 938px;
 
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
@@ -87,6 +88,8 @@ const MyTextArea = styled.div`
   & textarea {
     ${(props) => props.areaSize};
     border-radius: 11px 11px 0px 0px;
+    box-sizing: border-box;
+    width: 100%;
     border: none;
     outline: none;
     box-shadow: none;
@@ -111,6 +114,8 @@ const MyFileArea = styled.div`
   border-top: dashed ${colors.gray300};
   background: ${colors.gray200};
   border-radius: 0px 0px 11px 11px;
+  width: 100%;
+
   > div {
     padding: 0px 20px 0px 0px;
   }

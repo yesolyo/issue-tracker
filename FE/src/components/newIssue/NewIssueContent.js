@@ -33,5 +33,5 @@ const MyNewIssueContent = styled.form`
   gap: 10px;
   display: flex;
   flex-direction: column;
-  width: 912px;
+  width: 938px;
 `;

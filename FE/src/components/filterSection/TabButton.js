@@ -23,7 +23,7 @@ export const TabButton = () => {
           isIcon
           buttonText={`레이블 (${issueCountInfo?.labelCount || 0})`}
           isLeftPosition
-          onClick={() => navigate('/LabelList')}
+          onClick={() => navigate('/labels')}
         />
       </MyLeftTabButton>
       <MyRightTabButton>
@@ -35,7 +35,7 @@ export const TabButton = () => {
           isIcon
           buttonText={`마일스톤 (${issueCountInfo?.milestoneCount || 0})`}
           isLeftPosition
-          onClick={() => navigate('/MilestoneList')}
+          onClick={() => navigate('/milestone')}
         />
       </MyRightTabButton>
     </MyTabButton>
@@ -56,9 +56,13 @@ const MyTabButton = styled.div`
     margin: 0 auto;
   }
 
-  div {
+  & div {
     width: 100%;
     border: 1px solid ${colors.gray300};
+
+    :last-child {
+      border-left: none;
+    }
 
     &: hover {
       background: ${colors.gray200};
