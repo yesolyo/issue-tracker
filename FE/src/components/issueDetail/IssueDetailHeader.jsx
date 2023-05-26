@@ -20,6 +20,7 @@ export const IssueDetailHeader = () => {
 
   const editBtn = [
     {
+      id: 1,
       size: 's',
       color: 'outlineBlue',
       iconType: 'edit',
@@ -27,6 +28,7 @@ export const IssueDetailHeader = () => {
       buttonText: '제목 편집'
     },
     {
+      id: 2,
       size: 's',
       color: 'outlineBlue',
       iconType: 'archive',
@@ -54,7 +56,7 @@ export const IssueDetailHeader = () => {
           <ButtonHeader>
             {editBtn.map((edit) => (
               <Button
-                key={edit.index}
+                key={edit.id}
                 size={edit.size}
                 color={edit.color}
                 iconType={edit.iconType}

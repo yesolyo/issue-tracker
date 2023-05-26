@@ -1,40 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import styled, { css } from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const TextInput = ({ label, size, value, setValue }) => {
-  // const [value, setValue] = useState('');
+export const TextInput = ({ label, size, value, setValue, myInputRef }) => {
   const inputSize = inputSizes[size];
-
-  // const handleChange = (e) => {
-  //   setValue(e.target.value);
-  // };
-
-  // const handleIdChange = (e) => {
-  //   id(e.target.value);
-  // };
-  // const handlePwChange = (e) => {
-  //   pw(e.target.value);
-  // };
 
   return (
     <MyTextInput inputSize={inputSize} value={value}>
       <input
         type="text"
-        // value={value}
         onChange={(e) => {
           setValue(e.target.value);
         }}
-        // onChange={
-        //   label !== '제목'
-        //     ? label === '아이디'
-        //       ? handleIdChange
-        //       : handlePwChange
-        //     : handleChange
-        // }
+        ref={myInputRef}
       />
       <label className={value && 'filled'} htmlFor={name}>
         {label}
@@ -122,6 +103,6 @@ const MyTextInput = styled.div`
 
   & input:focus {
     background: ${colors.gray50};
-    box-shadow: 0 0 0 2px #79b1ff;
+    box-shadow: 0 0 0 2px ${colors.blue};
   }
 `;

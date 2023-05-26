@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -7,19 +7,45 @@ import { Icon } from '../assets/Icon';
 import { Button } from '../components/button/Button';
 import { TextInput } from '../components/textForm/TextInput';
 import { fontSize, fontType } from '../styles/font';
-
+import { fetchData } from '../utils/fetch';
 export const Login = () => {
   const navigate = useNavigate();
+  const idInputRef = useRef(null);
+  const pwInputRef = useRef(null);
 
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
+  const [isLogin, setIsLogin] = useState(true);
+  const [user, setUser] = useState([]);
+
+  const initData = async () => {
+    const response = await fetchData('/user');
+    setUser(response);
+  };
 
   const loginUri =
     'https://github.com/login/oauth/authorize?client_id=3b1dfca72b24afb9ebb2&redirect_uri=http://localhost:3000/auth&scope=user';
 
-  const loginHandler = () => {
+  const githubLoginHandler = () => {
     window.location.href = loginUri;
   };
+
+  const loginHandler = () => {
+    user.forEach((login) => {
+      if (login.userId === id && login.userPw === pw) {
+        setIsLogin(true);
+        navigate('/issues');
+      }
+    });
+    setIsLogin(false);
+    idInputRef.current.focus();
+    pwInputRef.current.focus();
+    console.log(isLogin);
+  };
+
+  useEffect(() => {
+    initData();
+  }, []);
 
   const logoInfo = {
     iconType: 'logotypeLarge',
@@ -33,21 +59,27 @@ export const Login = () => {
     isIcon: false,
     buttonText: 'GitHub 계정으로 로그인',
     isLeftPosition: true,
-    onClick: loginHandler
+    onClick: githubLoginHandler
   };
 
   const loginInput = [
     {
+      id: 1,
       label: '아이디',
       size: 'sm',
       value: id,
-      setValue: setId
+      setValue: setId,
+      loginValue: isLogin,
+      myInputRef: idInputRef
     },
     {
+      id: 2,
       label: '비밀번호',
       size: 'sm',
       value: pw,
-      setValue: setPw
+      setValue: setPw,
+      loginValue: isLogin,
+      myInputRef: pwInputRef
     }
   ];
 
@@ -58,7 +90,7 @@ export const Login = () => {
     buttonText: '아이디로 로그인',
     disabled: id.length < 1 || pw.length < 1,
     isLeftPosition: true,
-    onClick: () => navigate('/issues')
+    onClick: loginHandler
   };
 
   const registerBtn = {
@@ -78,11 +110,12 @@ export const Login = () => {
       <span>or</span>
       {loginInput.map((login) => (
         <TextInput
-          key={login.index}
+          key={login.id}
           label={login.label}
           size={login.size}
           value={login.value}
           setValue={login.setValue}
+          myInputRef={login.myInputRef}
         />
       ))}
       <Button {...idLoginBtn} />

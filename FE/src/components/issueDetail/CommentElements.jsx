@@ -24,7 +24,7 @@ export const CommentElements = ({ name, profilUrl, reply }) => {
         <ProfileInfo>
           <MyProfile src={profilUrl} alt={name} />
           <span>{name}</span>
-          <spna>1분 전</spna>
+          <span>1분 전</span>
         </ProfileInfo>
         <EditHeader>
           <Button {...emogiBtn} />
