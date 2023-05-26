@@ -22,8 +22,8 @@ const App = () => {
       <GlobalStyle />
       <BrowserRouter>
         <div className="App">
-          {login.isLogin && <Header />}
-          {/* {<Header />} */}
+          {/* {login.isLogin && <Header />} */}
+          {<Header />}
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/auth" element={<Auth />} />

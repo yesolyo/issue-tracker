@@ -15,7 +15,7 @@ export const NewIssueContent = ({
     <MyNewIssueContent>
       <TextInput
         label={'제목'}
-        size={'lg'}
+        height={'70px'}
         value={titleValue}
         setValue={titleSetValue}
       />
@@ -34,4 +34,8 @@ const MyNewIssueContent = styled.form`
   display: flex;
   flex-direction: column;
   width: 938px;
+
+  > div {
+    width: 100%;
+  }
 `;

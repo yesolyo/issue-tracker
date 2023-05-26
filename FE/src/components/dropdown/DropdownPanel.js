@@ -14,11 +14,11 @@ export const DropdownPanel = ({
   options,
   isLeft,
   selectedOption,
-  handleDropdownChange,
+  handleSelectedOption,
   optionalArea
 }) => {
   const handleOptionClick = ({ currentTarget }) => {
-    handleDropdownChange(currentTarget.id, currentTarget.getAttribute('value'));
+    handleSelectedOption(currentTarget.id, currentTarget.getAttribute('value'));
   };
 
   const iconType =
@@ -28,7 +28,7 @@ export const DropdownPanel = ({
     <MyDropdownPanel isLeft={isLeft}>
       {type === 'sidebar' || (
         <MyDropdownHeader>
-          {type === 'filter' ? '이슈' : tabName} 필터
+          {tabId === 'filter' ? '이슈' : tabName} 필터
         </MyDropdownHeader>
       )}
       <MyDropdownList>
