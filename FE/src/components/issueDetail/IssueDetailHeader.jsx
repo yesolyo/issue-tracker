@@ -11,8 +11,7 @@ import { PageHeader } from '../PageHeader';
 
 export const IssueDetailHeader = () => {
   const issueDetail = useContext(IssueDetailContext);
-  const issueSubInfo = issueDetail[0];
-  const CommentInfo = issueDetail[1];
+  const [issueSubInfo, CommentInfo] = issueDetail;
   return (
     <MyIssueDetailHeader>
       <PageHeader

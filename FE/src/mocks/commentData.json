@@ -1,8 +1,8 @@
 [
   {
     "userId": 0,
-    "userName": "John",
-    "userUrl": "https://example.com/users/0",
+    "userName": "Demian",
+    "userUrl": "https://github.com/bread1022/TIL/assets/107349637/a981d3b0-77ec-4402-a658-ca6a41ed41de",
     "replyContents": "Hello, everyone!",
     "emojiShape": "heart",
     "emojiCount": 10,
@@ -10,8 +10,8 @@
   },
   {
     "userId": 1,
-    "userName": "Jane",
-    "userUrl": "https://example.com/users/1",
+    "userName": "GamJa",
+    "userUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732",
     "replyContents": "I agree with John!",
     "emojiShape": "thumbs-up",
     "emojiCount": 5,
