@@ -1,11 +1,12 @@
 import { useEffect, useState, useRef } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Icon } from '../assets/Icon';
 import { Button } from '../components/button/Button';
 import { TextInput } from '../components/textForm/TextInput';
+import { colors } from '../styles/color';
 import { fontSize, fontType } from '../styles/font';
 import { fetchData } from '../utils/fetch';
 export const Login = () => {
@@ -18,10 +19,16 @@ export const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [user, setUser] = useState([]);
 
-  const initData = async () => {
-    const response = await fetchData('/user');
-    setUser(response);
+  const focusColor = {
+    blue: css`
+      box-shadow: 0 0 0 2px ${colors.blue};
+    `,
+    red: css`
+      box-shadow: 0 0 0 2px ${colors.red};
+    `
   };
+
+  const focusStyle = isLogin ? focusColor.blue : focusColor.red;
 
   const loginUri =
     'https://github.com/login/oauth/authorize?client_id=3b1dfca72b24afb9ebb2&redirect_uri=http://localhost:3000/auth&scope=user';
@@ -40,7 +47,11 @@ export const Login = () => {
     setIsLogin(false);
     idInputRef.current.focus();
     pwInputRef.current.focus();
-    console.log(isLogin);
+  };
+
+  const initData = async () => {
+    const response = await fetchData('/user');
+    setUser(response);
   };
 
   useEffect(() => {
@@ -70,7 +81,7 @@ export const Login = () => {
       value: id,
       setValue: setId,
       loginValue: isLogin,
-      myInputRef: idInputRef
+      myInputRef: idInputRef,
     },
     {
       id: 2,
@@ -79,7 +90,7 @@ export const Login = () => {
       value: pw,
       setValue: setPw,
       loginValue: isLogin,
-      myInputRef: pwInputRef
+      myInputRef: pwInputRef,
     }
   ];
 
@@ -115,6 +126,7 @@ export const Login = () => {
           size={login.size}
           value={login.value}
           setValue={login.setValue}
+          focusStyle={focusStyle}
           myInputRef={login.myInputRef}
         />
       ))}

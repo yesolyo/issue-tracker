@@ -5,11 +5,17 @@ import styled, { css } from 'styled-components';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const TextInput = ({ label, size, value, setValue, myInputRef }) => {
+export const TextInput = ({
+  label,
+  size,
+  value,
+  setValue,
+  myInputRef,
+  focusStyle
+}) => {
   const inputSize = inputSizes[size];
-
   return (
-    <MyTextInput inputSize={inputSize} value={value}>
+    <MyTextInput inputSize={inputSize} value={value} focusStyle={focusStyle}>
       <input
         type="text"
         onChange={(e) => {
@@ -103,6 +109,7 @@ const MyTextInput = styled.div`
 
   & input:focus {
     background: ${colors.gray50};
-    box-shadow: 0 0 0 2px ${colors.blue};
+
+    ${(props) => props.focusStyle || `box-shadow: 0 0 0 2px ${colors.blue};`}
   }
 `;
