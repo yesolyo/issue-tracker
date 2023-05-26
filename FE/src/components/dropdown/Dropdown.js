@@ -1,37 +1,42 @@
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
 import { DropdownPanel } from './DropdownPanel';
+import { fetchData } from '../../utils/fetch';
 import { Button } from '../button/Button';
+
+const defaultButtonOption = {
+  color: 'ghostGray',
+  iconType: 'chevronDown',
+  isIcon: true,
+  isLeftPosition: false
+};
+
 export const Dropdown = ({
+  type,
   tabId,
   tabName,
-  type,
   tabOptions,
+  filterOptions,
   buttonOption,
   isLeft,
-  setValue
+  setValue,
+  optionalArea
 }) => {
-  const defaultButtonOption = {
-    size: 's',
-    color: 'ghostGray',
-    iconType: 'chevronDown',
-    isIcon: true,
-    isLeftPosition: false,
-    buttonText: tabName
-  };
-
-  const buttonType = buttonOption || defaultButtonOption;
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('isOpen');
   const [selectedTab, setSelectedTab] = useState('');
+  const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
+
   const handleDropdownChange = (selectedOption, selectedTab) => {
     setSelectedOption(selectedOption);
     setSelectedTab(selectedTab);
-    setValue(selectedOption);
+    if (setValue) setValue(selectedOption);
   };
+
   const panelRef = useRef(null);
+
   useEffect(() => {
     const handleClick = (e) => {
       if (panelRef.current && !panelRef.current.contains(e.target)) {
@@ -42,23 +47,40 @@ export const Dropdown = ({
     return () => window.removeEventListener('mousedown', handleClick);
   }, [panelRef]);
 
+  const handleDropdownTabMouseDown = (e) => {
+    setIsDropDown(!isDropDown);
+    setSelectedTab(tabId);
+    if (tabId === 'filter') return;
+    if (!isDropDown) fetchSelectedTab(tabId, filterOptions);
+  };
+
+  const fetchSelectedTab = async (selectedTab, filterOptions) => {
+    const selectedTabApi =
+      selectedTab === 'assignees' || selectedTab === 'author'
+        ? 'user'
+        : selectedTab;
+    const response = await fetchData(`/${selectedTabApi}`);
+    const tabData = await getFilteredOptions(filterOptions, response);
+    setTabOptionsInfo(tabData);
+  };
+
+  const getFilteredOptions = (filterOptions, tabOptionsInfo) => {
+    return tabOptionsInfo?.map((option) => filterOptions(option));
+  };
+
   return (
-    <MyDropdown
-      ref={panelRef}
-      onClick={() => {
-        setIsDropDown(!isDropDown);
-      }}
-    >
-      <Button {...buttonType} />
+    <MyDropdown ref={panelRef} onClick={handleDropdownTabMouseDown}>
+      <Button {...defaultButtonOption} buttonText={tabName} {...buttonOption} />
       {isDropDown && (
         <DropdownPanel
           tabId={tabId}
           tabName={tabName}
           type={type}
-          options={tabOptions}
+          options={tabOptions || tabOptionsInfo}
           isLeft={isLeft}
           selectedOption={selectedOption}
           handleDropdownChange={handleDropdownChange}
+          optionalArea={optionalArea}
         />
       )}
     </MyDropdown>

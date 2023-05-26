@@ -19,7 +19,7 @@ export const checkBoxReducer = (state, action) => {
       const isUpdateIsAllChecked = updateCheckedIssues.length > 0;
       return {
         isAllChecked: isUpdateIsAllChecked,
-        checkedIssues: [...updateCheckedIssues]
+        checkedIssues: updateCheckedIssues
       };
     }
     case 'ALL_CHECK': {

@@ -11,9 +11,9 @@ export const fetchAll = async (...url) => {
   return jsonObject;
 };
 
-export const getIssueList = async (filterCondition) => {
-  const { data } = await get(`${url}`);
-  return data;
+const getFilterdIssues = async (tabId, filterOption) => {
+  const response = await fetchData(`${tabId}`);
+  return response;
 };
 
 export const fetchPost = async (url, body) => {

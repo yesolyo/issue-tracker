@@ -18,14 +18,13 @@ export const NewIssue = () => {
   const [newIssue, setNewIssue] = useState({});
   // TODO : Fetch -> user 정보 필요
   const initData = async () => {
-    const response = await fetch('/issueList');
+    const response = await fetch('/issues');
     const resData = await response.json();
     dispatch(resData);
   };
   useEffect(() => {
     initData();
     setNewIssue({ assignee, label, milestone });
-    console.log(newIssue);
   }, []);
 
   return (

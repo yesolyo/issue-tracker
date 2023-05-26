@@ -10,7 +10,7 @@ import { fetchData } from '../utils/fetch';
 export const Header = () => {
   const [user, setUser] = useState('');
   const initData = async () => {
-    const resData = await fetchData('/issueList');
+    const resData = await fetchData('/issues');
     setUser(resData);
   };
 
