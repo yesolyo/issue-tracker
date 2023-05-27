@@ -21,7 +21,7 @@ export const SideBar = ({
     labels: labelSetValue,
     milestone: milestoneSetValue
   };
-  const SelectedSideBarMenu = useCallback(
+  const getSelectedSideBarMenu = useCallback(
     (selectedTab, selectedSideBarMenu) => {
       if (!selectedSideBarMenu) return;
       const { option, profileUrl, backgroundColor, fontColor } =
@@ -65,7 +65,7 @@ export const SideBar = ({
             disabled: false,
             size: 'm'
           }}
-          SelectedSideBarMenu={SelectedSideBarMenu}
+          selectedSideBarMenu={getSelectedSideBarMenu}
         />
       ))}
     </MySidebar>
