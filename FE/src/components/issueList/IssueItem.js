@@ -13,7 +13,7 @@ import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
 
 export const IssueItem = ({
-  id,
+  issueId,
   title,
   author,
   labels,
@@ -28,9 +28,9 @@ export const IssueItem = ({
   const iconType = isOpen ? 'alertCircle' : 'archive';
   const handleCheckBoxClick = ({ currentTarget }) => {
     if (checkedIssues.some((id) => id === Number(currentTarget.id))) {
-      checkDispatch({ type: 'UNCHECK', payload: id });
+      checkDispatch({ type: 'UNCHECK', payload: issueId });
     } else {
-      checkDispatch({ type: 'CHECK', payload: id });
+      checkDispatch({ type: 'CHECK', payload: issueId });
     }
   };
 
@@ -39,14 +39,16 @@ export const IssueItem = ({
       <MyIssueItem>
         <MyIssueBox>
           <CheckBox
-            id={id}
+            id={issueId}
             onChange={handleCheckBoxClick}
-            checked={checkedIssues.includes(id)}
+            checked={checkedIssues.includes(issueId)}
           />
           <MyIssue>
             <MyIssueTitle>
               <Icon iconType={iconType} fill={colors.blue} />
-              <span onClick={() => navigate('/issueDetail/:id')}>{title}</span>
+              <span onClick={() => navigate('/issueDetail/:issueId')}>
+                {title}
+              </span>
               {!!labels.length &&
                 labels.map((label) => (
                   <LabelTag
@@ -60,7 +62,7 @@ export const IssueItem = ({
                 ))}
             </MyIssueTitle>
             <MyIssueDiscription>
-              <p>#{id}</p>
+              <p>#{issueId}</p>
               <p>
                 이 이슈가 {getTimeElapsed(createTime)}, {author?.name}님에 의해
                 작성되었습니다

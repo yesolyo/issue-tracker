@@ -37,7 +37,7 @@ export const FilterBar = () => {
     width: 11
   };
 
-  const filterInput = {
+  const filterInputOptions = {
     type: 'text',
     value,
     onChange: handleChange,
@@ -49,11 +49,11 @@ export const FilterBar = () => {
       <Dropdown {...dropdownInfo} />
       <MyIconTextInput
         isFocus={isFilterTextFocus}
-        onMouseUp={() => setIsFilterTextFocus(true)}
+        onFocus={() => setIsFilterTextFocus(true)}
         onBlur={() => setIsFilterTextFocus(false)}
       >
         <Icon {...iconInfo} />
-        <input {...filterInput} />
+        <input {...filterInputOptions} />
       </MyIconTextInput>
     </MyfilterBar>
   );
