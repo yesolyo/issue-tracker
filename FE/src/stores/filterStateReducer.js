@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 export const initialFilterState = {
   isOpen: true,
   author: null, // 작성자

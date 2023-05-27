@@ -11,6 +11,7 @@ import { PageHeader } from '../PageHeader';
 
 const editBtn = [
   {
+    id: 1,
     size: 's',
     color: 'outlineBlue',
     iconType: 'edit',
@@ -18,6 +19,7 @@ const editBtn = [
     buttonText: '제목 편집'
   },
   {
+    id: 2,
     size: 's',
     color: 'outlineBlue',
     iconType: 'archive',
@@ -26,7 +28,6 @@ const editBtn = [
     buttonText: '이슈 닫기'
   }
 ];
-
 const labelTagBtn = {
   tagType: 'open',
   hasIcon: true,
@@ -44,44 +45,15 @@ export const IssueDetailHeader = () => {
     leftChild: `FE 이슈트래커 디자인 시스템 구현`,
     middleChild: `#${issueSubInfo?.id}`
   };
-  
-  const editBtn = [
-    {
-      id: 1,
-      size: 's',
-      color: 'outlineBlue',
-      iconType: 'edit',
-      iconWidth: '12',
-      buttonText: '제목 편집'
-    },
-    {
-      id: 2,
-      size: 's',
-      color: 'outlineBlue',
-      iconType: 'archive',
-      iconWidth: '12',
 
-      buttonText: '이슈 닫기'
-    }
-  ];
-
-  const labelTagBtn = {
-    tagType: 'open',
-    hasIcon: true,
-    icon: 'archive',
-    text: '열린 이슈',
-    backgroundColor: colors.blue,
-    fontColor: colors.gray50
-  };
-  
   return (
     <MyIssueDetailHeader>
       <PageHeader
         leftChild={pageHeaderInfo.leftChild}
         middleChild={pageHeaderInfo.middleChild}
         rigthChild={
-          <ButtonHeader>
-            {editBtn.map((edit, index) => (
+          <>
+            {editBtn.map((edit) => (
               <Button
                 key={edit.id}
                 size={edit.size}
@@ -93,7 +65,7 @@ export const IssueDetailHeader = () => {
                 isLeftPosition
               />
             ))}
-          </ButtonHeader>
+          </>
         }
       />
       <SubHeader>
@@ -125,9 +97,4 @@ const SubHeader = styled.div`
   & p {
     color: ${colors.gray600};
   }
-`;
-
-const ButtonHeader = styled.div`
-  display: flex;
-  gap: 10px;
 `;

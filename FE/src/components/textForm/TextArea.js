@@ -21,7 +21,7 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
       <textarea
         value={value}
         onChange={handleValueChange}
-        onMouseUp={() => setIsTextAreaFocus(true)}
+        onFocus={() => setIsTextAreaFocus(true)}
         onBlur={() => setIsTextAreaFocus(false)}
       />
       <label className={value && 'filled'}>{label}</label>
@@ -70,7 +70,7 @@ const MyTextArea = styled.div`
   width: 938px;
   border-radius: 11px;
   background: ${({ isFocus }) => (isFocus ? `${colors.gray50}` : null)};
-  box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px #79b1ff` : null)};
+  box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px ${colors.blue}` : null)};
 
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
@@ -123,7 +123,7 @@ const MyFileArea = styled.div`
   background: ${({ isFocus }) =>
     isFocus ? `${colors.gray50}` : `${colors.gray200}`};
   border-top: ${({ isFocus }) =>
-    isFocus ? `1px dashed #79b1ff` : `1px dashed ${colors.gray300}`};
+    isFocus ? `1px dashed ${colors.blue}` : `1px dashed ${colors.gray300}`};
 
   > div {
     padding: 0px 20px 0px 0px;

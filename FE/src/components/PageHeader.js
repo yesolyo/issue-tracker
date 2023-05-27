@@ -8,24 +8,28 @@ export const PageHeader = ({ leftChild, middleChild, rigthChild }) => {
     <MyPageHeader>
       {middleChild
         ? (
-          <LeftPageHeader>
+          <MyLeftPageHeader>
             {leftChild && <div>{leftChild}</div>}
             {middleChild && <div>{middleChild}</div>}
-          </LeftPageHeader>
+          </MyLeftPageHeader>
         )
         : (
           <>{leftChild && <div>{leftChild}</div>}</>
         )}
-      {rigthChild && <div>{rigthChild}</div>}
+      {rigthChild && <MyrightPageHeader>{rigthChild}</MyrightPageHeader>}
     </MyPageHeader>
   );
 };
 
 const MyPageHeader = styled(MyHeader)``;
-const LeftPageHeader = styled.div`
+const MyLeftPageHeader = styled.div`
   display: flex;
   gap: 10px;
   >div: last-child {
     color: ${colors.gray600};
   }
+`;
+const MyrightPageHeader = styled.div`
+  display: flex;
+  gap: 10px;
 `;
