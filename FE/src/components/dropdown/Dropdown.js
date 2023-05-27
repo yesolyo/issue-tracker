@@ -24,14 +24,18 @@ export const Dropdown = ({
   isLeft,
   setValue,
   optionalArea,
-  SelectedSideBarMenu
+  selectedSideBarMenu
 }) => {
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('isOpen');
   const [selectedTab, setSelectedTab] = useState('');
   const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
-  const selectedSideBarMenu = tabOptionsInfo?.find(
+  const selectedSideBarItemInfo = tabOptionsInfo?.find(
     ({ id }) => id === Number(selectedOption)
+  );
+  const SelectedSideBarItem = selectedSideBarMenu?.(
+    selectedTab,
+    selectedSideBarItemInfo
   );
 
   const panelRef = useRef(null);
@@ -68,7 +72,7 @@ export const Dropdown = ({
   };
 
   const handleSelectedOption = (option, selectedTab) => {
-    if (Number(option) === Number(selectedOption)) {
+    if (option === selectedOption) {
       setSelectedOption('isOpen');
       setSelectedTab('');
       if (setValue) setValue('');
@@ -82,10 +86,8 @@ export const Dropdown = ({
   return (
     <MyDropdown ref={panelRef} onClick={handleDropdownTabMouseDown}>
       <Button {...defaultButtonOption} buttonText={tabName} {...buttonOption} />
-      {!!SelectedSideBarMenu?.(selectedTab, selectedSideBarMenu) && (
-        <MySideBarMenuItem>
-          {SelectedSideBarMenu(selectedTab, selectedSideBarMenu)}
-        </MySideBarMenuItem>
+      {!!SelectedSideBarItem && (
+        <MySideBarMenuItem>{SelectedSideBarItem}</MySideBarMenuItem>
       )}
       {isDropDown && (
         <DropdownPanel

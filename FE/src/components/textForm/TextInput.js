@@ -22,9 +22,7 @@ export const TextInput = React.memo(({ label, height, value, setValue }) => {
           setValue(e.target.value);
         }}
       />
-      <label className={value && 'filled'} htmlFor={name}>
-        {label}
-      </label>
+      <label className={value && 'filled'}>{label}</label>
     </MyTextInput>
   );
 });
