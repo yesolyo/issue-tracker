@@ -16,7 +16,7 @@ export const IssueListContent = React.memo(() => {
       {issueListData
         ? (
           issueListData.map((issueData) => (
-            <IssueItem key={issueData.id} {...issueData} />
+            <IssueItem key={issueData.issueId} {...issueData} />
           ))
         )
         : (

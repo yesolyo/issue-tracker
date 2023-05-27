@@ -15,8 +15,12 @@ export const IssueListContext = React.createContext();
 export const IssueList = () => {
   const [issues, setIssues] = useState([]);
   const initData = async () => {
-    const response = await fetchData('/issues');
-    setIssues(response);
+    try {
+      const response = await fetchData('/issues');
+      setIssues(response);
+    } catch (err) {
+      console.err(err);
+    }
   };
 
   useEffect(() => {

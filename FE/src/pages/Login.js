@@ -20,16 +20,7 @@ export const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [user, setUser] = useState([]);
 
-  const focusColor = {
-    blue: css`
-      box-shadow: 0 0 0 2px ${colors.blue};
-    `,
-    red: css`
-      box-shadow: 0 0 0 2px ${colors.red};
-    `
-  };
-
-  const focusStyle = isLogin ? focusColor.blue : focusColor.red;
+  const focusStyle = isLogin ? null : colors.red;
 
   const loginUri =
     'https://github.com/login/oauth/authorize?client_id=3b1dfca72b24afb9ebb2&redirect_uri=http://localhost:3000/auth&scope=user';
@@ -78,7 +69,7 @@ export const Login = () => {
     {
       id: 1,
       label: '아이디',
-      size: 'sm',
+      height: '65px',
       value: id,
       setValue: setId,
       loginValue: isLogin,
@@ -87,7 +78,7 @@ export const Login = () => {
     {
       id: 2,
       label: '비밀번호',
-      size: 'sm',
+      height: '65px',
       value: pw,
       setValue: setPw,
       loginValue: isLogin,
@@ -118,17 +109,16 @@ export const Login = () => {
     <MyLogin>
       <Icon {...logoInfo} />
       <Button {...loginBtn} />
-
       <span>or</span>
       {loginInput.map((login) => (
         <TextInput
           key={login.id}
           label={login.label}
-          size={login.size}
+          height={login.height}
           value={login.value}
           setValue={login.setValue}
-          focusStyle={focusStyle}
           myInputRef={login.myInputRef}
+          focusStyle={focusStyle}
         />
       ))}
       <Button {...idLoginBtn} />
@@ -143,7 +133,7 @@ const MyLogin = styled.form`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  width: 1280px;
+  width: 320px;
 
   > svg {
     margin: 50px;

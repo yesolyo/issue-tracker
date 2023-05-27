@@ -1,46 +1,49 @@
-
-import { useState, useRef } from 'react';
-
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const TextInput = React.memo(({ label, height, value, setValue, myInputRef,
-  focusStyle }) => {
-  const [isTextInputFocus, setIsTextInputFocus] = useState(false);
+export const TextInput = React.memo(
+  ({ label, height, value, setValue, myInputRef, focusStyle }) => {
+    const [isTextInputFocus, setIsTextInputFocus] = useState(false);
 
-  return (
-    <MyTextInput
-      isFocus={isTextInputFocus}
-      height={height}
-      value={value}
-      focusStyle={focusStyle}
-      onMouseUp={() => setIsTextInputFocus(true)}
-      onBlur={() => setIsTextInputFocus(false)}
-    >
-      <input
-        type="text"
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-        ref={myInputRef}
-      />
-      <label className={value && 'filled'}>{label}</label>
-    </MyTextInput>
-  );
-});
+    return (
+      <MyTextInput
+        height={height}
+        value={value}
+        focusStyle={focusStyle}
+        isFocus={isTextInputFocus}
+        onFocus={() => setIsTextInputFocus(true)}
+        onBlur={() => setIsTextInputFocus(false)}
+      >
+        <input
+          type="text"
+          onChange={(e) => {
+            setValue(e.target.value);
+          }}
+          ref={myInputRef}
+        />
+        <label className={value && 'filled'}>{label}</label>
+      </MyTextInput>
+    );
+  }
+);
 
 const MyTextInput = styled.div`
   height: ${({ height }) => height || '40px'};
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 11px;
   background: ${({ isFocus }) => (isFocus ? `${colors.gray50}` : null)};
-  box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px #79b1ff` : null)};
+  box-shadow: ${({ isFocus, focusStyle }) =>
+    isFocus
+      ? (focusStyle && `0 0 0 1px ${focusStyle}`) || `0 0 0 1px ${colors.blue}`
+      : null};
 
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
@@ -80,9 +83,4 @@ const MyTextInput = styled.div`
     ${fontSize.M};
     ${fontType.REGULAR};
   }
-  & input:focus {
-    background: ${colors.gray50};
-
-    ${(props) => props.focusStyle || `box-shadow: 0 0 0 2px ${colors.blue};`}
-  }
-
+`;
