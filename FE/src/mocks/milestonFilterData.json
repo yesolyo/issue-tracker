@@ -1,0 +1,34 @@
+[
+  {
+    "id": 3,
+    "title": "Fourth Issue",
+    "createTime": "2023-05-22T05:34:16.754Z",
+    "updateTime": "2023-05-22T07:34:16.754Z",
+    "isOpen": true,
+    "milestone": {
+      "id": 3,
+      "name": "Fourth Milestone"
+    },
+    "commentAuthors": [1, 2, 3],
+    "author": {
+      "id": 5,
+      "name": "Water",
+      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e675d61f-2884-4084-b7db-604ad238fc87"
+    },
+    "assignees": [
+      {
+        "id": 4,
+        "name": "Noah",
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d"
+      }
+    ],
+    "labels": [
+      {
+        "id": 5,
+        "name": "Build",
+        "backgroundColor": "#82B3ED",
+        "fontColor": "#14142B"
+      }
+    ]
+  }
+]

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+
+import { useState, useRef } from 'react';
+
 
 import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const TextInput = React.memo(({ label, height, value, setValue }) => {
+export const TextInput = React.memo(({ label, height, value, setValue, myInputRef,
+  focusStyle }) => {
   const [isTextInputFocus, setIsTextInputFocus] = useState(false);
 
   return (
@@ -13,6 +16,7 @@ export const TextInput = React.memo(({ label, height, value, setValue }) => {
       isFocus={isTextInputFocus}
       height={height}
       value={value}
+      focusStyle={focusStyle}
       onMouseUp={() => setIsTextInputFocus(true)}
       onBlur={() => setIsTextInputFocus(false)}
     >
@@ -21,6 +25,7 @@ export const TextInput = React.memo(({ label, height, value, setValue }) => {
         onChange={(e) => {
           setValue(e.target.value);
         }}
+        ref={myInputRef}
       />
       <label className={value && 'filled'}>{label}</label>
     </MyTextInput>
@@ -75,4 +80,9 @@ const MyTextInput = styled.div`
     ${fontSize.M};
     ${fontType.REGULAR};
   }
-`;
+  & input:focus {
+    background: ${colors.gray50};
+
+    ${(props) => props.focusStyle || `box-shadow: 0 0 0 2px ${colors.blue};`}
+  }
+
