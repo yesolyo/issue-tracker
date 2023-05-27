@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import styled, { css } from 'styled-components';
 
@@ -6,20 +6,26 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
 
-export const TextArea = ({ label, size, value, setValue }) => {
+export const TextArea = React.memo(({ label, size, value, setValue }) => {
   const areaSize = areaSizes[size];
   const fileSize = fileSizes[size];
 
-  const handleChange = (e) => {
+  const [isTextAreaFocus, setIsTextAreaFocus] = useState(false);
+
+  const handleValueChange = (e) => {
     setValue(e.target.value);
   };
 
   return (
-    <MyTextArea areaSize={areaSize} value={value}>
-      <textarea value={value} onChange={handleChange} />
+    <MyTextArea isFocus={isTextAreaFocus} areaSize={areaSize} value={value}>
+      <textarea
+        value={value}
+        onChange={handleValueChange}
+        onMouseUp={() => setIsTextAreaFocus(true)}
+        onBlur={() => setIsTextAreaFocus(false)}
+      />
       <label className={value && 'filled'}>{label}</label>
-
-      <MyFileArea fileSize={fileSize}>
+      <MyFileArea isFocus={isTextAreaFocus} fileSize={fileSize}>
         <Button
           size={'m'}
           color={'ghostBlack'}
@@ -32,7 +38,7 @@ export const TextArea = ({ label, size, value, setValue }) => {
       </MyFileArea>
     </MyTextArea>
   );
-};
+});
 
 const areaSizes = {
   l: css`
@@ -62,6 +68,9 @@ const MyTextArea = styled.div`
   flex-direction: column;
   align-items: center;
   width: 938px;
+  border-radius: 11px;
+  background: ${({ isFocus }) => (isFocus ? `${colors.gray50}` : null)};
+  box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px #79b1ff` : null)};
 
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
@@ -73,48 +82,48 @@ const MyTextArea = styled.div`
 
   & label {
     position: absolute;
-    ${(props) =>
-    props.value.length > 0
+    ${({ value }) =>
+    value.length > 0
       ? 'transform: translate(0, 12px) scale(0.8);'
       : 'transform: translate(0, 23px) scale(1);'}
     pointer-events: none;
     transform-origin: top left;
-    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 2ms;
     color: ${colors.gray600};
     font-size: 16px;
     line-height: 1;
     left: 16px;
+    top: 3px;
   }
+
   & textarea {
-    ${(props) => props.areaSize};
+    ${({ areaSize }) => areaSize};
     border-radius: 11px 11px 0px 0px;
     box-sizing: border-box;
     width: 100%;
     border: none;
     outline: none;
     box-shadow: none;
-    padding: 30px 0px 0px 30px;
-    background: ${colors.gray200};
+    padding: 30px;
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     ${fontSize.M};
     ${fontType.REGULAR};
-  }
-
-  & textarea:focus {
-    background: ${colors.gray50};
-    box-shadow: 0 0 0 2px #79b1ff;
+    background: ${({ isFocus }) =>
+    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
   }
 `;
 
 const MyFileArea = styled.div`
-  ${(props) => props.fileSize};
+  ${({ fileSize }) => fileSize};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: dashed ${colors.gray300};
-  background: ${colors.gray200};
   border-radius: 0px 0px 11px 11px;
   width: 100%;
+  background: ${({ isFocus }) =>
+    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
+  border-top: ${({ isFocus }) =>
+    isFocus ? `1px dashed #79b1ff` : `1px dashed ${colors.gray300}`};
 
   > div {
     padding: 0px 20px 0px 0px;

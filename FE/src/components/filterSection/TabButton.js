@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
-import { fontSize } from '../../styles/font';
 import { Button } from '../button/Button';
 
 export const TabButton = () => {
@@ -52,7 +51,6 @@ const MyTabButton = styled.div`
   background: ${colors.gray100};
 
   button {
-    /* ${fontSize.M} */
     margin: 0 auto;
   }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -15,7 +15,9 @@ const filterTabOptions = [
   { id: '!isOpen', option: '닫힌 이슈', isSelected: false }
 ];
 
+// TODO : uncontrolled component, forwardRef
 export const FilterBar = () => {
+  const [isFilterTextFocus, setIsFilterTextFocus] = useState(false);
   const [value, setValue] = useState('is:issue is:open');
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -28,21 +30,28 @@ export const FilterBar = () => {
     buttonOption: { size: 's' },
     isLeft: true
   };
+
   const iconInfo = {
     iconType: 'search',
     fill: colors.gray600,
     width: 11
   };
+
   const filterInput = {
     type: 'text',
     value,
     onChange: handleChange,
     placeholder: 'Search all issues'
   };
+
   return (
     <MyfilterBar>
       <Dropdown {...dropdownInfo} />
-      <MyIconTextInput>
+      <MyIconTextInput
+        isFocus={isFilterTextFocus}
+        onMouseUp={() => setIsFilterTextFocus(true)}
+        onBlur={() => setIsFilterTextFocus(false)}
+      >
         <Icon {...iconInfo} />
         <input {...filterInput} />
       </MyIconTextInput>
@@ -81,11 +90,13 @@ const MyIconTextInput = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  background: ${colors.gray200};
   border-radius: 0px 11px 11px 0px;
   width: 472px;
   gap: 10px;
   ${fontType.LIGHT}
+  background: ${({ isFocus }) =>
+    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
+  box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px #79b1ff` : null)};
 
   & input {
     width: 100%;
@@ -93,16 +104,13 @@ const MyIconTextInput = styled.div`
     background: transparent;
     border: none;
     outline: none;
+    font-size: 15px;
     ${fontType.REGULAR}
     color: ${colors.gray600};
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 
     &::placeholder {
       color: ${colors.gray700};
     }
-  }
-
-  &: hover {
-    background: ${colors.gray50};
-    border: 1px solid ${colors.gray400};
   }
 `;

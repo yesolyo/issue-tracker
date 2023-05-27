@@ -7,9 +7,8 @@ import { colors } from '../../styles/color';
 import { Button } from '../button/Button';
 import { Profile } from '../Profile';
 
-// user.map((user) => name = username, profileurl = userurl)
-export const CommentElements = ({ name, profilUrl, reply }) => {
-  const emogiBtn = {
+export const CommentElements = ({ userInfo, reply }) => {
+  const emojiOptions = {
     size: 's',
     color: 'ghostGray',
     iconType: 'smile',
@@ -20,16 +19,16 @@ export const CommentElements = ({ name, profilUrl, reply }) => {
   };
   return (
     <MyCommentElements>
-      <CommentHeader>
-        <ProfileInfo>
-          <MyProfile src={profilUrl} alt={name} />
-          <span>{name}</span>
+      <MyCommentHeader>
+        <MyProfileInfo>
+          <Profile userInfo={userInfo} />
+          <span>{userInfo.userName}</span>
           <span>1분 전</span>
-        </ProfileInfo>
+        </MyProfileInfo>
         <EditHeader>
-          <Button {...emogiBtn} />
+          <Button {...emojiOptions} />
         </EditHeader>
-      </CommentHeader>
+      </MyCommentHeader>
       <div>{reply}</div>
     </MyCommentElements>
   );
@@ -56,14 +55,8 @@ const MyCommentElements = styled.div`
     }
   }
 `;
-const MyProfile = styled.img`
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  background-color: ${colors.gray50};
-`;
 
-const ProfileInfo = styled.div`
+const MyProfileInfo = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -79,7 +72,7 @@ const EditHeader = styled.div`
     padding: 10px;
   }
 `;
-const CommentHeader = styled.div`
+const MyCommentHeader = styled.div`
   display: flex;
   justify-content: space-between;
   height: 64px;

@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 export const initialFilterState = {
   isOpen: true,
   author: null, // 작성자
@@ -7,14 +9,14 @@ export const initialFilterState = {
   comments: null // 댓글
 };
 
-export const filterReducer = (state, action) => {
+export const filterStateReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case 'RESET': {
+    case 'RESET-FILTER': {
       return initialFilterState;
     }
-    case 'FILTER': {
+    case 'FILTER-ISSUES': {
       return {
         ...initialFilterState,
         ...payload

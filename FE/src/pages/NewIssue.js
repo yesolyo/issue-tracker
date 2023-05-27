@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
-import { Header } from '../components/Header';
 import { NewIssueContainer } from '../components/newIssue/NewIssueContainer';
 import { NewIssueFooter } from '../components/newIssue/NewIssueFooter';
 import { PageHeader } from '../components/PageHeader';
@@ -23,6 +22,7 @@ export const NewIssue = () => {
     const resData = await response.json();
     dispatch(resData);
   };
+
   useEffect(() => {
     initData();
     setNewIssue({ assignee, label, milestone });
@@ -31,7 +31,6 @@ export const NewIssue = () => {
   return (
     <NewIssueContext.Provider value={data}>
       <MyNewIssuePage>
-        <Header />
         <PageHeader leftChild={'새로운 이슈 작성'} />
         <NewIssueContainer
           titleValue={title}

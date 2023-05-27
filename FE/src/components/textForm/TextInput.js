@@ -1,21 +1,25 @@
+
 import { useState, useRef } from 'react';
 
-import styled, { css } from 'styled-components';
+
+import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 
-export const TextInput = ({
-  label,
-  size,
-  value,
-  setValue,
-  myInputRef,
-  focusStyle
-}) => {
-  const inputSize = inputSizes[size];
+export const TextInput = React.memo(({ label, height, value, setValue, myInputRef,
+  focusStyle }) => {
+  const [isTextInputFocus, setIsTextInputFocus] = useState(false);
+
   return (
-    <MyTextInput inputSize={inputSize} value={value} focusStyle={focusStyle}>
+    <MyTextInput
+      isFocus={isTextInputFocus}
+      height={height}
+      value={value}
+      focusStyle={focusStyle}
+      onMouseUp={() => setIsTextInputFocus(true)}
+      onBlur={() => setIsTextInputFocus(false)}
+    >
       <input
         type="text"
         onChange={(e) => {
@@ -23,53 +27,20 @@ export const TextInput = ({
         }}
         ref={myInputRef}
       />
-      <label className={value && 'filled'} htmlFor={name}>
-        {label}
-      </label>
+      <label className={value && 'filled'}>{label}</label>
     </MyTextInput>
   );
-};
-
-const inputSizes = {
-  xxl: css`
-    width: 1216px;
-    height: 40px;
-  `,
-  xl: css`
-    width: 1008px;
-    height: 40px;
-  `,
-  l: css`
-    width: 904px;
-    height: 40px;
-  `,
-  m: css`
-    width: 600px;
-    height: 40px;
-  `,
-  s: css`
-    width: 472px;
-    height: 40px;
-  `,
-  xs: css`
-    width: 240px;
-    height: 40px;
-  `,
-  lg: css`
-    width: 912px;
-    height: 56px;
-  `,
-  sm: css`
-    width: 290px;
-    height: 56px;
-  `
-};
+});
 
 const MyTextInput = styled.div`
+  height: ${({ height }) => height || '40px'};
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 11px;
+  background: ${({ isFocus }) => (isFocus ? `${colors.gray50}` : null)};
+  box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px #79b1ff` : null)};
 
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
@@ -81,8 +52,8 @@ const MyTextInput = styled.div`
 
   & label {
     position: absolute;
-    ${(props) =>
-    props.value.length > 0
+    ${({ value }) =>
+    value.length > 0
       ? 'transform: translate(0, 12px) scale(0.8);'
       : 'transform: translate(0, 23px) scale(1);'}
     pointer-events: none;
@@ -95,21 +66,23 @@ const MyTextInput = styled.div`
   }
 
   & input {
-    ${(props) => props.inputSize};
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     border-radius: 11px;
     border: none;
     outline: none;
     box-shadow: none;
-    padding: 10px 0px 0px 30px;
-    background: ${colors.gray200};
+    padding: 10px 30px;
+    background: ${({ isFocus }) =>
+    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
     ${fontSize.M};
     ${fontType.REGULAR};
   }
-
   & input:focus {
     background: ${colors.gray50};
 
     ${(props) => props.focusStyle || `box-shadow: 0 0 0 2px ${colors.blue};`}
   }
-`;
+

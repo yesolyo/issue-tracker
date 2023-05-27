@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { DropdownPanel } from './DropdownPanel';
+import { fontSize } from '../../styles/font';
 import { fetchData } from '../../utils/fetch';
 import { Button } from '../button/Button';
 
@@ -22,18 +23,20 @@ export const Dropdown = ({
   buttonOption,
   isLeft,
   setValue,
-  optionalArea
+  optionalArea,
+  selectedSideBarMenu
 }) => {
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedOption, setSelectedOption] = useState('isOpen');
   const [selectedTab, setSelectedTab] = useState('');
   const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
-
-  const handleDropdownChange = (selectedOption, selectedTab) => {
-    setSelectedOption(selectedOption);
-    setSelectedTab(selectedTab);
-    if (setValue) setValue(selectedOption);
-  };
+  const selectedSideBarItemInfo = tabOptionsInfo?.find(
+    ({ id }) => id === Number(selectedOption)
+  );
+  const SelectedSideBarItem = selectedSideBarMenu?.(
+    selectedTab,
+    selectedSideBarItemInfo
+  );
 
   const panelRef = useRef(null);
 
@@ -68,9 +71,24 @@ export const Dropdown = ({
     return tabOptionsInfo?.map((option) => filterOptions(option));
   };
 
+  const handleSelectedOption = (option, selectedTab) => {
+    if (option === selectedOption) {
+      setSelectedOption('isOpen');
+      setSelectedTab('');
+      if (setValue) setValue('');
+    } else {
+      setSelectedOption(option);
+      setSelectedTab(selectedTab);
+      if (setValue) setValue(option);
+    }
+  };
+
   return (
     <MyDropdown ref={panelRef} onClick={handleDropdownTabMouseDown}>
       <Button {...defaultButtonOption} buttonText={tabName} {...buttonOption} />
+      {!!SelectedSideBarItem && (
+        <MySideBarMenuItem>{SelectedSideBarItem}</MySideBarMenuItem>
+      )}
       {isDropDown && (
         <DropdownPanel
           tabId={tabId}
@@ -79,7 +97,7 @@ export const Dropdown = ({
           options={tabOptions || tabOptionsInfo}
           isLeft={isLeft}
           selectedOption={selectedOption}
-          handleDropdownChange={handleDropdownChange}
+          handleSelectedOption={handleSelectedOption}
           optionalArea={optionalArea}
         />
       )}
@@ -89,4 +107,13 @@ export const Dropdown = ({
 
 const MyDropdown = styled.div`
   position: relative;
+`;
+
+const MySideBarMenuItem = styled.div`
+  ${fontSize.M}
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px 10px 20px;
+  display: flex;
+  gap: 10px;
 `;

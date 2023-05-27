@@ -11,6 +11,7 @@ import { fontSize, fontType } from '../styles/font';
 import { fetchData } from '../utils/fetch';
 export const Login = () => {
   const navigate = useNavigate();
+
   const idInputRef = useRef(null);
   const pwInputRef = useRef(null);
 

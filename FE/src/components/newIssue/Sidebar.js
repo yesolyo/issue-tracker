@@ -1,11 +1,15 @@
+import { useCallback } from 'react';
+
 import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
 import { Dropdown } from '../dropdown/Dropdown';
 import { tabTypes } from '../dropdown/DropdownTypes';
+import { LabelTag } from '../LabelTag';
+import { Profile } from '../Profile';
 
-export const Sidebar = ({
+export const SideBar = ({
   assigneeSetValue,
   labelSetValue,
   milestoneSetValue
@@ -17,6 +21,35 @@ export const Sidebar = ({
     labels: labelSetValue,
     milestone: milestoneSetValue
   };
+  const getSelectedSideBarMenu = useCallback(
+    (selectedTab, selectedSideBarMenu) => {
+      if (!selectedSideBarMenu) return;
+      const { option, profileUrl, backgroundColor, fontColor } =
+        selectedSideBarMenu;
+
+      const sideBarMenu = {
+        assignees: () => (
+          <>
+            {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
+            <div>{option}</div>
+          </>
+        ),
+        labels: () => (
+          <LabelTag
+            tagType={'labels'}
+            text={option}
+            backgroundColor={backgroundColor}
+            fontColor={fontColor}
+          />
+        ),
+        milestone: () => <>{option}</>
+      };
+
+      const SelectedMenuItem = sideBarMenu[selectedTab];
+      return <SelectedMenuItem />;
+    },
+    []
+  );
 
   return (
     <MySidebar>
@@ -32,6 +65,7 @@ export const Sidebar = ({
             disabled: false,
             size: 'm'
           }}
+          selectedSideBarMenu={getSelectedSideBarMenu}
         />
       ))}
     </MySidebar>

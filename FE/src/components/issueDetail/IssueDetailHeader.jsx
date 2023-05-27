@@ -9,6 +9,33 @@ import { Button } from '../button/Button';
 import { LabelTag } from '../LabelTag';
 import { PageHeader } from '../PageHeader';
 
+const editBtn = [
+  {
+    size: 's',
+    color: 'outlineBlue',
+    iconType: 'edit',
+    iconWidth: '12',
+    buttonText: '제목 편집'
+  },
+  {
+    size: 's',
+    color: 'outlineBlue',
+    iconType: 'archive',
+    iconWidth: '12',
+
+    buttonText: '이슈 닫기'
+  }
+];
+
+const labelTagBtn = {
+  tagType: 'open',
+  hasIcon: true,
+  icon: 'archive',
+  text: '열린 이슈',
+  backgroundColor: colors.blue,
+  fontColor: colors.gray50
+};
+
 export const IssueDetailHeader = () => {
   const issueDetail = useContext(IssueDetailContext);
   const [issueSubInfo, CommentInfo] = issueDetail;
@@ -17,7 +44,7 @@ export const IssueDetailHeader = () => {
     leftChild: `FE 이슈트래커 디자인 시스템 구현`,
     middleChild: `#${issueSubInfo?.id}`
   };
-
+  
   const editBtn = [
     {
       id: 1,
@@ -46,7 +73,7 @@ export const IssueDetailHeader = () => {
     backgroundColor: colors.blue,
     fontColor: colors.gray50
   };
-
+  
   return (
     <MyIssueDetailHeader>
       <PageHeader
@@ -54,7 +81,7 @@ export const IssueDetailHeader = () => {
         middleChild={pageHeaderInfo.middleChild}
         rigthChild={
           <ButtonHeader>
-            {editBtn.map((edit) => (
+            {editBtn.map((edit, index) => (
               <Button
                 key={edit.id}
                 size={edit.size}
