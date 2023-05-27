@@ -81,7 +81,7 @@ export const Login = () => {
       value: id,
       setValue: setId,
       loginValue: isLogin,
-      myInputRef: idInputRef,
+      myInputRef: idInputRef
     },
     {
       id: 2,
@@ -90,7 +90,7 @@ export const Login = () => {
       value: pw,
       setValue: setPw,
       loginValue: isLogin,
-      myInputRef: pwInputRef,
+      myInputRef: pwInputRef
     }
   ];
 

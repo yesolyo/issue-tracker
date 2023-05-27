@@ -1,0 +1,38 @@
+[
+  {
+    "id": 2,
+    "title": "Third Issue",
+    "createTime": "2023-05-21T05:34:16.754Z",
+    "updateTime": "2023-05-21T06:34:16.754Z",
+    "isOpen": true,
+    "milestone": {
+      "id": 2,
+      "name": "Third Milestone"
+    },
+    "author": {
+      "id": 3,
+      "name": "Birdie",
+      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/bacc531d-a512-4a54-9c5c-5e22d7425900"
+    },
+    "assignees": [
+      {
+        "id": 4,
+        "name": "Noah",
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/6094efe1-d378-43bc-9d5e-e6cf5e792e3d"
+      },
+      {
+        "id": 1,
+        "name": "GamJa",
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
+      }
+    ],
+    "labels": [
+      {
+        "id": 2,
+        "name": "Enhancement",
+        "backgroundColor": "#6E6ED7",
+        "fontColor": "#fff"
+      }
+    ]
+  }
+]
