@@ -1,0 +1,39 @@
+[
+  {
+    "id": 0,
+    "title": "First Issue",
+    "createTime": "2023-05-22T05:34:16.754Z",
+    "updateTime": "2023-05-22T05:34:16.754Z",
+    "isOpen": false,
+    "milestone": {
+      "id": 0,
+      "name": "First Milestone"
+    },
+    "author": {
+      "id": 0,
+      "name": "GamJa",
+      "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/e3d247fa-47b0-4d13-8dc5-a3cae495d732"
+    },
+    "assignees": [
+      {
+        "id": 1,
+        "name": "Nani",
+        "profileUrl": "https://github.com/bread1022/TIL/assets/107349637/db753467-76aa-493d-9875-6aff6fc6c656"
+      }
+    ],
+    "labels": [
+      {
+        "id": 0,
+        "name": "Bug",
+        "backgroundColor": "#389561",
+        "fontColor": "#fff"
+      },
+      {
+        "id": 3,
+        "name": "Refactor",
+        "backgroundColor": "#975a97",
+        "fontColor": "#fff"
+      }
+    ]
+  }
+]

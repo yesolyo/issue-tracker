@@ -44,7 +44,36 @@ export const IssueDetailHeader = () => {
     leftChild: `FE 이슈트래커 디자인 시스템 구현`,
     middleChild: `#${issueSubInfo?.id}`
   };
+  
+  const editBtn = [
+    {
+      id: 1,
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'edit',
+      iconWidth: '12',
+      buttonText: '제목 편집'
+    },
+    {
+      id: 2,
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'archive',
+      iconWidth: '12',
 
+      buttonText: '이슈 닫기'
+    }
+  ];
+
+  const labelTagBtn = {
+    tagType: 'open',
+    hasIcon: true,
+    icon: 'archive',
+    text: '열린 이슈',
+    backgroundColor: colors.blue,
+    fontColor: colors.gray50
+  };
+  
   return (
     <MyIssueDetailHeader>
       <PageHeader
@@ -54,7 +83,7 @@ export const IssueDetailHeader = () => {
           <ButtonHeader>
             {editBtn.map((edit, index) => (
               <Button
-                key={index}
+                key={edit.id}
                 size={edit.size}
                 color={edit.color}
                 iconType={edit.iconType}
