@@ -1,103 +1,89 @@
+import { useCallback } from 'react';
+
 import styled from 'styled-components';
 
 import { colors } from '../../styles/color';
 import { fontSize } from '../../styles/font';
-import { Button } from '../button/Button';
+import { Dropdown } from '../dropdown/Dropdown';
+import { tabTypes } from '../dropdown/DropdownTypes';
+import { LabelTag } from '../LabelTag';
+import { Profile } from '../Profile';
 
-const MySidebar = styled.div`
-  & button {
-    justify-content: space-between;
-    ${fontSize.M}
-    width:250px
-  }
-`;
-
-const TopSidebar = styled.div`
-  width: 288px;
-  height: 96px;
-  display: flex;
-  border: 1px solid ${colors.gray300};
-  border-radius: 16px 16px 0px 0px;
-  background: ${colors.gray50};
-  align-items: center;
-  justify-content: center;
-  border-bottom: none;
-`;
-
-const MiddleSidebar = styled.div`
-  border: 1px solid ${colors.gray300};
-  display: flex;
-  width: 288px;
-  height: 96px;
-  background: ${colors.gray50};
-  justify-content: center;
-  align-items: center;
-  border-bottom: none;
-`;
-
-const DownSidebar = styled.div`
-  display: flex;
-  width: 288px;
-  height: 96px;
-  border: 1px solid ${colors.gray300};
-  background: ${colors.gray50};
-  justify-content: center;
-  align-items: center;
-  border-radius: 0px 0px 16px 16px;
-`;
-
-export const Sidebar = () => {
-  const sidebarConstant = {
-    type: 'ghostButton',
-    btnColor: colors.gray600,
-    hoverColor: colors.blue,
-    backgroundColor: colors.gray50,
-    topBtnText: '담당자',
-    middleBtnText: '레이블',
-    downBtnText: '마일스톤',
-    isIcon: true,
-    iconType: 'chevronDown',
-    isLeftPosition: false
+export const SideBar = ({
+  assigneeSetValue,
+  labelSetValue,
+  milestoneSetValue
+}) => {
+  const sideBarTabs = ['assignees', 'labels', 'milestone'];
+  const sideBarInfo = sideBarTabs.map((tab) => tabTypes[tab]);
+  const setValue = {
+    assignees: assigneeSetValue,
+    labels: labelSetValue,
+    milestone: milestoneSetValue
   };
+  const getSelectedSideBarMenu = useCallback(
+    (selectedTab, selectedSideBarMenu) => {
+      if (!selectedSideBarMenu) return;
+      const { option, profileUrl, backgroundColor, fontColor } =
+        selectedSideBarMenu;
+
+      const sideBarMenu = {
+        assignees: () => (
+          <>
+            {profileUrl && <Profile userInfo={{ option, profileUrl }} />}
+            <div>{option}</div>
+          </>
+        ),
+        labels: () => (
+          <LabelTag
+            tagType={'labels'}
+            text={option}
+            backgroundColor={backgroundColor}
+            fontColor={fontColor}
+          />
+        ),
+        milestone: () => <>{option}</>
+      };
+
+      const SelectedMenuItem = sideBarMenu[selectedTab];
+      return <SelectedMenuItem />;
+    },
+    []
+  );
 
   return (
     <MySidebar>
-      <TopSidebar>
-        <Button
-          type={sidebarConstant.type}
-          buttonColor={sidebarConstant.btnColor}
-          hoverColor={sidebarConstant.hoverColor}
-          backgroundColor={sidebarConstant.backgroundColor}
-          buttonText={sidebarConstant.topBtnText}
-          isIcon={sidebarConstant.isIcon}
-          iconType={sidebarConstant.iconType}
-          isLeftPosition={sidebarConstant.isLeftPosition}
+      {sideBarInfo.map(({ tabId, tabName, filterOptions }) => (
+        <Dropdown
+          key={tabId}
+          type={'sidebar'}
+          tabId={tabId}
+          tabName={tabName}
+          setValue={setValue[tabId]}
+          filterOptions={filterOptions}
+          buttonOption={{
+            disabled: false,
+            size: 'm'
+          }}
+          selectedSideBarMenu={getSelectedSideBarMenu}
         />
-      </TopSidebar>
-      <MiddleSidebar>
-        <Button
-          type={sidebarConstant.type}
-          buttonColor={sidebarConstant.btnColor}
-          hoverColor={sidebarConstant.hoverColor}
-          backgroundColor={sidebarConstant.backgroundColor}
-          buttonText={sidebarConstant.middleBtnText}
-          isIcon={sidebarConstant.isIcon}
-          iconType={sidebarConstant.iconType}
-          isLeftPosition={sidebarConstant.isLeftPosition}
-        />
-      </MiddleSidebar>
-      <DownSidebar>
-        <Button
-          type={sidebarConstant.type}
-          buttonColor={sidebarConstant.btnColor}
-          hoverColor={sidebarConstant.hoverColor}
-          backgroundColor={sidebarConstant.backgroundColor}
-          buttonText={sidebarConstant.downBtnText}
-          isIcon={sidebarConstant.isIcon}
-          iconType={sidebarConstant.iconType}
-          isLeftPosition={sidebarConstant.isLeftPosition}
-        />
-      </DownSidebar>
+      ))}
     </MySidebar>
   );
 };
+
+const MySidebar = styled.div`
+  border: 1px solid ${colors.gray300};
+  border-radius: 16px;
+  background: ${colors.gray50};
+  height: max-content;
+  > div:not(:last-child) {
+    border-bottom: 1px solid ${colors.gray300};
+  }
+  & button {
+    height: 96px;
+    justify-content: space-between;
+    padding: 0 20px;
+    ${fontSize.M}
+  }
+`;

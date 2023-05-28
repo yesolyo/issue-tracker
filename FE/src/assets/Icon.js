@@ -1,19 +1,18 @@
 import * as icons from './svgs';
+import { colors } from '../styles/color';
 
 export const Icon = ({
   iconType,
   width = 16,
-  height = 16,
-  stroke = 'none',
-  fill = 'none',
-  onClick = null
+  height,
+  fill = colors.gray50,
+  onClick
 }) => {
   const IconSvg = icons[iconType];
   return (
     <IconSvg
       width={width}
-      height={height}
-      stroke={stroke}
+      height={height || width}
       fill={fill}
       onClick={onClick}
     />

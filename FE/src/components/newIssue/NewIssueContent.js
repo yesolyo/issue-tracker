@@ -1,46 +1,41 @@
+import { useState } from 'react';
+
 import styled from 'styled-components';
 
-import { TextArea } from './TextArea';
-import { TextInput } from './TextInput';
-import { colors } from '../../styles/color';
-import { fontSize, fontType } from '../../styles/font';
+import { TextArea } from '../textForm/TextArea';
+import { TextInput } from '../textForm/TextInput';
 
-const MyNewIssueContent = styled.div`
-  gap: 10px;
-  display: flex;
-  flex-direction: column;
-  width: 912px;
-
-  & textarea {
-    background: ${colors.gray200};
-    height: 435px;
-    padding: 24px;
-    border-radius: 11px;
-    border: 1px solid ${colors.gray300};
-    ${fontSize.M}
-    ${fontType.REGULAR}
-  }
-`;
-
-export const NewIssueContent = () => {
-  const titleInputConstant = {
-    type: 'defaultTextInput',
-    isIcon: false,
-    initialText: '제목'
-  };
-
-  const comentInputConstant = {
-    initialText: '코멘트를 입력하세요'
-  };
-
+export const NewIssueContent = ({
+  titleValue,
+  titleSetValue,
+  commentValue,
+  commentSetValue
+}) => {
   return (
     <MyNewIssueContent>
       <TextInput
-        type={titleInputConstant.type}
-        isIcon={titleInputConstant.isIcon}
-        initialText={titleInputConstant.initialText}
+        label={'제목'}
+        height={'70px'}
+        value={titleValue}
+        setValue={titleSetValue}
       />
-      <TextArea initialText={comentInputConstant.initialText}></TextArea>
+      <TextArea
+        label={'코멘트를 입력하세요'}
+        size={'l'}
+        value={commentValue}
+        setValue={commentSetValue}
+      />
     </MyNewIssueContent>
   );
 };
+
+const MyNewIssueContent = styled.form`
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 938px;
+
+  > div {
+    width: 100%;
+  }
+`;

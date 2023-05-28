@@ -4,79 +4,111 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { FilterBar } from './FilterBar';
-import { TabButton } from './TabButton';
 import { IssueListContext } from '../../pages/IssueList';
 import { colors } from '../../styles/color';
 import { Button } from '../button/Button';
+
+const filterTabOptions = {
+  labels: {
+    size: 's',
+    color: 'ghostGray',
+    iconType: 'label',
+    iconWidth: 16,
+    isIcon: true,
+    isLeftPosition: true
+  },
+  milestone: {
+    size: 's',
+    color: 'ghostGray',
+    iconType: 'milestone',
+    iconWidth: 16,
+    isIcon: true,
+    isLeftPosition: true
+  },
+  newIssue: {
+    size: 's',
+    color: 'containerBlue',
+    iconType: 'plus',
+    isIcon: true,
+    buttonText: '이슈작성',
+    isLeftPosition: true
+  }
+};
+
+export const FilterSection = () => {
+  const navigate = useNavigate();
+  const issues = useContext(IssueListContext);
+  const issueCountInfo = issues.countInfo;
+  return (
+    <MyFilterSection>
+      <FilterBar />
+      <MyPageMoveTabButtons>
+        <MyTabButtons>
+          <MyLeftTabButton>
+            <Button
+              {...filterTabOptions.labels}
+              buttonText={`레이블 (${issueCountInfo?.labelCount || 0})`}
+              onClick={() => navigate('/labels')}
+            />
+          </MyLeftTabButton>
+          <MyRightTabButton>
+            <Button
+              {...filterTabOptions.milestone}
+              buttonText={`마일스톤 (${issueCountInfo?.milestoneCount || 0})`}
+              onClick={() => navigate('/milestone')}
+            />
+          </MyRightTabButton>
+        </MyTabButtons>
+        <Button
+          {...filterTabOptions.newIssue}
+          onClick={() => navigate('/newIssue')}
+        />
+      </MyPageMoveTabButtons>
+    </MyFilterSection>
+  );
+};
 
 const MyFilterSection = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
+
+  button {
+    font-size: 14px;
+    margin: 0 auto;
+    cursor: pointer;
+  }
 `;
 
-const TabButtons = styled.div`
+const MyPageMoveTabButtons = styled.div`
   display: flex;
+  align-items: center;
   gap: 15px;
 `;
 
-export const FilterSection = () => {
-  const navigate = useNavigate();
-  const issueData = useContext(IssueListContext);
-  const issueCountInfo = issueData.countInfo;
+const MyTabButtons = styled.div`
+  display: flex;
+  height: 40px;
+  width: 300px;
 
-  const issueTabConstant = {
-    type: 'ghostButton',
-    btnColor: colors.gray700,
-    backgroundColor: colors.gray100,
-    hoverColor: colors.gray700,
-    lefBtnText: `레이블(${issueCountInfo?.labelCount || 0})`,
-    rightBtnText: `마일스톤(${issueCountInfo?.milestoneCount || 0})`,
-    leftIconType: 'label',
-    rightIconType: 'milestone',
-    isLeftPosition: true,
-    isRightPositin: false
-  };
+  & div {
+    width: 100%;
+    border: 1px solid ${colors.gray300};
 
-  const addIssueConstant = {
-    type: 'containerButton',
-    btnColor: colors.gray50,
-    backgroundColor: colors.blue,
-    hoverColor: colors.gray50,
-    btnText: '이슈 작성',
-    iconType: 'plus',
-    isIcon: true,
-    isLeftPosition: true
-  };
+    :last-child {
+      border-left: none;
+    }
 
-  return (
-    <MyFilterSection>
-      <FilterBar />
-      <TabButtons>
-        <TabButton
-          type={issueTabConstant.type}
-          buttonColor={issueTabConstant.btnColor}
-          hoverColor={issueTabConstant.hoverColor}
-          backgroundColor={issueTabConstant.backgroundColor}
-          leftext={issueTabConstant.lefBtnText}
-          rightText={issueTabConstant.rightBtnText}
-          leftIconType={issueTabConstant.leftIconType}
-          rightIconType={issueTabConstant.rightIconType}
-          isIcon={addIssueConstant.isIcon}
-          isLeftPosition={issueTabConstant.isLeftPosition}
-        />
-        <Button
-          type={addIssueConstant.type}
-          buttonColor={addIssueConstant.btnColor}
-          hoverColor={addIssueConstant.hoverColor}
-          backgroundColor={addIssueConstant.backgroundColor}
-          buttonText={addIssueConstant.btnText}
-          iconType={addIssueConstant.iconType}
-          isIcon={addIssueConstant.isIcon}
-          isLeftPosition={addIssueConstant.isLeftPosition}
-          onClick={() => navigate('/newIssue')}
-        />
-      </TabButtons>
-    </MyFilterSection>
-  );
-};
+    &: hover {
+      background: ${colors.gray200};
+    }
+  }
+`;
+
+const MyLeftTabButton = styled.div`
+  border-radius: 11px 0px 0px 11px;
+`;
+
+const MyRightTabButton = styled.div`
+  border-radius: 0px 11px 11px 0px;
+`;

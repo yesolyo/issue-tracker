@@ -1,93 +1,51 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontType } from '../../styles/font';
 
-const MyButton = styled.button`
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  height: 40px;
-  display: flex;
-  padding: 0;
-  width: ${(props) => props.buttonWidth || 'max-content'};
-  height: ${(props) => props.buttonHeight || '40px'};
-  border-radius: 11px;
-  ${fontType.BOLD};
-  color: ${(props) => props.buttonColor || colors.gray50};
-
-  > svg {
-    margin: 5px;
-  }
-
-  &:hover {
-    color: ${(props) => props.hoverColor || colors.gray50};
-    > svg {
-      fill: ${(props) => props.hoverColor || colors.gray50};
-    }
-  }
-`;
-
-const containerButton = styled(MyButton)`
-  padding: 0px 16px;
-  border: none;
-  background: ${(props) => props.backgroundColor || colors.gray50};
-`;
-
-const outlineButton = styled(MyButton)`
-  padding: 0px 16px;
-  background-color: transparent;
-  border-color: ${colors.blue};
-`;
-const ghostButton = styled(MyButton)`
-  background-color: transparent;
-  border: none;
-`;
-
 export const Button = ({
-  type,
-  buttonColor,
-  hoverColor,
-  backgroundColor,
-  buttonText,
-  buttonWidth,
-  buttonHeight,
+  disabled,
+  size,
+  color,
   iconType,
+  iconWidth,
   isIcon,
+  buttonText,
   isLeftPosition,
-  onClick
+  onClick,
+  active
 }) => {
-  const buttonTypes = {
-    containerButton,
-    outlineButton,
-    ghostButton
-  };
-
-  const MyButton = buttonTypes[type];
+  const btnSize = btnSizes[size];
+  const btnColor =
+    active === undefined
+      ? btnColors[color]
+      : active
+        ? btnColors.ghostBlack
+        : btnColors.ghostGray;
+  const iconSize = iconWidth || '9';
 
   return (
     <MyButton
-      buttonColor={buttonColor}
-      hoverColor={hoverColor}
-      backgroundColor={backgroundColor}
-      buttonWidth={buttonWidth}
-      buttonHeight={buttonHeight}
+      disabled={disabled}
+      btnSize={btnSize}
+      btnColor={btnColor}
       onClick={onClick}
+      type="button"
     >
       {isIcon
         ? (
           isLeftPosition
             ? (
               <>
-                <Icon iconType={iconType} fill={buttonColor} width={10} />
+                <Icon iconType={iconType} width={iconSize} />
                 {buttonText}
               </>
             )
             : (
               <>
                 {buttonText}
-                <Icon iconType={iconType} fill={buttonColor} width={10} />
+                <Icon iconType={iconType} width={iconSize} />
               </>
             )
         )
@@ -97,3 +55,85 @@ export const Button = ({
     </MyButton>
   );
 };
+
+const btnSizes = {
+  l: css`
+    width: 320px;
+    height: 56px;
+  `,
+  m: css`
+    width: 240px;
+    height: 56px;
+  `,
+  s: css`
+    width: 120px;
+    height: 40px;
+  `,
+  xs: css`
+    width: 59px;
+    height: 28px;
+  `
+};
+
+const btnColors = {
+  containerBlue: css`
+    background-color: ${colors.blue};
+    color: ${colors.gray50};
+    border: none;
+  `,
+  containerBlack: css`
+    background-color: ${colors.gray900};
+    color: ${colors.gray50};
+    border: none;
+  `,
+  outlineBlue: css`
+    background-color: transparent;
+    color: ${colors.blue};
+    border-color: ${colors.blue};
+    > svg {
+      fill: ${colors.blue};
+    }
+  `,
+  ghostBlack: css`
+    background-color: transparent;
+    color: ${colors.gray900};
+    border: none;
+    > svg {
+      fill: ${colors.gray900};
+    }
+  `,
+  ghostGray: css`
+    background-color: transparent;
+    color: ${colors.gray600};
+    border: none;
+    > svg {
+      fill: ${colors.gray600};
+    }
+  `
+};
+
+const MyButton = styled.button`
+  ${(p) => p.btnSize};
+  ${(p) => p.btnColor};
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex;
+  border-radius: 11px;
+  padding: 0;
+  ${fontType.BOLD};
+  > svg {
+    margin-right: 5px;
+  }
+  &: hover {
+    opacity: 0.8;
+  }
+
+  &: active {
+    opacity: 0.64;
+  }
+
+  &: disabled {
+    opacity: 0.32;
+  }
+`;

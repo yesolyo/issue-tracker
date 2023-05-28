@@ -1,38 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
 import styled from 'styled-components';
 
 import { FilterSection } from '../components/filterSection/FiterSection';
-import { Header } from '../components/Header';
 import { IssueListContainer } from '../components/issueList/IssueListContainer';
-
+import {
+  filterStateReducer,
+  initialFilterState
+} from '../stores/filterStateReducer';
+import { fetchData } from '../utils/fetch';
+export const FilterStateContext = React.createContext();
 export const IssueListContext = React.createContext();
 
-const IssueListPage = styled.div`
-  width: 1280px;
-  margin: 0 auto;
-`;
-
 export const IssueList = () => {
-  // TODO : dispatch, useReducer 사용예정
-  const [data, dispatch] = useState([]);
+  const [issues, setIssues] = useState([]);
   const initData = async () => {
-    const response = await fetch('/issueList');
-    const resData = await response.json();
-    dispatch(resData);
+    try {
+      const response = await fetchData('/issues');
+      setIssues(response);
+    } catch (err) {
+      console.err(err);
+    }
   };
 
   useEffect(() => {
     initData();
   }, []);
 
+  const [filterState, filterStateDispatch] = useReducer(
+    filterStateReducer,
+    initialFilterState
+  );
+
   return (
-    <IssueListContext.Provider value={data}>
-      <IssueListPage>
-        <Header />
-        <FilterSection />
-        <IssueListContainer />
-      </IssueListPage>
-    </IssueListContext.Provider>
+    <FilterStateContext.Provider value={{ filterState, filterStateDispatch }}>
+      <IssueListContext.Provider value={issues}>
+        <MyIssueListPage>
+          <FilterSection />
+          <IssueListContainer />
+        </MyIssueListPage>
+      </IssueListContext.Provider>
+    </FilterStateContext.Provider>
   );
 };
+
+const MyIssueListPage = styled.div`
+  width: 1280px;
+  margin: 0 auto;
+`;

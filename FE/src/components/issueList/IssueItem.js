@@ -1,5 +1,9 @@
+import { useContext } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { CheckboxStateContext } from './IssueListContainer';
 import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
@@ -7,6 +11,82 @@ import { getTimeElapsed } from '../../utils/timeElapsed';
 import { CheckBox } from '../CheckBox';
 import { LabelTag } from '../LabelTag';
 import { Profile } from '../Profile';
+
+export const IssueItem = ({
+  issueId,
+  title,
+  author,
+  labels,
+  milestone,
+  assignees,
+  createTime,
+  isOpen
+}) => {
+  const navigate = useNavigate();
+  const { checkState, checkDispatch } = useContext(CheckboxStateContext);
+  const { checkedIssues } = checkState;
+  const iconType = isOpen ? 'alertCircle' : 'archive';
+  const handleCheckBoxClick = ({ currentTarget }) => {
+    if (checkedIssues.some((id) => id === Number(currentTarget.id))) {
+      checkDispatch({ type: 'UNCHECK', payload: issueId });
+    } else {
+      checkDispatch({ type: 'CHECK', payload: issueId });
+    }
+  };
+
+  return (
+    isOpen && (
+      <MyIssueItem>
+        <MyIssueBox>
+          <CheckBox
+            id={issueId}
+            onChange={handleCheckBoxClick}
+            checked={checkedIssues.includes(issueId)}
+          />
+          <MyIssue>
+            <MyIssueTitle>
+              <Icon iconType={iconType} fill={colors.blue} />
+              <span onClick={() => navigate('/issueDetail/:issueId')}>
+                {title}
+              </span>
+              {!!labels.length &&
+                labels.map((label) => (
+                  <LabelTag
+                    key={label.id}
+                    tagType={'labels'}
+                    hasIcon={false}
+                    text={label.name}
+                    backgroundColor={label.backgroundColor}
+                    fontColor={label.fontColor}
+                  />
+                ))}
+            </MyIssueTitle>
+            <MyIssueDiscription>
+              <p>#{issueId}</p>
+              <p>
+                이 이슈가 {getTimeElapsed(createTime)}, {author?.name}님에 의해
+                작성되었습니다
+              </p>
+              {milestone && (
+                <>
+                  <Icon iconType={'milestone'} fill={colors.gray600} />
+                  <p>{milestone.name}</p>
+                </>
+              )}
+            </MyIssueDiscription>
+          </MyIssue>
+        </MyIssueBox>
+        {assignees && (
+          <MyIssueAssignee>
+            {assignees.map((assignee) => (
+              <Profile key={assignee.id} userInfo={assignee} />
+            ))}
+          </MyIssueAssignee>
+        )}
+      </MyIssueItem>
+    )
+  );
+};
 
 const MyIssueItem = styled.div`
   display: flex;
@@ -21,7 +101,7 @@ const MyIssueItem = styled.div`
   }
 `;
 
-const IssueBox = styled.div`
+const MyIssueBox = styled.div`
   display: flex;
   align-items: center;
   gap: 18px;
@@ -31,26 +111,27 @@ const IssueBox = styled.div`
   }
 `;
 
-const Issue = styled.div`
+const MyIssue = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
 `;
 
-const IssueTitle = styled.div`
+const MyIssueTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 
   > span {
     ${fontSize.L};
+    cursor: pointer;
   }
 `;
 
-const IssueDiscription = styled.div`
+const MyIssueDiscription = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
   height: 30px;
 
   > p {
@@ -62,75 +143,21 @@ const IssueDiscription = styled.div`
   }
 `;
 
-const IssueAssignee = styled.div`
-  padding-right: 20px;
+const MyIssueAssignee = styled.div`
+  padding-right: 15px;
 
-  & > img:last-of-type {
-    margin-left: -10px;
+  img {
+    cursor: pointer;
   }
 
-  img:hover {
-    transition: margin 0.1s ease-in-out;
+  & > img:first-of-type:not(:last-child) {
+    margin-right: -10px;
+  }
+
+  &:hover {
+    > img:first-of-type:not(:last-child) {
+      transform: translateX(-10px);
+      transition: all 0.2s ease-in-out;
+    }
   }
 `;
-
-export const IssueItem = ({
-  id,
-  title,
-  author,
-  labels = null,
-  milestone = null,
-  assignees = null,
-  date,
-  isOpen = null,
-  replyAuthors = null
-}) => {
-  const onClick = null;
-  const labelsOption = {
-    tagType: 'labels',
-    hasIcon: false
-  };
-
-  return (
-    <MyIssueItem>
-      <IssueBox>
-        <CheckBox type={'initial'} onClick={onClick} />
-        <Issue>
-          <IssueTitle>
-            <Icon iconType={'alertCircle'} fill={colors.blue} />
-            <span>{title}</span>
-            {!!labels.length &&
-              labels.map((label, index) => (
-                <LabelTag
-                  key={index}
-                  {...labelsOption}
-                  text={label.name}
-                  backgroundColor={label.backgroundColor}
-                />
-              ))}
-          </IssueTitle>
-          <IssueDiscription>
-            <p>#{id}</p>
-            <p>
-              이 이슈가 {getTimeElapsed(date)}전, {author?.name}님에 의해
-              작성되었습니다
-            </p>
-            {milestone && (
-              <p>
-                <Icon iconType={'milestone'} fill={colors.gray600} />
-                {milestone?.name}
-              </p>
-            )}
-          </IssueDiscription>
-        </Issue>
-      </IssueBox>
-      {assignees && (
-        <IssueAssignee>
-          {assignees.map((assignee, index) => (
-            <Profile key={index} isSmall={true} userInfo={assignee} />
-          ))}
-        </IssueAssignee>
-      )}
-    </MyIssueItem>
-  );
-};

@@ -1,0 +1,34 @@
+export const fetchData = async (path) => {
+  const response = await fetch(path);
+  const resData = await response.json();
+  return resData;
+};
+
+export const fetchAll = async (...url) => {
+  const response = [...url].map((url) => fetch(url));
+  const resData = await Promise.all(response);
+  const jsonObject = await Promise.all(resData.map((obj) => obj.json()));
+  return jsonObject;
+};
+
+const getFilterdIssues = async (tabId, filterOption) => {
+  const response = await fetchData(`${tabId}`);
+  return response;
+};
+
+export const fetchPost = async (url, body) => {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    quries: { code: queryCode }
+  };
+  const res = await fetch(url, options);
+  const data = await res.json();
+  if (res.ok) {
+    return data;
+  } else {
+    throw Error(data);
+  }
+};

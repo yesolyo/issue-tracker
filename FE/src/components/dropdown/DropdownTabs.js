@@ -1,28 +1,35 @@
-import { useContext } from 'react';
-
 import styled from 'styled-components';
 
 import { Dropdown } from './Dropdown';
-import { IssueListContext } from '../../pages/IssueList';
+import { tabTypes } from './DropdownTypes';
 
-const tabTypes = [
-  {
-    tabName: '작성자',
-    filterTabKey: 'author'
-  },
-  {
-    tabName: '레이블',
-    filterTabKey: 'labels'
-  },
-  {
-    tabName: '마일스톤',
-    filterTabKey: 'milestone'
-  },
-  {
-    tabName: '담당자',
-    filterTabKey: 'assignees'
-  }
-];
+export const DropdownTabs = () => {
+  const tabButtons = ['author', 'labels', 'milestone', 'assignees'];
+  const dropdownTabInfo = tabButtons.map((tab) => tabTypes[tab]);
+  const getParticleType = (tabId) =>
+    ['author', 'assignees'].includes(tabId) ? '가' : '이';
+
+  return (
+    <MyDropdownTabs>
+      {dropdownTabInfo.map(({ tabId, tabName, filterOptions }) => (
+        <Dropdown
+          key={tabId}
+          type={'tabs'}
+          tabId={tabId}
+          tabName={tabName}
+          filterOptions={filterOptions}
+          buttonOption={{ size: 's' }}
+          optionalArea={
+            <>
+              {tabName}
+              {getParticleType(tabId)} 없는 이슈
+            </>
+          }
+        />
+      ))}
+    </MyDropdownTabs>
+  );
+};
 
 const MyDropdownTabs = styled.div`
   display: flex;
@@ -33,30 +40,8 @@ const MyDropdownTabs = styled.div`
   > button {
     cursor: pointer;
   }
+
+  button {
+    padding: 10px;
+  }
 `;
-
-export const DropdownTabs = () => {
-  // TODO: queryString으로 filter
-  const getFilteredData = (filterTabKey) => {
-    const issueData = useContext(IssueListContext);
-    const issueListData = issueData.issueList;
-    return issueListData
-      ?.map((issue) => issue[filterTabKey])
-      .filter((data) => !!data)
-      .flat(1);
-  };
-
-  return (
-    <MyDropdownTabs>
-      {tabTypes.map(({ tabName, filterTabKey }, index) => {
-        return (
-          <Dropdown
-            key={index}
-            tabName={tabName}
-            tabOptions={getFilteredData(filterTabKey)}
-          />
-        );
-      })}
-    </MyDropdownTabs>
-  );
-};
