@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styled, { css } from 'styled-components';
 
+import { Icon } from '../../assets/Icon';
 import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
@@ -11,10 +12,21 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
   const fileSize = fileSizes[size];
 
   const [isTextAreaFocus, setIsTextAreaFocus] = useState(false);
+  const [isCount, setIsCount] = useState(true);
 
   const handleValueChange = (e) => {
     setValue(e.target.value);
   };
+
+  useEffect(() => {
+    setIsCount(false);
+    let timerId;
+    if (value.length > 0) {
+      timerId = setTimeout(() => setIsCount(true), 2000);
+    }
+
+    return () => clearTimeout(timerId);
+  }, [value]);
 
   return (
     <MyTextArea isFocus={isTextAreaFocus} areaSize={areaSize} value={value}>
@@ -25,6 +37,11 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
         onBlur={() => setIsTextAreaFocus(false)}
       />
       <label className={value && 'filled'}>{label}</label>
+      <TextCount isFocus={isTextAreaFocus}>
+        {isCount && <span>{`띄어쓰기 포함 ${value.length}자`}</span>}
+        <Icon iconType={'grip'} />
+      </TextCount>
+
       <MyFileArea isFocus={isTextAreaFocus} fileSize={fileSize}>
         <Button
           size={'m'}
@@ -34,7 +51,6 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
           buttonText={`파일 첨부하기`}
           isLeftPosition
         />
-        <div>띄어쓰기 포함 {value.length}자</div>
       </MyFileArea>
     </MyTextArea>
   );
@@ -69,7 +85,6 @@ const MyTextArea = styled.div`
   align-items: center;
   width: 938px;
   border-radius: 11px;
-  background: ${({ isFocus }) => (isFocus ? `${colors.gray50}` : null)};
   box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px ${colors.blue}` : null)};
 
   &: focus-within label {
@@ -106,6 +121,7 @@ const MyTextArea = styled.div`
     box-shadow: none;
     padding: 30px;
     transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    resize: none;
     ${fontSize.M};
     ${fontType.REGULAR};
     background: ${({ isFocus }) =>
@@ -132,4 +148,16 @@ const MyFileArea = styled.div`
     padding: 0px 0px 0px 20px;
     justify-content: flex-start;
   }
+`;
+
+const TextCount = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  color: ${colors.gray600};
+  ${fontSize.S};
+  ${fontType.REGULAR};
+  background: ${({ isFocus }) =>
+    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
 `;
