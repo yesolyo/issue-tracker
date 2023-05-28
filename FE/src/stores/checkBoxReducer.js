@@ -15,25 +15,29 @@ export const checkBoxReducer = (state, action) => {
       };
     }
     case 'UNCHECK': {
-      const updateCheckedIssues = checkedIssues.filter((id) => id !== payload);
+      const updateCheckedIssues = checkedIssues.filter(
+        (issueId) => issueId !== payload
+      );
       const isAllUpdatedChecked = updateCheckedIssues.length > 0;
       return {
         isAllChecked: isAllUpdatedChecked,
         checkedIssues: updateCheckedIssues
       };
     }
-    case 'ALL_CHECK': {
-      const updatecheckedIssues = payload.reduce((acc, issue) => {
-        if (issue.isOpen) acc.push(issue.id);
-        return acc;
-      }, []);
+    case 'ALL-CHECK': {
+      const updateCheckedIssues = payload.map(({ issueId }) => issueId);
       return {
         isAllChecked: true,
-        checkedIssues: updatecheckedIssues
+        checkedIssues: updateCheckedIssues
       };
     }
-    case 'ALL_UNCHECK': {
+    case 'ALL-UNCHECK': {
       return { isAllChecked: false, checkedIssues: [] };
+    }
+    case 'CHANGE-OPEN': {
+      return {
+        ...state
+      };
     }
     default:
       return state;
