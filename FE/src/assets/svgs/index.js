@@ -18,3 +18,4 @@ export { ReactComponent as plus } from '../svgs/plus.svg';
 export { ReactComponent as smile } from '../svgs/smile.svg';
 export { ReactComponent as chevronDown } from '../svgs/chevronDown.svg';
 export { ReactComponent as roundImage } from '../svgs/roundImage.svg';
+export { ReactComponent as grip } from '../svgs/grip.svg';
