@@ -24,15 +24,21 @@ export const Dropdown = ({
   isLeft,
   setValue,
   optionalArea,
-  selectedSideBarMenu
+  selectedSideBarMenu,
+  onFilterIssues,
+  onOpenIssues,
+  isSelected
 }) => {
   const [isDropDown, setIsDropDown] = useState(false);
+
   const [selectedOption, setSelectedOption] = useState('isOpen');
-  const [selectedTab, setSelectedTab] = useState('');
+  const [selectedTab, setSelectedTab] = useState(null);
   const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
+
   const selectedSideBarItemInfo = tabOptionsInfo?.find(
     ({ id }) => id === Number(selectedOption)
   );
+  // 사이드바 아이템을 클릭을 때 사이드바 컴포넌트를 생성하는 함수
   const SelectedSideBarItem = selectedSideBarMenu?.(
     selectedTab,
     selectedSideBarItemInfo
@@ -50,6 +56,7 @@ export const Dropdown = ({
     return () => window.removeEventListener('mousedown', handleClick);
   }, [panelRef]);
 
+  // 드롭다운을 클릭했을때 panel을 띄우는 함수
   const handleDropdownTabMouseDown = (e) => {
     setIsDropDown(!isDropDown);
     setSelectedTab(tabId);
@@ -57,6 +64,7 @@ export const Dropdown = ({
     if (!isDropDown) fetchSelectedTab(tabId, filterOptions);
   };
 
+  // 선택된 탭에서 옵션을 클릭했을 때 패널옵션을 패치하는 함수
   const fetchSelectedTab = async (selectedTab, filterOptions) => {
     const selectedTabApi =
       selectedTab === 'assignees' || selectedTab === 'author'
@@ -67,19 +75,26 @@ export const Dropdown = ({
     setTabOptionsInfo(tabData);
   };
 
+  // 패널옵션배열을 받아서 로직에 맞게 id, option으로 변환하는 함수
   const getFilteredOptions = (filterOptions, tabOptionsInfo) => {
     return tabOptionsInfo?.map((option) => filterOptions(option));
   };
 
-  const handleSelectedOption = (option, selectedTab) => {
+  // 선택된 옵션 아이템을 저장하는 함수
+  const handleSelectedOption = (selectedTab, option) => {
     if (option === selectedOption) {
       setSelectedOption('isOpen');
-      setSelectedTab('');
-      if (setValue) setValue('');
+      setSelectedTab(null);
+      if (setValue) setValue(null);
     } else {
       setSelectedOption(option);
       setSelectedTab(selectedTab);
       if (setValue) setValue(option);
+    }
+    if (selectedTab === 'filter' && option.endsWith('isOpen')) {
+      onOpenIssues(option);
+    } else {
+      onFilterIssues(selectedTab, option);
     }
   };
 
@@ -96,9 +111,10 @@ export const Dropdown = ({
           type={type}
           options={tabOptions || tabOptionsInfo}
           isLeft={isLeft}
+          optionalArea={optionalArea}
           selectedOption={selectedOption}
           handleSelectedOption={handleSelectedOption}
-          optionalArea={optionalArea}
+          isSelected={isSelected}
         />
       )}
     </MyDropdown>

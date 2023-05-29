@@ -38,12 +38,12 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
 
     return () => clearTimeout(timerId);
   }, [value]);
-
+  
   return (
     <MyTextArea isFocus={isTextAreaFocus} areaSize={areaSize} value={value}>
       <textarea
         value={value}
-        onChange={handleValueChange}
+        onChange={({ target }) => setValue(target.value)}
         onFocus={() => setIsTextAreaFocus(true)}
         onBlur={() => setIsTextAreaFocus(false)}
       />
