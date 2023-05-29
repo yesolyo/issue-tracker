@@ -13,9 +13,20 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
 
   const [isTextAreaFocus, setIsTextAreaFocus] = useState(false);
   const [isCount, setIsCount] = useState(true);
+  const fileInput = React.useRef(null);
 
   const handleValueChange = (e) => {
     setValue(e.target.value);
+  };
+
+  const handleButtonClick = (e) => {
+    fileInput.current.click();
+  };
+
+  const handleChange = (e) => {
+    setValue(
+      `![${e.target.files[0].name}](https://github.com/codesquad-members-2023/issue-tracker/assets/104904719/${e.target.files[0].name})`
+    );
   };
 
   useEffect(() => {
@@ -50,6 +61,13 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
           isIcon
           buttonText={`파일 첨부하기`}
           isLeftPosition
+          onClick={handleButtonClick}
+        />
+        <input
+          type="file"
+          ref={fileInput}
+          onChange={handleChange}
+          style={{ display: 'none' }}
         />
       </MyFileArea>
     </MyTextArea>
