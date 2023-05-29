@@ -59,7 +59,6 @@ const MyIssueDetailContent = styled.div`
   gap: 20px;
   display: flex;
   flex-direction: column;
-  width: 938px;
   align-items: flex-end;
 
   > button {

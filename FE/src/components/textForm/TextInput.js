@@ -23,6 +23,7 @@ export const TextInput = React.memo(
           onChange={(e) => {
             setValue(e.target.value);
           }}
+          ref={(value) => setValue(value)}
         />
         <label className={value && 'filled'}>{label}</label>
       </MyTextInput>

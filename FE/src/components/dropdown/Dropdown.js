@@ -85,16 +85,16 @@ export const Dropdown = ({
     if (option === selectedOption) {
       setSelectedOption('isOpen');
       setSelectedTab(null);
-      if (setValue) setValue(null);
+      setValue?.(null);
     } else {
       setSelectedOption(option);
       setSelectedTab(selectedTab);
-      if (setValue) setValue(option);
+      setValue?.(option);
     }
     if (selectedTab === 'filter' && option.endsWith('isOpen')) {
       onOpenIssues(option);
     } else {
-      onFilterIssues(selectedTab, option);
+      onFilterIssues?.(selectedTab, option);
     }
   };
 

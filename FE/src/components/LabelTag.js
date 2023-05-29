@@ -41,7 +41,6 @@ const MydefaultTag = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50px;
-
   ${fontSize.S}
 `;
 
@@ -49,7 +48,8 @@ const MyLabelsTag = styled(MydefaultTag)`
   color: ${colors.gray50};
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ fontColor }) => fontColor};
-  border: 1px solid ${({ borderColor }) => borderColor};
+  border: ${({ borderColor }) =>
+    borderColor ? `1px solid ${borderColor}` : null};
 `;
 
 const issueTag = styled(MydefaultTag)`

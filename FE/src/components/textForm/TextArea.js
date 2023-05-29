@@ -7,7 +7,9 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
 
+// uncontrolled components
 export const TextArea = React.memo(({ label, size, value, setValue }) => {
+  const textAreaValue = value?.value;
   const areaSize = areaSizes[size];
   const fileSize = fileSizes[size];
 
@@ -38,18 +40,18 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
 
     return () => clearTimeout(timerId);
   }, [value]);
-  
+
   return (
-    <MyTextArea isFocus={isTextAreaFocus} areaSize={areaSize} value={value}>
+    <MyTextArea isFocus={isTextAreaFocus} areaSize={areaSize} value={textAreaValue}>
       <textarea
-        value={value}
         onChange={({ target }) => setValue(target.value)}
         onFocus={() => setIsTextAreaFocus(true)}
         onBlur={() => setIsTextAreaFocus(false)}
+        ref={(value) => setValue(value)}
       />
-      <label className={value && 'filled'}>{label}</label>
+      <label className={textAreaValue && 'filled'}>{label}</label>
       <TextCount isFocus={isTextAreaFocus}>
-        {isCount && <span>{`띄어쓰기 포함 ${value.length}자`}</span>}
+        {isCount && <span>{`띄어쓰기 포함 ${textAreaValue?.length}자`}</span>}
         <Icon iconType={'grip'} />
       </TextCount>
 
@@ -116,7 +118,7 @@ const MyTextArea = styled.div`
   & label {
     position: absolute;
     ${({ value }) =>
-    value.length > 0
+    value?.length > 0
       ? 'transform: translate(0, 12px) scale(0.8);'
       : 'transform: translate(0, 23px) scale(1);'}
     pointer-events: none;
