@@ -9,7 +9,8 @@ export const NewIssueContent = ({
   titleValue,
   titleSetValue,
   commentValue,
-  commentSetValue
+  commentSetValue,
+  inputType
 }) => {
   return (
     <MyNewIssueContent>
@@ -18,6 +19,7 @@ export const NewIssueContent = ({
         height={'70px'}
         value={titleValue}
         setValue={titleSetValue}
+        inputType={'text'}
       />
       <TextArea
         label={'코멘트를 입력하세요'}

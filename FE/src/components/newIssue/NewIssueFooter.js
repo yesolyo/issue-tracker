@@ -25,7 +25,7 @@ export const NewIssueFooter = ({ titleValue, commentValue }) => {
         onClick={() => navigate(-1)}
       />
       <Button
-        disabled={titleValue.length < 1 || commentValue.length < 1}
+        disabled={titleValue.length < 1}
         size={'m'}
         color={'containerBlue'}
         isIcon={false}
