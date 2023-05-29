@@ -24,7 +24,6 @@ const editBtn = [
     color: 'outlineBlue',
     iconType: 'archive',
     iconWidth: '12',
-
     buttonText: '이슈 닫기'
   }
 ];
@@ -72,7 +71,7 @@ export const IssueDetailHeader = () => {
         <LabelTag {...labelTagBtn} />
         <p>
           이 이슈가 {getTimeElapsed(issueSubInfo?.createTime)}에{' '}
-          {issueSubInfo?.author.name}님에 의해 열렸습니다. * 코멘트{' '}
+          {issueSubInfo?.author.name}님에 의해 열렸습니다. · 코멘트{' '}
           {CommentInfo?.length}개
         </p>
       </SubHeader>
