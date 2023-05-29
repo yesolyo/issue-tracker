@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from 'react';
+import React, { useContext } from 'react';
 
 import styled from 'styled-components';
 
@@ -68,6 +68,12 @@ export const IssueListHeader = () => {
     }
   };
 
+  const handleSwitchCheckIssueState = (option) => {
+    if (option === 'open') {
+      checkDispatch({ type: 'SWITCH-OPEN', payload: issuesInfo });
+    } else checkDispatch({ type: 'SWITCH-CLOSE', payload: issuesInfo });
+  };
+
   return (
     <MyIssueListHeader>
       <MyIssueTabs>
@@ -100,8 +106,10 @@ export const IssueListHeader = () => {
       </MyIssueTabs>
       {isAllChecked
         ? (
-          // 이슈를 모두 오픈하거나 닫는 클릭이벤트 전달해야됨
-          <Dropdown {...checkTabTypes} />
+          <Dropdown
+            {...checkTabTypes}
+            handleSwitchCheckIssueState={handleSwitchCheckIssueState}
+          />
         )
         : (
           <DropdownFilterTabs onFilterIssues={onFilterIssues} />
