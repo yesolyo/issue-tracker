@@ -24,7 +24,6 @@ const editBtn = [
     color: 'outlineBlue',
     iconType: 'archive',
     iconWidth: '12',
-
     buttonText: '이슈 닫기'
   }
 ];

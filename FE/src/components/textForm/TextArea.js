@@ -30,10 +30,10 @@ export const TextArea = React.memo(({ label, size, value, setValue }) => {
   };
 
   useEffect(() => {
-    setIsCount(false);
+    setIsCount(true);
     let timerId;
     if (value.length > 0) {
-      timerId = setTimeout(() => setIsCount(true), 2000);
+      timerId = setTimeout(() => setIsCount(false), 2000);
     }
 
     return () => clearTimeout(timerId);

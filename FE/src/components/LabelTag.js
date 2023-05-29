@@ -10,7 +10,8 @@ export const LabelTag = ({
   icon,
   hasIcon,
   backgroundColor,
-  fontColor
+  fontColor,
+  borderColor
 }) => {
   const tagTypes = {
     open: MyOpenTag,
@@ -22,7 +23,11 @@ export const LabelTag = ({
   const MyLabelTag = tagTypes[tagType];
 
   return (
-    <MyLabelTag backgroundColor={backgroundColor} fontColor={fontColor}>
+    <MyLabelTag
+      backgroundColor={backgroundColor}
+      fontColor={fontColor}
+      borderColor={borderColor}
+    >
       {hasIcon && <Icon iconType={icon} fill={colors.gray50} />}
       {text}
     </MyLabelTag>
@@ -36,6 +41,7 @@ const MydefaultTag = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 50px;
+
   ${fontSize.S}
 `;
 
@@ -43,6 +49,7 @@ const MyLabelsTag = styled(MydefaultTag)`
   color: ${colors.gray50};
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ fontColor }) => fontColor};
+  border: 1px solid ${({ borderColor }) => borderColor};
 `;
 
 const issueTag = styled(MydefaultTag)`
