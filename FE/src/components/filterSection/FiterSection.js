@@ -34,6 +34,7 @@ const filterTabOptions = {
     isLeftPosition: true
   }
 };
+
 export const FilterSection = () => {
   const navigate = useNavigate();
   const { countInfo } = useContext(IssueListContext);
