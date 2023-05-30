@@ -43,7 +43,6 @@ export const CommentElements = ({
     fontColor: colors.gray600,
     borderColor: colors.gray300
   };
-
   return (
     <MyCommentElements>
       <MyCommentHeader>
