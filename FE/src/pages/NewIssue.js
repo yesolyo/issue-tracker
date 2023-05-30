@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { NewIssueFooter } from '../components/newIssue/NewIssueFooter';
-import { SideBar } from '../components/newIssue/SideBar';
+import { SideBar } from '../components/newIssue/Sidebar';
 import { PageHeader } from '../components/PageHeader';
 import { Profile } from '../components/Profile';
 import { TextArea } from '../components/textForm/TextArea';
@@ -16,6 +16,7 @@ export const NewIssue = () => {
   const [label, setlabel] = useState(null);
   const [milestone, setMilestone] = useState(null);
   const [newIssue, setNewIssue] = useState({});
+  const [text, setText] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,12 +47,14 @@ export const NewIssue = () => {
               height={'70px'}
               value={title}
               setValue={setTitle}
+              setText={setText}
             />
             <TextArea
               label={'코멘트를 입력하세요'}
               size={'l'}
               value={comment}
               setValue={setComment}
+              setText={setText}
             />
           </MyNewIssueContent>
           <SideBar
