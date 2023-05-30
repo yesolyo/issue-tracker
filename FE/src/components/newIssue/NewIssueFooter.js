@@ -8,11 +8,7 @@ import { Button } from '../button/Button';
 export const NewIssueFooter = ({ titleValue, commentValue }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [addIssue, setAddIssue] = useState({});
 
-  const handleSubmit = (e) => {
-    setLoading(true);
-  };
   return (
     <MyNewIssueFooter>
       <Button
@@ -30,7 +26,8 @@ export const NewIssueFooter = ({ titleValue, commentValue }) => {
         color={'containerBlue'}
         isIcon={false}
         buttonText={'완료'}
-        onClick={() => navigate('/issueDetail/:id')}
+        // onClick={() => navigate('/issueDetail/:id')}
+        buttonType={'submit'}
       />
     </MyNewIssueFooter>
   );

@@ -88,11 +88,10 @@ export const IssueDetailHeader = () => {
         <LabelTag {...labelTagBtn} />
         <p>
           이 이슈가 {getTimeElapsed(issueSubInfo?.createTime)}에{' '}
-          {issueSubInfo?.author.name}님에 의해 열렸습니다. · 코멘트{' '}
+          {issueSubInfo?.author.name}님에 의해 열렸습니다. * 코멘트{' '}
           {CommentInfo?.length}개
         </p>
       </SubHeader>
-      <hr />
     </MyIssueDetailHeader>
   );
 };
@@ -100,10 +99,8 @@ export const IssueDetailHeader = () => {
 const MyIssueDetailHeader = styled.div`
   width: 1280px;
   margin: 0 auto;
-  & hr {
-    margin: 20px;
-    background: ${colors.gray300};
-  }
+  border-bottom: 1px solid ${colors.gray400};
+  padding-bottom: 25px;
 `;
 const SubHeader = styled.div`
   display: flex;
