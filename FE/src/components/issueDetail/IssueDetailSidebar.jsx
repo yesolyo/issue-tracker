@@ -2,11 +2,10 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { IssueDetailContent } from './IssueDetailContent';
-import { IssueDetailSidebar } from './IssueDetailSidebar';
 import { Button } from '../button/Button';
-import { SideBar } from '../newIssue/Sidebar';
+import { SideBar } from '../newIssue/SideBar';
 
-export const IssueDetailContainer = () => {
+export const IssueDetailSidebar = () => {
   const navigate = useNavigate();
   const btnInfo = {
     size: 'xs',
@@ -18,18 +17,19 @@ export const IssueDetailContainer = () => {
     onClick: () => navigate('/issues')
   };
   return (
-    <MysIssueDetailContainer>
-      <IssueDetailContent />
-      <IssueDetailSidebar />
-    </MysIssueDetailContainer>
+    <SidebarSection>
+      <SideBar />
+      <Button {...btnInfo} />
+    </SidebarSection>
   );
 };
 
-const MysIssueDetailContainer = styled.div`
+const SidebarSection = styled.div`
   display: flex;
-  width: 1280px;
-  margin: 0px auto;
-  padding: 30px 0;
-  justify-content: space-evenly;
-  gap: 35px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+  > button {
+    margin-right: 25px;
+  }
 `;

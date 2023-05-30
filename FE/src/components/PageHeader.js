@@ -2,16 +2,41 @@ import styled from 'styled-components';
 
 import { MyHeader } from './Header';
 import { colors } from '../styles/color';
+import { fontType } from '../styles/font';
 
-// TODO: refactor - left, right 어색함 => title
-export const PageHeader = ({ leftChild, middleChild, rigthChild }) => {
+export const PageHeader = ({
+  leftChild,
+  middleChild,
+  rigthChild,
+  value,
+  inputValue,
+  inputSetValue
+}) => {
   return (
     <MyPageHeader>
       {middleChild
         ? (
           <MyLeftPageHeader>
-            {leftChild && <div>{leftChild}</div>}
-            {middleChild && <div>{middleChild}</div>}
+            {value
+              ? (
+                <>
+                  {leftChild && (
+                    <input
+                      type="text"
+                      value={inputValue}
+                      onChange={(e) => {
+                        inputSetValue(e.target.value);
+                      }}
+                    />
+                  )}
+                </>
+              )
+              : (
+                <>
+                  {leftChild && <div>{leftChild}</div>}
+                  {middleChild && <div>{middleChild}</div>}
+                </>
+              )}
           </MyLeftPageHeader>
         )
         : (
@@ -28,6 +53,22 @@ const MyLeftPageHeader = styled.div`
   gap: 10px;
   >div: last-child {
     color: ${colors.gray600};
+  }
+
+  > input {
+    width: 1008px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    ${fontType.REGULAR}
+    color: ${colors.gray600};
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+
+    &::placeholder {
+      color: ${colors.gray700};
+    }
   }
 `;
 const MyrightPageHeader = styled.div`

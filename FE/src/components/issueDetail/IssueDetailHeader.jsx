@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -9,40 +9,53 @@ import { Button } from '../button/Button';
 import { LabelTag } from '../LabelTag';
 import { PageHeader } from '../PageHeader';
 
-const editBtn = [
-  {
-    id: 1,
-    size: 's',
-    color: 'outlineBlue',
-    iconType: 'edit',
-    iconWidth: '12',
-    buttonText: '제목 편집'
-  },
-  {
-    id: 2,
-    size: 's',
-    color: 'outlineBlue',
-    iconType: 'archive',
-    iconWidth: '12',
-    buttonText: '이슈 닫기'
-  }
-];
-const labelTagBtn = {
-  tagType: 'open',
-  hasIcon: true,
-  icon: 'archive',
-  text: '열린 이슈',
-  backgroundColor: colors.blue,
-  fontColor: colors.gray50
-};
-
 export const IssueDetailHeader = () => {
   const issueDetail = useContext(IssueDetailContext);
   const [issueSubInfo, CommentInfo] = issueDetail;
+  const [isEdit, setIsEdit] = useState(false);
+  const [isClose, setIsClose] = useState(false);
+  const [titleData, setTitleData] = useState(null);
+
+  const handleEdit = () => {
+    setIsEdit(true);
+    setTitleData(`${issueSubInfo?.title}`);
+  };
+
+  const handleCloseIssue = () => {
+    setIsClose(true);
+  };
 
   const pageHeaderInfo = {
-    leftChild: `FE 이슈트래커 디자인 시스템 구현`,
-    middleChild: `#${issueSubInfo?.id}`
+    leftChild: issueSubInfo?.title,
+    middleChild: `#${issueSubInfo?.id}`,
+    value: isEdit
+  };
+
+  const editBtn = [
+    {
+      id: 1,
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'edit',
+      iconWidth: '12',
+      buttonText: '제목 편집',
+      onClick: handleEdit
+    },
+    {
+      id: 2,
+      size: 's',
+      color: 'outlineBlue',
+      iconType: 'archive',
+      iconWidth: '12',
+      buttonText: '이슈 닫기',
+      onClick: handleCloseIssue
+    }
+  ];
+  const labelTagBtn = {
+    tagType: isClose ? 'close' : 'open',
+    hasIcon: true,
+    icon: 'archive',
+    text: isClose ? '닫힌 이슈' : '열린 이슈'
   };
 
   return (
@@ -62,10 +75,14 @@ export const IssueDetailHeader = () => {
                 isIcon
                 buttonText={edit.buttonText}
                 isLeftPosition
+                onClick={edit.onClick}
               />
             ))}
           </>
         }
+        value={isEdit}
+        inputValue={titleData}
+        inputSetValue={setTitleData}
       />
       <SubHeader>
         <LabelTag {...labelTagBtn} />
