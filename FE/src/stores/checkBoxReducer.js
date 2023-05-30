@@ -34,9 +34,31 @@ export const checkBoxReducer = (state, action) => {
     case 'ALL-UNCHECK': {
       return { isAllChecked: false, checkedIssues: [] };
     }
-    case 'CHANGE-OPEN': {
+    case 'SWITCH-OPEN': {
+      const updateCheckedIssues = payload.reduce((acc, issue) => {
+        if (checkedIssues.includes(issue.issueId) && issue.isOpen !== true) {
+          issue.isOpen = true;
+        }
+        acc.push(issue);
+        return acc;
+      }, []);
       return {
-        ...state
+        isAllChecked: false,
+        checkedIssues: []
+      };
+    }
+    case 'SWITCH-CLOSE': {
+      // TODO: 업데이트한 데이터 POST하고, 그 값을 다시 받아서 리렌더
+      const updateCheckedIssues = payload.reduce((acc, issue) => {
+        if (checkedIssues.includes(issue.issueId) && issue.isOpen !== false) {
+          issue.isOpen = false;
+        }
+        acc.push(issue);
+        return acc;
+      }, []);
+      return {
+        isAllChecked: false,
+        checkedIssues: []
       };
     }
     default:

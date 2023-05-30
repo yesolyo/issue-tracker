@@ -14,7 +14,8 @@ export const Button = ({
   buttonText,
   isLeftPosition,
   onClick,
-  active
+  active,
+  buttonType
 }) => {
   const btnSize = btnSizes[size];
   const btnColor =
@@ -31,7 +32,7 @@ export const Button = ({
       btnSize={btnSize}
       btnColor={btnColor}
       onClick={onClick}
-      type="button"
+      type={buttonType || 'button'}
     >
       {isIcon
         ? (

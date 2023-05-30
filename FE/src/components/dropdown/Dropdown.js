@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 import styled from 'styled-components';
 
@@ -27,14 +27,13 @@ export const Dropdown = ({
   selectedSideBarMenu,
   onFilterIssues,
   onOpenIssues,
+  handleSwitchCheckIssueState,
   isSelected
 }) => {
   const [isDropDown, setIsDropDown] = useState(false);
-
   const [selectedOption, setSelectedOption] = useState('isOpen');
   const [selectedTab, setSelectedTab] = useState(null);
   const [tabOptionsInfo, setTabOptionsInfo] = useState(null);
-
   const selectedSideBarItemInfo = tabOptionsInfo?.find(
     ({ id }) => id === Number(selectedOption)
   );
@@ -43,7 +42,6 @@ export const Dropdown = ({
     selectedTab,
     selectedSideBarItemInfo
   );
-
   const panelRef = useRef(null);
 
   useEffect(() => {
@@ -65,15 +63,18 @@ export const Dropdown = ({
   };
 
   // 선택된 탭에서 옵션을 클릭했을 때 패널옵션을 패치하는 함수
-  const fetchSelectedTab = async (selectedTab, filterOptions) => {
-    const selectedTabApi =
-      selectedTab === 'assignees' || selectedTab === 'author'
-        ? 'user'
-        : selectedTab;
-    const response = await fetchData(`/${selectedTabApi}`);
-    const tabData = await getFilteredOptions(filterOptions, response);
-    setTabOptionsInfo(tabData);
-  };
+  const fetchSelectedTab = useCallback(
+    async (selectedTab, filterOptions) => {
+      const selectedTabApi =
+        selectedTab === 'assignees' || selectedTab === 'author'
+          ? 'user'
+          : selectedTab;
+      const response = await fetchData(`/${selectedTabApi}`);
+      const tabData = await getFilteredOptions(filterOptions, response);
+      setTabOptionsInfo(tabData);
+    },
+    [selectedTab]
+  );
 
   // 패널옵션배열을 받아서 로직에 맞게 id, option으로 변환하는 함수
   const getFilteredOptions = (filterOptions, tabOptionsInfo) => {
@@ -85,16 +86,18 @@ export const Dropdown = ({
     if (option === selectedOption) {
       setSelectedOption('isOpen');
       setSelectedTab(null);
-      if (setValue) setValue(null);
+      setValue?.(null);
     } else {
       setSelectedOption(option);
       setSelectedTab(selectedTab);
-      if (setValue) setValue(option);
+      setValue?.(option);
     }
     if (selectedTab === 'filter' && option.endsWith('isOpen')) {
       onOpenIssues(option);
+    } else if (selectedTab === 'checkTab') {
+      handleSwitchCheckIssueState(option);
     } else {
-      onFilterIssues(selectedTab, option);
+      onFilterIssues?.(selectedTab, option);
     }
   };
 

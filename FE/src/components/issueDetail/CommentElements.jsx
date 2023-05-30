@@ -1,8 +1,5 @@
-import { useContext } from 'react';
-
 import styled from 'styled-components';
 
-import { IssueDetailContext } from '../../pages/IssueDetail';
 import { colors } from '../../styles/color';
 import { getTimeElapsed } from '../../utils/timeElapsed';
 import { Button } from '../button/Button';
@@ -75,17 +72,17 @@ const MyCommentElements = styled.div`
     :first-child {
       background: ${colors.gray100};
       border-radius: 16px 16px 0px 0px;
-      border: 1px solid ${colors.gray400};
+      border: 1px solid ${colors.gray300};
       align-items: center;
       padding-right: 10px;
     }
     :last-child {
       background: ${colors.gray50};
       border-radius: 0px 0px 16px 16px;
-      border: 1px solid ${colors.gray400};
+      border: 1px solid ${colors.gray300};
       border-top: none;
       height: 60px;
-      padding-left: 20px;
+      padding: 2px 20px;
       display: flex;
       align-items: center;
     }

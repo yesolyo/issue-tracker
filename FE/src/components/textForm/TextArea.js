@@ -7,72 +7,80 @@ import { colors } from '../../styles/color';
 import { fontSize, fontType } from '../../styles/font';
 import { Button } from '../button/Button';
 
-export const TextArea = React.memo(({ label, size, value, setValue }) => {
-  const areaSize = areaSizes[size];
-  const fileSize = fileSizes[size];
+// uncontrolled components
+export const TextArea = React.memo(
+  ({ label, size, value, setValue, setText }) => {
+    const textAreaValue = value;
+    const areaSize = areaSizes[size];
+    const fileSize = fileSizes[size];
 
-  const [isTextAreaFocus, setIsTextAreaFocus] = useState(false);
-  const [isCount, setIsCount] = useState(true);
-  const fileInput = React.useRef(null);
+    const [isTextAreaFocus, setIsTextAreaFocus] = useState(false);
+    const [isCount, setIsCount] = useState(true);
+    const fileInput = React.useRef(null);
 
-  const handleValueChange = (e) => {
-    setValue(e.target.value);
-  };
+    const handleValueChange = (e) => {
+      setValue(e.target.value);
+    };
 
-  const handleButtonClick = (e) => {
-    fileInput.current.click();
-  };
+    const handleButtonClick = (e) => {
+      fileInput.current.click();
+    };
 
-  const handleChange = (e) => {
-    setValue(
-      `![${e.target.files[0].name}](https://github.com/codesquad-members-2023/issue-tracker/assets/104904719/${e.target.files[0].name})`
+    const handleChange = (e) => {
+      setValue(
+        `![${e.target.files[0].name}](https://github.com/codesquad-members-2023/issue-tracker/assets/104904719/${e.target.files[0].name})`
+      );
+    };
+
+    useEffect(() => {
+      setIsCount(true);
+      let timerId;
+      if (value.length > 0) {
+        timerId = setTimeout(() => setIsCount(false), 2000);
+      }
+
+      return () => clearTimeout(timerId);
+    }, [value]);
+
+    return (
+      <MyTextArea
+        isFocus={isTextAreaFocus}
+        areaSize={areaSize}
+        value={textAreaValue}
+      >
+        <textarea
+          onChange={({ target }) => setValue(target.value)}
+          onFocus={() => setIsTextAreaFocus(true)}
+          onBlur={() => setIsTextAreaFocus(false)}
+          ref={(value) => setText?.(value)}
+        />
+        <label className={textAreaValue && 'filled'}>{label}</label>
+        <TextCount isFocus={isTextAreaFocus}>
+          {isCount && <span>{`띄어쓰기 포함 ${textAreaValue?.length}자`}</span>}
+          <Icon iconType={'grip'} />
+        </TextCount>
+
+        <MyFileArea isFocus={isTextAreaFocus} fileSize={fileSize}>
+          <Button
+            size={'m'}
+            color={'ghostBlack'}
+            iconType={'paperclip'}
+            isIcon
+            buttonText={`파일 첨부하기`}
+            isLeftPosition
+            onClick={handleButtonClick}
+          />
+          <input
+            type="file"
+            ref={fileInput}
+            onChange={handleChange}
+            style={{ display: 'none' }}
+          />
+        </MyFileArea>
+      </MyTextArea>
     );
-  };
-
-  useEffect(() => {
-    setIsCount(true);
-    let timerId;
-    if (value.length > 0) {
-      timerId = setTimeout(() => setIsCount(false), 2000);
-    }
-
-    return () => clearTimeout(timerId);
-  }, [value]);
-  
-  return (
-    <MyTextArea isFocus={isTextAreaFocus} areaSize={areaSize} value={value}>
-      <textarea
-        value={value}
-        onChange={({ target }) => setValue(target.value)}
-        onFocus={() => setIsTextAreaFocus(true)}
-        onBlur={() => setIsTextAreaFocus(false)}
-      />
-      <label className={value && 'filled'}>{label}</label>
-      <TextCount isFocus={isTextAreaFocus}>
-        {isCount && <span>{`띄어쓰기 포함 ${value.length}자`}</span>}
-        <Icon iconType={'grip'} />
-      </TextCount>
-
-      <MyFileArea isFocus={isTextAreaFocus} fileSize={fileSize}>
-        <Button
-          size={'m'}
-          color={'ghostBlack'}
-          iconType={'paperclip'}
-          isIcon
-          buttonText={`파일 첨부하기`}
-          isLeftPosition
-          onClick={handleButtonClick}
-        />
-        <input
-          type="file"
-          ref={fileInput}
-          onChange={handleChange}
-          style={{ display: 'none' }}
-        />
-      </MyFileArea>
-    </MyTextArea>
-  );
-});
+  }
+);
 
 const areaSizes = {
   l: css`
@@ -116,7 +124,7 @@ const MyTextArea = styled.div`
   & label {
     position: absolute;
     ${({ value }) =>
-    value.length > 0
+    value?.length > 0
       ? 'transform: translate(0, 12px) scale(0.8);'
       : 'transform: translate(0, 23px) scale(1);'}
     pointer-events: none;
