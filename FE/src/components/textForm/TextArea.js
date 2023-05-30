@@ -9,18 +9,13 @@ import { Button } from '../button/Button';
 
 // uncontrolled components
 export const TextArea = React.memo(
-  ({ label, size, value, setValue, setText }) => {
-    const textAreaValue = value;
+  ({ label, size, value, setValue, inputRef }) => {
     const areaSize = areaSizes[size];
     const fileSize = fileSizes[size];
 
     const [isTextAreaFocus, setIsTextAreaFocus] = useState(false);
     const [isCount, setIsCount] = useState(true);
     const fileInput = React.useRef(null);
-
-    const handleValueChange = (e) => {
-      setValue(e.target.value);
-    };
 
     const handleButtonClick = (e) => {
       fileInput.current.click();
@@ -38,25 +33,24 @@ export const TextArea = React.memo(
       if (value.length > 0) {
         timerId = setTimeout(() => setIsCount(false), 2000);
       }
-
       return () => clearTimeout(timerId);
     }, [value]);
 
     return (
-      <MyTextArea
-        isFocus={isTextAreaFocus}
-        areaSize={areaSize}
-        value={textAreaValue}
-      >
+      <MyTextArea isFocus={isTextAreaFocus} areaSize={areaSize} value={value}>
         <textarea
-          onChange={({ target }) => setValue(target.value)}
+          name="comment"
+          onChange={({ target }) => {
+            setValue(target.value);
+          }}
           onFocus={() => setIsTextAreaFocus(true)}
           onBlur={() => setIsTextAreaFocus(false)}
-          ref={(value) => setText?.(value)}
+          ref={inputRef}
+          value={value}
         />
-        <label className={textAreaValue && 'filled'}>{label}</label>
+        <label className={value && 'filled'}>{label}</label>
         <TextCount isFocus={isTextAreaFocus}>
-          {isCount && <span>{`띄어쓰기 포함 ${textAreaValue?.length}자`}</span>}
+          {isCount && <span>{`띄어쓰기 포함 ${value?.length}자`}</span>}
           <Icon iconType={'grip'} />
         </TextCount>
 

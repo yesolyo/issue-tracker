@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,30 +10,27 @@ import { TextArea } from '../components/textForm/TextArea';
 import { TextInput } from '../components/textForm/TextInput';
 
 export const NewIssue = () => {
+  const titleInputRef = useRef();
+  const commentInputRef = useRef();
   const [title, setTitle] = useState('');
   const [comment, setComment] = useState('');
   const [assignee, setAssignee] = useState(null);
   const [label, setlabel] = useState(null);
   const [milestone, setMilestone] = useState(null);
   const [newIssue, setNewIssue] = useState({});
-  const [text, setText] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setNewIssue(
       JSON.stringify({
-        title: title?.value,
-        comment: comment?.value,
+        title,
+        comment,
         assignees: assignee,
         labels: label,
         milestone
       })
     );
   };
-
-  useEffect(() => {
-    setNewIssue(newIssue);
-  }, []);
 
   return (
     <MyNewIssuePage>
@@ -47,14 +44,14 @@ export const NewIssue = () => {
               height={'70px'}
               value={title}
               setValue={setTitle}
-              setText={setText}
+              inputRef={titleInputRef}
             />
             <TextArea
               label={'코멘트를 입력하세요'}
               size={'l'}
               value={comment}
               setValue={setComment}
-              setText={setText}
+              inputRef={commentInputRef}
             />
           </MyNewIssueContent>
           <SideBar
