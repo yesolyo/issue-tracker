@@ -9,8 +9,8 @@ import { Button } from '../button/Button';
 import { TextArea } from '../textForm/TextArea';
 
 export const IssueDetailContent = () => {
-  const issueDetail = useContext(IssueDetailContext);
-  const [issueSubInfo, CommentInfo, userData] = issueDetail;
+  const { issue, comments } = useContext(IssueDetailContext);
+  const [issueSubInfo, CommentInfo, userData] = issue;
   const [comment, SetComment] = useState('');
   const [saveComment, setSaveComment] = useState([]);
 
@@ -51,6 +51,8 @@ export const IssueDetailContent = () => {
     disabled: comment.length < 1,
     isLeftPosition: true,
     onClick: handleSaveComment
+    disabled: comment?.length < 1,
+    isLeftPosition: true
   };
 
   return (
@@ -74,6 +76,23 @@ export const IssueDetailContent = () => {
             />
           )
         )}
+      {comments &&
+        comments.map((comment) => (
+          <CommentElements
+            key={comment.userId}
+            authorInfo={{
+              id: issue.author.id,
+              name: issue.author.name
+            }}
+            userInfo={{
+              id: comment.userId,
+              name: comment.userName,
+              profileUrl: comment.userUrl
+            }}
+            createTime={comment.createTime}
+            reply={comment.replyContents}
+          />
+        ))}
       <TextArea {...commentInput} />
       <Button {...addComment} />
     </MyIssueDetailContent>

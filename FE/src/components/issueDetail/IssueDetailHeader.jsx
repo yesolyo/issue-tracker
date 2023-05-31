@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,41 +10,32 @@ import { LabelTag } from '../LabelTag';
 import { PageHeader } from '../PageHeader';
 
 export const IssueDetailHeader = () => {
-  const issueDetail = useContext(IssueDetailContext);
-  const [issueSubInfo, CommentInfo] = issueDetail;
+  const { issue } = useContext(IssueDetailContext);
   const [isEdit, setIsEdit] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [titleData, setTitleData] = useState(null);
   const [completeTitleData, setCompleteTitleData] = useState(null);
-
-  useEffect(() => {
-    setTitleData(issueSubInfo?.title);
-    setCompleteTitleData(issueSubInfo?.title);
-  }, [issueSubInfo?.title]);
-
-  const handleEdit = () => {
-    setIsEdit(true);
-  };
-
-  const handleNotEdit = () => {
+  
+ const handleNotEdit = () => {
     setIsEdit(false);
     setTitleData(completeTitleData);
   };
-
   const handleCloseIssue = () => {
     setIsClose(true);
   };
-
   const handleSubmit = () => {
     setIsEdit(false);
     setCompleteTitleData(titleData);
   };
-
-  const pageHeaderInfo = {
-    leftChild: titleData,
-    middleChild: `#${issueSubInfo?.id}`,
-    value: isEdit
+  const handleEdit = () => {
+    setIsEdit(true);
+    setTitleData(`${issue?.title}`);
   };
+
+  useEffect(() => {
+    setTitleData(issue?.title);
+    setCompleteTitleData(issue?.title);
+  }, [issue?.title]);
 
   const editBtn = [
     {
@@ -102,9 +93,8 @@ export const IssueDetailHeader = () => {
       <SubHeader>
         <LabelTag {...labelTagBtn} />
         <p>
-          이 이슈가 {getTimeElapsed(issueSubInfo?.createTime)}에{' '}
-          {issueSubInfo?.author.name}님에 의해 열렸습니다. * 코멘트{' '}
-          {CommentInfo?.length}개
+          이 이슈가 {getTimeElapsed(issue?.createTime)}에 {issue.author?.name}
+          님에 의해 열렸습니다. * 코멘트 {issue.commentAuthors?.length}개
         </p>
       </SubHeader>
     </MyIssueDetailHeader>
