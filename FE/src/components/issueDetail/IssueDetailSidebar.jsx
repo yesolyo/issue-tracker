@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { IssueDetailContent } from './IssueDetailContent';
 import { Button } from '../button/Button';
-import { SideBar } from '../newIssue/SideBar';
+import { SideBar } from '../newIssue/Sidebar';
 
 export const IssueDetailSidebar = () => {
   const navigate = useNavigate();

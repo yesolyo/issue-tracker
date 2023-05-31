@@ -12,7 +12,11 @@ export const IssueDetail = () => {
   const [issueDetail, setIssueDetail] = useState([]);
   const { id } = useParams();
   const initData = async () => {
-    const response = await fetchAll('/issueDetail', '/issueDetail/comment');
+    const response = await fetchAll(
+      '/issueDetail',
+      '/issueDetail/comment',
+      '/issues'
+    );
     setIssueDetail(response);
   };
   useEffect(() => {

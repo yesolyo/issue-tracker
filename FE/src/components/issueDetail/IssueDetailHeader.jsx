@@ -15,10 +15,11 @@ export const IssueDetailHeader = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [titleData, setTitleData] = useState(null);
-  const [completeTitleData, setcompleteTitleData] = useState(null);
+  const [completeTitleData, setCompleteTitleData] = useState(null);
 
   useEffect(() => {
     setTitleData(issueSubInfo?.title);
+    setCompleteTitleData(issueSubInfo?.title);
   }, [issueSubInfo?.title]);
 
   const handleEdit = () => {
@@ -27,6 +28,7 @@ export const IssueDetailHeader = () => {
 
   const handleNotEdit = () => {
     setIsEdit(false);
+    setTitleData(completeTitleData);
   };
 
   const handleCloseIssue = () => {
@@ -35,6 +37,7 @@ export const IssueDetailHeader = () => {
 
   const handleSubmit = () => {
     setIsEdit(false);
+    setCompleteTitleData(titleData);
   };
 
   const pageHeaderInfo = {

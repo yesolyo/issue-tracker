@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,8 +10,30 @@ import { TextArea } from '../textForm/TextArea';
 
 export const IssueDetailContent = () => {
   const issueDetail = useContext(IssueDetailContext);
-  const [issueSubInfo, CommentInfo] = issueDetail;
+  const [issueSubInfo, CommentInfo, userData] = issueDetail;
   const [comment, SetComment] = useState('');
+  const [saveComment, setSaveComment] = useState([]);
+
+  useEffect(() => {
+    setSaveComment(CommentInfo);
+  }, [CommentInfo]);
+
+  const handleSaveComment = () => {
+    setSaveComment([
+      ...saveComment,
+      {
+        userId: userData.userInfo?.id,
+        userName: userData.userInfo?.name,
+        userUrl: userData.userInfo?.profileUrl,
+
+        createTime: Date.now(),
+        replyContents: comment
+      }
+    ]);
+
+    SetComment('');
+  };
+  console.log(saveComment);
   const commentInput = {
     label: '코멘트를 입력하세요.',
     size: 's',
@@ -27,28 +49,31 @@ export const IssueDetailContent = () => {
     buttonText: '코멘트 작성',
     iconType: 'plus',
     disabled: comment.length < 1,
-    isLeftPosition: true
+    isLeftPosition: true,
+    onClick: handleSaveComment
   };
 
   return (
     <MyIssueDetailContent>
-      {CommentInfo &&
-        CommentInfo.map((comment) => (
-          <CommentElements
-            key={comment.userId}
-            authorInfo={{
-              id: issueSubInfo.author.id,
-              name: issueSubInfo.author.name
-            }}
-            userInfo={{
-              id: comment.userId,
-              name: comment.userName,
-              profileUrl: comment.userUrl
-            }}
-            createTime={comment.createTime}
-            reply={comment.replyContents}
-          />
-        ))}
+      {saveComment &&
+        saveComment.map(
+          ({ userId, userName, userUrl, createTime, replyContents }, index) => (
+            <CommentElements
+              key={index}
+              authorInfo={{
+                id: userData.userInfo?.id,
+                name: userData.userInfo?.name
+              }}
+              userInfo={{
+                id: userId,
+                name: userName,
+                profileUrl: userUrl
+              }}
+              createTime={createTime}
+              reply={replyContents}
+            />
+          )
+        )}
       <TextArea {...commentInput} />
       <Button {...addComment} />
     </MyIssueDetailContent>

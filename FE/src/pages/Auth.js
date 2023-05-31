@@ -14,7 +14,7 @@ export const Auth = () => {
     const getToken = async () => {
       try {
         const response = await fetchData(`${AUTH_URI}?code=${queryCode}`);
-        console.log(response);
+        // console.log(response);
 
         // navigate('/issues');
       } catch (error) {
