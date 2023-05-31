@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,24 +10,21 @@ import { LabelTag } from '../LabelTag';
 import { PageHeader } from '../PageHeader';
 
 export const IssueDetailHeader = () => {
-  const issueDetail = useContext(IssueDetailContext);
-  const [issueSubInfo, CommentInfo] = issueDetail;
+  const { issue } = useContext(IssueDetailContext);
   const [isEdit, setIsEdit] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [titleData, setTitleData] = useState(null);
-
   const handleEdit = () => {
     setIsEdit(true);
-    setTitleData(`${issueSubInfo?.title}`);
+    setTitleData(`${issue?.title}`);
   };
-
   const handleCloseIssue = () => {
     setIsClose(true);
   };
 
   const pageHeaderInfo = {
-    leftChild: issueSubInfo?.title,
-    middleChild: `#${issueSubInfo?.id}`,
+    leftChild: issue?.title,
+    middleChild: `#${issue?.issueId}`,
     value: isEdit
   };
 
@@ -87,9 +84,8 @@ export const IssueDetailHeader = () => {
       <SubHeader>
         <LabelTag {...labelTagBtn} />
         <p>
-          이 이슈가 {getTimeElapsed(issueSubInfo?.createTime)}에{' '}
-          {issueSubInfo?.author.name}님에 의해 열렸습니다. * 코멘트{' '}
-          {CommentInfo?.length}개
+          이 이슈가 {getTimeElapsed(issue?.createTime)}에 {issue.author?.name}
+          님에 의해 열렸습니다. * 코멘트 {issue.commentAuthors?.length}개
         </p>
       </SubHeader>
     </MyIssueDetailHeader>
