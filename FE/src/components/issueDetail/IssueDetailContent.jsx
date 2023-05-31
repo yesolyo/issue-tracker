@@ -9,8 +9,7 @@ import { Button } from '../button/Button';
 import { TextArea } from '../textForm/TextArea';
 
 export const IssueDetailContent = () => {
-  const issueDetail = useContext(IssueDetailContext);
-  const [issueSubInfo, CommentInfo] = issueDetail;
+  const { issue, comments } = useContext(IssueDetailContext);
   const [comment, SetComment] = useState('');
   const commentInput = {
     label: '코멘트를 입력하세요.',
@@ -26,19 +25,19 @@ export const IssueDetailContent = () => {
     iconWidth: 11,
     buttonText: '코멘트 작성',
     iconType: 'plus',
-    disabled: comment.length < 1,
+    disabled: comment?.length < 1,
     isLeftPosition: true
   };
 
   return (
     <MyIssueDetailContent>
-      {CommentInfo &&
-        CommentInfo.map((comment) => (
+      {comments &&
+        comments.map((comment) => (
           <CommentElements
             key={comment.userId}
             authorInfo={{
-              id: issueSubInfo.author.id,
-              name: issueSubInfo.author.name
+              id: issue.author.id,
+              name: issue.author.name
             }}
             userInfo={{
               id: comment.userId,
