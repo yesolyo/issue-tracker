@@ -9,7 +9,7 @@ import { Button } from '../button/Button';
 
 // uncontrolled components
 export const TextArea = React.memo(
-  ({ label, size, value, setValue, setText }) => {
+  ({ label, size, value, setValue, setText, isEdit }) => {
     const textAreaValue = value;
     const areaSize = areaSizes[size];
     const fileSize = fileSizes[size];
@@ -45,6 +45,7 @@ export const TextArea = React.memo(
     return (
       <MyTextArea
         isFocus={isTextAreaFocus}
+        isEdit={isEdit}
         areaSize={areaSize}
         value={textAreaValue}
       >
@@ -52,15 +53,24 @@ export const TextArea = React.memo(
           onChange={({ target }) => setValue(target.value)}
           onFocus={() => setIsTextAreaFocus(true)}
           onBlur={() => setIsTextAreaFocus(false)}
+          value={textAreaValue}
           ref={(value) => setText?.(value)}
         />
-        <label className={textAreaValue && 'filled'}>{label}</label>
-        <TextCount isFocus={isTextAreaFocus}>
+        {isEdit
+          ? null
+          : (
+            <label className={textAreaValue && 'filled'}>{label}</label>
+          )}
+        <TextCount isFocus={isTextAreaFocus} isEidt={isEdit}>
           {isCount && <span>{`띄어쓰기 포함 ${textAreaValue?.length}자`}</span>}
           <Icon iconType={'grip'} />
         </TextCount>
 
-        <MyFileArea isFocus={isTextAreaFocus} fileSize={fileSize}>
+        <MyFileArea
+          isFocus={isTextAreaFocus}
+          isEdit={isEdit}
+          fileSize={fileSize}
+        >
           <Button
             size={'m'}
             color={'ghostBlack'}
@@ -104,14 +114,16 @@ const fileSizes = {
   `
 };
 
-const MyTextArea = styled.div`
+const MyTextArea = styled.form`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 938px;
   border-radius: 11px;
-  box-shadow: ${({ isFocus }) => (isFocus ? `0 0 0 1px ${colors.blue}` : null)};
+
+  box-shadow: ${({ isFocus, isEdit }) =>
+    isEdit ? null : isFocus ? `0 0 0 1px ${colors.blue}` : null};
 
   &: focus-within label {
     transform: translate(0, 12px) scale(0.8);
@@ -139,7 +151,7 @@ const MyTextArea = styled.div`
 
   & textarea {
     ${({ areaSize }) => areaSize};
-    border-radius: 11px 11px 0px 0px;
+    border-radius: ${({ isEdit }) => (isEdit ? '0px' : '11px 11px 0px 0px')};
     box-sizing: border-box;
     width: 100%;
     border: none;
@@ -150,8 +162,12 @@ const MyTextArea = styled.div`
     resize: none;
     ${fontSize.M};
     ${fontType.REGULAR};
-    background: ${({ isFocus }) =>
-    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
+    background: ${({ isFocus, isEdit }) =>
+    isEdit
+      ? `${colors.gray50}`
+      : isFocus
+        ? `${colors.gray50}`
+        : `${colors.gray200}`};
   }
 `;
 
@@ -160,10 +176,15 @@ const MyFileArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0px 0px 11px 11px;
+  border-radius: ${(isEdit) =>
+    isEdit ? '0px 0px 16px 16px' : '0px 0px 11px 11px'};
   width: 100%;
-  background: ${({ isFocus }) =>
-    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
+  background: ${({ isFocus, isEdit }) =>
+    isEdit
+      ? `${colors.gray50}`
+      : isFocus
+        ? `${colors.gray50}`
+        : `${colors.gray200}`};
   border-top: ${({ isFocus }) =>
     isFocus ? `1px dashed ${colors.blue}` : `1px dashed ${colors.gray300}`};
 
@@ -184,6 +205,10 @@ const TextCount = styled.div`
   color: ${colors.gray600};
   ${fontSize.S};
   ${fontType.REGULAR};
-  background: ${({ isFocus }) =>
-    isFocus ? `${colors.gray50}` : `${colors.gray200}`};
+  background: ${({ isFocus, isEdit }) =>
+    isEdit
+      ? `${colors.gray50}`
+      : isFocus
+        ? `${colors.gray50}`
+        : `${colors.gray200}`};
 `;
