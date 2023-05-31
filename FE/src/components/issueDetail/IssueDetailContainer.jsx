@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { IssueDetailContent } from './IssueDetailContent';
 import { IssueDetailSidebar } from './IssueDetailSidebar';
 import { Button } from '../button/Button';
-import { SideBar } from '../newIssue/Sidebar';
+import { SideBar } from '../newIssue/SideBar';
 
 export const IssueDetailContainer = () => {
   const navigate = useNavigate();

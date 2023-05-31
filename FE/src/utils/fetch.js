@@ -9,19 +9,15 @@ export const fetchAll = async (...url) => {
   return response;
 };
 
-export const fetchPost = async (url, body) => {
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    quries: { code: queryCode }
-  };
-  const res = await fetch(url, options);
-  const data = await res.json();
-  if (res.ok) {
+export const getLoginToken = async (queryCode) => {
+  try {
+    const data = await customFetch({
+      path: '/oauth/result',
+      method: 'GET',
+      queries: { code: queryCode }
+    });
     return data;
-  } else {
-    throw Error(data);
+  } catch (error) {
+    return error;
   }
 };
