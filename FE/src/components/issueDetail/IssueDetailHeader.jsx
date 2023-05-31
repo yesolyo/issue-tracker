@@ -14,12 +14,28 @@ export const IssueDetailHeader = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [isClose, setIsClose] = useState(false);
   const [titleData, setTitleData] = useState(null);
+  const [completeTitleData, setcompleteTitleData] = useState(null);
   const handleEdit = () => {
     setIsEdit(true);
-    setTitleData(`${issue?.title}`);
+    setTitleData(`${issue?.title}`)
+
+  useEffect(() => {
+    setTitleData(issueSubInfo?.title);
+  }, [issueSubInfo?.title]);
+
+  const handleEdit = () => {
+    setIsEdit(true);
+  };
+
+  const handleNotEdit = () => {
+    setIsEdit(false);
   };
   const handleCloseIssue = () => {
     setIsClose(true);
+  };
+
+  const handleSubmit = () => {
+    setIsEdit(false);
   };
 
   const pageHeaderInfo = {
@@ -33,19 +49,19 @@ export const IssueDetailHeader = () => {
       id: 1,
       size: 's',
       color: 'outlineBlue',
-      iconType: 'edit',
+      iconType: isEdit ? 'xSquare' : 'edit',
       iconWidth: '12',
-      buttonText: '제목 편집',
-      onClick: handleEdit
+      buttonText: isEdit ? '편집 취소' : '제목 편집',
+      onClick: isEdit ? handleNotEdit : handleEdit
     },
     {
       id: 2,
       size: 's',
-      color: 'outlineBlue',
-      iconType: 'archive',
+      color: isEdit ? 'containerBlue' : 'outlineBlue',
+      iconType: isEdit ? 'edit' : 'archive',
       iconWidth: '12',
-      buttonText: '이슈 닫기',
-      onClick: handleCloseIssue
+      buttonText: isEdit ? '편집 완료' : '이슈 닫기',
+      onClick: isEdit ? handleSubmit : handleCloseIssue
     }
   ];
   const labelTagBtn = {
